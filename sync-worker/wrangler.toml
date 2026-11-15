@@ -1,0 +1,19 @@
+name = "eeidx-sync"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# D1：先创建数据库，再把 database_id 填进来
+# wrangler d1 create eeidx-sync
+[[d1_databases]]
+binding = "DB"
+database_name = "eeidx-sync"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# R2：先创建存储桶
+# wrangler r2 bucket create eeidx-files
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "eeidx-files"
+
+# 免费额度参考：Workers 10 万请求/天；D1 5 GB 存储；R2 10 GB 存储。
+# 本 Worker 不接入任何付费 API，也不需要额外的 Secret。

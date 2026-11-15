@@ -7,12 +7,12 @@ workers_dev = true
 AI_BASE_URL = "https://api.siliconflow.cn/v1"
 AI_MODEL = "deepseek-ai/DeepSeek-V3"
 STT_MODEL = "FunAudioLLM/SenseVoiceSmall"
-ALLOWED_ORIGINS = "https://YOURNAME.github.io"
-ALLOW_LOCAL = "true"
+ALLOWED_ORIGINS = "https://1313le.github.io"
+ALLOW_LOCAL = "false"
 RATE_PER_MIN = "15"
 RATE_PER_DAY = "150"
 MAX_OUTPUT_TOKENS = "2400"
 
 [[kv_namespaces]]
 binding = "RATE_LIMIT"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "331842757cef4fd88e544618912ce391"

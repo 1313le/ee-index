@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>隐私与免责声明 · EE-INDEX 97</title>
+<title>隐私与免责声明 · EE-INDEX 98</title>
 <style>
 :root{--beige:#d7cdb7;--paper:#f8f3e5;--ink:#1b1813;--muted:#6f6553;--line:#a2957b;--navy:#20486f;}
 *{box-sizing:border-box;}
@@ -28,19 +28,22 @@ li{margin-bottom:4px;}
 <main class="window">
   <div class="titlebar">
     <svg class="flag" viewBox="0 0 12 12" aria-hidden="true"><rect width="5" height="5" fill="#b83b32"/><rect x="7" width="5" height="5" fill="#2f8750"/><rect y="7" width="5" height="5" fill="#2f68b0"/><rect x="7" y="7" width="5" height="5" fill="#d1a02f"/></svg>
-    隐私与免责声明 — EE-INDEX 97
+    隐私与免责声明 — EE-INDEX 98
   </div>
   <div class="body">
     <h1>隐私与免责声明</h1>
-    <p>最后更新：2026-11-14</p>
+    <p>最后更新：2026-11-15</p>
 
     <h2>1. 数据与隐私</h2>
     <p>EE-INDEX 是静态资源索引，没有账号系统，也没有本站的服务器数据库。</p>
     <ul>
       <li>收藏、字号设置、AI 配置保存在你本机浏览器（localStorage）。清除浏览器数据会丢失。</li>
+      <li>个人文件库的文件内容与分类默认只保存在本机浏览器（OPFS / IndexedDB），不会自动上传；清除浏览器数据会一并清除，重要资料请定期导出 ZIP。</li>
+      <li>只有你在“云端”面板填入自建的同步 Worker 地址并主动点击推送时，文件才会发送到该服务。匿名设备码只用于区分空间，不含账号、手机号或邮箱；服务端只保存令牌的 SHA-256 哈希。</li>
       <li>如果你配置自己的 AI API Key，Key 只保存在本机浏览器；请求由浏览器直接发送给你选择的服务商。</li>
       <li>如果使用站点公共 AI 代理，输入文字、图片、文件和录音会先发送到站点代理，再由代理转发到 AI 服务商。请不要上传个人隐私、商业机密或未授权的资料。</li>
-      <li>网站会向第三方网站请求 favicon 以显示站点图标，请求不携带来源页地址。</li>
+      <li>AI 自动归档默认只使用本地规则；接入模型后也只发送文件名、扩展名、大小与 MIME 类型，不读取文件正文。</li>
+      <li>网站会向第三方网站请求 favicon 以显示站点图标，请求不携带来源页地址；失败的主机 24 小时内不再重试。</li>
       <li>本站不接入统计脚本，不主动收集访问日志；托管平台（如 GitHub Pages）和代理平台（如 Cloudflare）可能按其自身政策记录访问信息。</li>
     </ul>
 
@@ -63,7 +66,7 @@ li{margin-bottom:4px;}
     <div class="tip">继续使用本站即表示你理解并接受以上说明。若不同意，请停止使用 AI、语音和附件功能。</div>
     <a class="back" href="index.html">← 返回 EE-INDEX</a>
   </div>
-  <div class="footer"><span>EE-INDEX 97 · PRIVACY</span><span>1996–2026 · LOCAL-FIRST</span></div>
+  <div class="footer"><span>EE-INDEX 98 · PRIVACY</span><span>1996–2026 · LOCAL-FIRST</span></div>
 </main>
 </body>
 </html>
