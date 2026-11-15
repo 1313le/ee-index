@@ -1,6 +1,8 @@
 # EE-INDEX 98 发布包
 
-这是一个单页硬件工程资源索引。前端是纯静态文件，可发布到 GitHub Pages；公共 AI 代理与可选的个人文件库同步服务分别部署到 Cloudflare Workers。
+这是一个单页硬件工程资源索引，界面还原早期 Windows 资源管理器的操作方式：目录树、四视图、排序、多选、右键菜单、后退/前进/向上与键盘快捷键。前端是纯静态文件，可发布到 GitHub Pages；公共 AI 代理与可选的个人文件库同步服务分别部署到 Cloudflare Workers。
+
+站内收录 330 条资源，其中 36 份常用元器件数据手册（电阻、电容、电感/磁珠、二极管、三极管/MOSFET、电源管理、模拟/运放、MCU/逻辑、传感器、连接器/保护）为原厂公开 PDF 的自托管镜像，可直接站内预览与下载。
 
 前端内置“我的文件”：拖拽上传、最多 5 级分类、批量操作、回收站、ZIP 导入导出、AI 自动归档与复古音效/动效。文件默认只保存在浏览器本地。
 
@@ -10,6 +12,7 @@
 publish/
 ├─ index.html          # 前端主文件
 ├─ privacy.html        # 隐私与免责声明
+├─ datasheets/         # 36 份自托管元器件数据手册（按子类分目录）+ README.md 清单
 ├─ .nojekyll           # GitHub Pages 需要，避免 Jekyll 处理
 ├─ README.md
 ├─ worker/
@@ -23,12 +26,14 @@ publish/
    └─ README.md        # 部署步骤
 ```
 
+`datasheets/` 必须与 `index.html` 同级部署；前端用 `datasheets/<子类>/<文件名>.pdf` 相对路径做站内预览，缺少该目录时预览和下载会 404。
+
 ## 一、发布到 GitHub Pages
 
 ### 方式 A：网页上传（最简单）
 
 1. 在 GitHub 新建一个仓库，例如 `ee-index`。
-2. 把本目录中的 `index.html`、`privacy.html`、`.nojekyll` 上传到仓库根目录。
+2. 把本目录中的 `index.html`、`privacy.html`、`.nojekyll`、`datasheets/` 上传到仓库根目录。
 3. 进入仓库 **Settings → Pages**。
 4. Source 选择 **Deploy from a branch**，Branch 选 `main`，目录选 `/ (root)`，保存。
 5. 等待 1–2 分钟，访问：
@@ -48,7 +53,7 @@ https://你的用户名.github.io/
 ```bash
 cd publish
 git init
-git add index.html privacy.html .nojekyll README.md
+git add index.html privacy.html .nojekyll README.md datasheets
 git commit -m "Publish EE-INDEX 98"
 git branch -M main
 git remote add origin https://github.com/你的用户名/ee-index.git
@@ -63,7 +68,15 @@ git push -u origin main
 - 开启 HTTPS。
 - 如果使用中国大陆服务器/域名，需要 ICP 备案；GitHub Pages 本身在海外。
 
-## 二、部署公共 AI 代理
+## 二、数据手册与版权
+
+- 36 份 PDF 来自 Vishay、onsemi、TI、ST、Microchip、Espressif、Bosch、ADI/Maxim、Bourns、Diodes、AOS、Winbond、JST 等原厂公开下载页，逐份校验过 `%PDF-` 文件头、页数与文本内容。
+- 清单、子类、料号、页数、官方来源与本地文件名见 `datasheets/README.md`。
+- 本站仅做学习用途的镜像托管，未修改 PDF 内容，版权归各原厂所有。若原厂或权利方要求下架，删除 `datasheets/` 中对应文件，并同步删除 `index.html` 内 `EE_EXTRA_DATASHEETS` 中对应条目即可。
+- 新增数据手册时，把 PDF 放到 `datasheets/<子类>/`，在 `ee-index/src/data/extra-datasheets.js` 增加条目，再运行 `node ee-index/build.mjs`；构建会校验文件存在、PDF 文件头、单文件 ≤6 MB、总体积 ≤60 MB 和页数。
+- GitHub Pages 对单文件 100 MB、仓库 1 GB 有软限制；当前 36 份约 45 MB，正常推送即可。
+
+## 三、部署公共 AI 代理
 
 GitHub Pages 不能运行后端，所以 AI 代理需要 Cloudflare Workers。详细步骤见 `worker/README.md`。
 
@@ -99,7 +112,7 @@ https://ee-index-ai.你的子域.workers.dev
 
 提交并等待 GitHub Pages 更新。首次打开会自动使用「EE-INDEX 公共 AI」，不需要用户填 Key。
 
-## 三、部署个人文件库同步服务（可选，匿名设备码）
+## 四、部署个人文件库同步服务（可选，匿名设备码）
 
 不部署也可以使用完整的本地个人文件库；只有需要跨设备同步时才部署。
 
@@ -119,10 +132,13 @@ npx wrangler deploy
 - 文件内容存 R2，元数据存 D1；冲突时返回 409，不会静默覆盖较新的版本。
 - 同步是手动触发的：只有点击“推送到云端”才会上传。
 
-## 四、发布前检查
+## 五、发布前检查
 
 - [ ] GitHub Pages 能正常打开 `index.html`
 - [ ] `privacy.html` 可访问
+- [ ] 资源库显示 330 条资源，数据手册分类显示 36 份、10 个子类
+- [ ] 数据手册详情可打开，PDF 在站内预览，下载按钮可用
+- [ ] 目录树、四视图、排序、多选、右键菜单、后退/前进/向上与快捷键正常
 - [ ] Worker `/health` 返回 `kv: true`
 - [ ] Worker `/v1/models` 带正确 Origin 返回模型列表
 - [ ] 前端 AI 能返回推荐资源
@@ -145,10 +161,11 @@ npx wrangler deploy
 
 ## 当前状态
 
-前端发布包、AI Worker 和同步 Worker 代码已经准备好。实际推送 GitHub 和部署 Cloudflare Worker 需要：
+- 前端已包含 330 条资源与 36 份自托管数据手册，发布包可直接部署到 GitHub Pages。
+- AI Worker 与同步 Worker 代码已准备好，但尚未部署；公共 AI 与云端同步需要 Cloudflare 账号。
+- 实际部署 Cloudflare Worker 需要：
 
-1. 你的 GitHub 登录/仓库；
-2. 你的 Cloudflare 登录；
-3. 一个可用的 AI API Key（通过 `wrangler secret put` 设置，不要发到聊天里）。
+1. 你的 Cloudflare 登录；
+2. 一个可用的 AI API Key（通过 `wrangler secret put` 设置，不要发到聊天里）。
 
-完成这三项后，把 AI Worker URL 填进 `ee-ai-base` 即可上线公共 AI；同步服务按第三节部署后，把地址填进前端“云端”面板即可。
+完成部署后，把 AI Worker URL 填进 `ee-ai-base` 即可上线公共 AI；同步服务按第四节部署后，把地址填进前端“云端”面板即可。

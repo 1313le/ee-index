@@ -10,7 +10,7 @@
 <title>EE-INDEX 98 · 硬件工程资源管理器</title>
 <link rel="privacy-policy" href="privacy.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='3' fill='%23d7cdb7'/%3E%3Crect x='3' y='5' width='18' height='14' rx='2' fill='%2320486f'/%3E%3Crect x='5' y='8' width='14' height='8' fill='%23f8f3e5'/%3E%3Cpath d='M6 10h12M6 12h8M6 14h10' stroke='%2320486f' stroke-width='1'/%3E%3C/svg%3E">
-<meta name="description" content="EE-INDEX 98：一台复古 CRT 里的硬件工程资源管理器。294 条资源（网站 / 免费教材 / 讲义 / 视频课程 / 官方软件下载）、8 个岗位路径、30 个真实项目，内置 AI 搜索、PDF 与视频预览，以及带复古上传动效的个人文件库（本地 + 云端同步、AI 自动归类）。">
+<meta name="description" content="EE-INDEX 98：一台复古 CRT 里的硬件工程资源管理器。330 条资源（网站 / 免费教材 / 讲义 / 视频课程 / 官方软件下载 / 36 份自托管元器件数据手册）、8 个岗位路径、30 个真实项目，内置 AI 搜索、PDF 与视频预览，以及带复古上传动效的个人文件库（本地 + 云端同步、AI 自动归类）。">
 <style>
 :root{
   --room:#24211d;
@@ -981,6 +981,343 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 @media (prefers-reduced-motion:reduce){
   html:not(.fx-force) *{animation:none!important;transition:none!important;}
 }
+
+/* ============ Windows 98 Explorer skin ============ */
+:root{
+  --w98-face:#d4d0c8;
+  --w98-face-2:#c3bfb6;
+  --w98-light:#ffffff;
+  --w98-shadow:#808080;
+  --w98-dark:#404040;
+  --w98-field:#ffffff;
+  --w98-navy:#000080;
+  --w98-navy-2:#000060;
+  --w98-out:1px solid;
+  --w98-hi:#f5f4f0;
+}
+.app{
+  background:var(--w98-face);
+  border-color:#fff var(--w98-dark) var(--w98-dark) #fff;
+  box-shadow:2px 2px 0 rgba(0,0,0,.32);
+}
+.titlebar{
+  height:30px;
+  background:linear-gradient(90deg,#000080 0%,#0a6fbf 72%,#1084d0 100%);
+  border-bottom:1px solid #000;
+  padding-left:5px;
+}
+.win-btn{
+  width:22px;height:20px;border:1px solid;border-color:#fff #404040 #404040 #fff;
+  background:var(--w98-face);box-shadow:none;color:#000;
+}
+.win-btn:active{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;}
+.menubar{
+  height:26px;background:var(--w98-face);border-bottom:1px solid var(--w98-shadow);
+  padding:0 3px;font-size:.76rem;
+  box-shadow:inset 0 1px 0 #fff;
+}
+.menu-btn{height:23px;padding:0 8px;font-size:.76rem;}
+.menu-btn:hover,.menu.open>.menu-btn{background:var(--w98-navy);color:#fff;}
+.menu-pop{
+  background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:3px 3px 0 rgba(0,0,0,.25);padding:2px;
+}
+.menu-pop::before{left:19px;border-left:1px solid #aca899;}
+.menu-pop button{font-size:.76rem;padding:5px 8px 5px 24px;}
+.menu-pop button:hover{background:var(--w98-navy);color:#fff;}
+.menu-pop hr{border-top:1px solid #808080;border-bottom:1px solid #fff;}
+.clock{color:#000;font-size:.62rem;}
+
+.toolbar{
+  gap:3px;padding:3px 4px;background:var(--w98-face);
+  border-top:1px solid #fff;border-bottom:1px solid var(--w98-shadow);
+}
+.tb-btn{
+  width:24px;height:24px;border:1px solid;border-color:#fff #404040 #404040 #fff;
+  background:var(--w98-face);box-shadow:none;font-size:.76rem;color:#000;
+}
+.tb-btn:hover{background:var(--w98-hi);}
+.tb-btn:active,.tb-btn.on{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;background:var(--w98-face-2);}
+.tb-btn:disabled{color:#808080;text-shadow:1px 1px 0 #fff;cursor:default;}
+.tb-btn:disabled svg{opacity:.45;}
+.tb-btn svg{width:13px;height:13px;}
+.tb-btn.wide{width:auto;min-width:0;padding:0 6px 0 4px;gap:4px;font-size:.68rem;white-space:nowrap;}
+.tb-btn.treebtn{display:inline-flex;align-items:center;justify-content:center;}
+.toolbar .menu{display:flex;}
+.toolbar .menu-btn.tb-btn{padding:0 6px 0 4px;gap:4px;height:24px;}
+.toolbar .menu-pop{top:calc(100% + 2px);min-width:174px;}
+.tb-txt{font-family:var(--ui);font-size:.68rem;line-height:1;}
+.tb-sep{height:20px;border-left:1px solid #808080;border-right:1px solid #fff;margin:0 3px;}
+.folder-mini{
+  position:relative;display:inline-block;width:15px;height:11px;flex:none;
+  background:#f0c040;border:1px solid #6f5524;
+}
+.folder-mini::before{content:"";position:absolute;left:-1px;top:-4px;width:7px;height:4px;background:#f0c040;border:1px solid #6f5524;border-bottom:0;}
+.tb-folder-btn .folder-mini{margin-top:3px;}
+.address{
+  height:24px;gap:5px;background:var(--w98-field);
+  border:0;box-shadow:inset 1px 1px 0 #808080,inset -1px -1px 0 #fff;
+  padding:0 5px;
+}
+.addr-label{font-size:.6rem;color:#000;}
+.crumbs{gap:1px;}
+.crumb{font-size:.74rem;padding:1px 3px;color:#000;}
+.crumb:hover{background:var(--w98-navy);color:#fff;}
+.crumb.here{font-weight:400;}
+.crumb.here:hover{background:none;color:#000;}
+.crumb-sep{color:#808080;}
+.searchbox{
+  height:24px;background:var(--w98-field);border:0;
+  box-shadow:inset 1px 1px 0 #808080,inset -1px -1px 0 #fff;padding:0 2px 0 5px;
+}
+#q{font-size:.8rem;}
+.search-clear,.attach,.go-btn{height:19px;}
+.go-btn{border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);color:#000;font-size:.68rem;padding:0 7px;box-shadow:1px 1px 0 #808080;}
+.go-btn:hover{background:var(--w98-hi);}
+.font-pop{
+  background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:3px 3px 0 rgba(0,0,0,.25);
+}
+.font-close,.font-step,.font-presets button,.chip-btn,.pager button,.tree-close{
+  border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);box-shadow:none;
+}
+.font-close:active,.font-step:active,.font-presets button:active,.chip-btn:active,.pager button:active{box-shadow:inset 1px 1px 0 #808080;border-color:#404040 #fff #fff #404040;}
+.font-presets button.on,.chip-btn.on{background:var(--w98-navy);color:#fff;border-color:var(--w98-navy-2);}
+
+.content{background:var(--w98-face);grid-template-columns:228px minmax(0,1fr) 360px;}
+.tree{
+  background:var(--w98-field);border-right:1px solid var(--w98-shadow);
+  padding:5px 5px 14px;font-size:.78rem;color:#000;
+}
+.tree-root{
+  padding:3px 5px 6px;font-family:var(--ui);font-size:.76rem;letter-spacing:0;color:#000;
+  display:flex;align-items:center;gap:5px;
+}
+.tree-root .tree-root-txt{font-weight:400;}
+.tree summary{
+  gap:4px;padding:2px 4px;font-size:.78rem;font-weight:400;height:20px;
+  border:0;min-width:0;
+}
+.tree summary:hover{background:#e8e8e8;border:0;}
+.tree summary::before{
+  content:"+";display:inline-flex;align-items:center;justify-content:center;
+  width:9px;height:9px;flex:none;border:1px solid #808080;background:#fff;
+  font-family:var(--mono);font-size:9px;line-height:1;color:#000;
+}
+.tree-group[open] > summary::before{content:"−";}
+.tree-group > summary > span:not(.tree-count){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tree-body{margin-left:11px;padding-left:7px;border-left:1px dotted #999;}
+.tree-node{
+  gap:5px;padding:2px 5px 2px 6px;font-size:.76rem;border:0;height:20px;color:#000;
+  width:100%;
+}
+.tree-node:hover{background:#e8e8e8;border:0;}
+.tree-node.on{background:var(--w98-navy);color:#fff;border:0;}
+.tree-node.on .tree-count{color:#d8e4f4;}
+.tree-node .tree-indent{width:13px;flex:none;}
+.folder-ico{background:#f0c040;border-color:#6f5524;width:14px;height:10px;}
+.folder-ico::before{background:#f0c040;border-color:#6f5524;height:4px;top:-4px;}
+.folder-ico.blue{background:#8fb0cc;border-color:#3d5d78;}
+.folder-ico.blue::before{background:#8fb0cc;border-color:#3d5d78;}
+.folder-ico.green{background:#8fb89a;border-color:#3c634d;}
+.folder-ico.green::before{background:#8fb89a;border-color:#3c634d;}
+.folder-ico.red{background:#d98b80;border-color:#7a3128;}
+.folder-ico.red::before{background:#d98b80;border-color:#7a3128;}
+.drive-ico{
+  position:relative;display:inline-block;width:16px;height:11px;flex:none;margin-top:2px;
+  background:linear-gradient(#f4f4f4,#c8c8c8);border:1px solid #404040;
+}
+.drive-ico::after{content:"";position:absolute;left:2px;bottom:1px;width:9px;height:2px;background:#39a03c;}
+.computer-ico{
+  position:relative;display:inline-block;width:15px;height:11px;flex:none;
+  background:#dcdcdc;border:1px solid #404040;
+}
+.computer-ico::after{content:"";position:absolute;left:4px;top:13px;width:7px;height:2px;background:#404040;}
+.tree-count{font-size:.6rem;color:#555;}
+.tree-sep{background:#aca899;margin:7px 5px;}
+.tree-label{font-family:var(--ui);font-size:.62rem;letter-spacing:.04em;color:#555;padding:3px 5px;}
+.tree-node.quick{padding-left:16px;color:#000;height:auto;min-height:19px;}
+.tree-node.quick::before{content:"›";color:#777;}
+.tree-node.quick:hover{color:#000;}
+.tree-mobile-head{font-family:var(--ui);font-size:.68rem;letter-spacing:.04em;color:#000;}
+
+.list-pane{background:var(--w98-field);}
+.list-head{
+  grid-template-columns:minmax(0,1fr) 78px 96px 88px 28px;gap:0;
+  padding:0 2px;background:var(--w98-face);border-bottom:1px solid var(--w98-shadow);
+  font-family:var(--ui);font-size:.68rem;letter-spacing:0;color:#000;height:23px;align-items:stretch;
+  box-shadow:inset 0 1px 0 #fff;
+}
+.list-head > span{
+  display:flex;align-items:center;padding:0 5px;border-right:1px solid #aca899;border-left:1px solid #fff;
+  white-space:nowrap;overflow:hidden;
+}
+.list-head > span:first-child{border-left:0;}
+.list-head > span:last-child{border-right:0;border-left:0;}
+.list-head .sort-h{cursor:pointer;user-select:none;justify-content:space-between;gap:4px;}
+.list-head .sort-h:hover{background:#e8e8e8;}
+.list-head .sort-h .arrow{font-family:var(--mono);font-size:.54rem;color:#404040;}
+.list-head.proj-head{grid-template-columns:minmax(0,1fr) 58px 116px 66px 28px;}
+.filterbar{
+  padding:3px 5px;background:var(--w98-face);border-bottom:1px solid #aca899;font-size:.72rem;gap:4px;
+}
+.chip-btn{height:21px;padding:0 7px;font-size:.68rem;}
+.mini-select{height:21px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:.7rem;}
+.list{background:var(--w98-field);padding:2px 0 10px;}
+.file-row{
+  grid-template-columns:minmax(0,1fr) 78px 96px 88px 28px;gap:0;align-items:center;
+  padding:2px 3px;border-bottom:0;font-size:.78rem;min-height:24px;color:#000;
+  outline:1px dotted transparent;outline-offset:-2px;
+}
+.file-row:hover{background:#e8f0fb;}
+.file-row.on{background:var(--w98-navy);color:#fff;outline:1px dotted #ffff80;}
+.file-row.on .sub,.file-row.on .meta,.file-row.on .inline-meta{color:#d8e4f4;}
+.file-row.on .star-btn{color:#ffd98a;}
+.file-name{gap:6px;padding-left:3px;}
+.nm{font-weight:400;font-size:.78rem;}
+.sub{font-size:.66rem;color:#555;}
+.meta{font-family:var(--ui);font-size:.68rem;color:#333;padding:0 5px;}
+.file-row .col-size,.file-row .col-time{padding:0 5px;}
+.kind-tag{display:none;}
+.doc{width:16px;height:19px;}
+.file-row .site-ico{width:17px;height:19px;}
+.file-row .site-ico .site-fav{width:16px;height:16px;}
+.file-row .site-ico .site-mono{width:16px;height:16px;font-size:6px;}
+.star-btn{width:20px;height:20px;font-size:.8rem;justify-self:center;}
+.pager{background:var(--w98-face);border-top:1px solid #aca899;padding:2px 5px;font-family:var(--ui);font-size:.64rem;}
+.pager button{height:21px;font-size:.66rem;}
+
+/* view modes */
+.list.view-large{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(106px,1fr));
+  align-content:start;gap:2px;padding:8px 8px 16px;background:#fff;overflow:auto;
+}
+.list.view-large .file-row{
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:3px;padding:8px 5px 6px;border:1px solid transparent;min-height:0;text-align:center;
+}
+.list.view-large .file-row:hover{background:#e8f0fb;border-color:#b8cfe8;}
+.list.view-large .file-row.on{background:var(--w98-navy);border-color:#ffff80;}
+.list.view-large .file-name{flex-direction:column;gap:3px;width:100%;padding:0;align-items:center;}
+.list.view-large .site-ico{width:48px;height:48px;}
+.list.view-large .site-ico .site-fav{width:42px;height:42px;padding:2px;}
+.list.view-large .site-ico .site-mono{width:42px;height:42px;font-size:15px;}
+.list.view-large .doc{width:40px;height:48px;}
+.list.view-large .nm{font-weight:400;font-size:.7rem;line-height:1.25;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-all;}
+.list.view-large .sub,.list.view-large .meta,.list.view-large .star-btn{display:none;}
+.list.view-large .inline-meta{display:none;}
+.list.view-small{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  align-content:start;gap:1px 6px;padding:7px;background:#fff;overflow:auto;
+}
+.list.view-small .file-row{display:flex;align-items:center;gap:5px;padding:2px 3px;min-height:22px;}
+.list.view-small .file-name{flex:1;min-width:0;padding:0;}
+.list.view-small .nm{font-size:.74rem;}
+.list.view-small .sub,.list.view-small .meta,.list.view-small .star-btn{display:none;}
+.list.view-list .file-row{grid-template-columns:minmax(0,1fr) 22px;padding:1px 5px;min-height:21px;}
+.list.view-list .meta,.list.view-list .col-size,.list.view-list .col-time{display:none;}
+.list.view-list .nm{font-size:.76rem;}
+
+/* explorer date/time + size column helpers */
+.col-size,.col-time{font-size:.66rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.file-row.on .col-size,.file-row.on .col-time{color:#d8e4f4;}
+.file-row .col-type{color:#333;}
+.file-row.on .col-type{color:#d8e4f4;}
+
+/* preview pane */
+.preview{background:#fff;border-left:1px solid var(--w98-shadow);}
+.preview-head{
+  background:var(--w98-face);border-bottom:1px solid var(--w98-shadow);padding:2px 3px;
+  box-shadow:inset 0 1px 0 #fff;
+}
+.ptab{
+  border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);
+  font-size:.7rem;padding:2px 9px;box-shadow:none;
+}
+.ptab.on{background:#fff;border-color:#404040 #fff #fff #404040;font-weight:700;}
+.preview-close{border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);}
+.preview-body{background:#fff;font-size:.8rem;}
+.pv-head .site-ico{width:38px;height:44px;}
+.pv-head .site-ico .site-fav{width:34px;height:34px;}
+.pv-head .site-ico .site-mono{width:34px;height:34px;font-size:11px;}
+.pv-head .doc{width:38px;height:45px;}
+.pv-badge,.pv-chip{border:1px solid #aca899;background:#f4f3ef;color:#000;}
+.pv-note,.pv-proof{background:#ffffe1;border:1px solid #aca899;color:#000;}
+.meta-table dt{color:#444;}
+
+/* status bar */
+.statusbar{
+  background:var(--w98-face);border-top:1px solid #fff;box-shadow:inset 0 1px 0 #fff;
+  font-size:.62rem;color:#000;height:24px;padding:0 2px;gap:2px;
+}
+.statusbar .status-sep{height:15px;border-left:1px solid #808080;border-right:1px solid #fff;}
+.start-btn{
+  border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);box-shadow:none;
+  height:20px;font-size:.66rem;font-weight:700;padding:0 6px 0 4px;gap:3px;
+}
+.start-btn:active{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;}
+.status-sound,.status-ai{border:1px solid transparent;background:none;font-size:.62rem;height:19px;}
+.status-sound:hover,.status-ai:hover{border-color:#fff #808080 #808080 #fff;}
+#statusText,#statusSel{background:none;}
+.start-menu{background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:3px 3px 0 rgba(0,0,0,.25);}
+.start-body button{font-size:.72rem;}
+.start-body button:hover{background:var(--w98-navy);color:#fff;}
+.start-foot{color:#555;}
+
+/* datasheet specifics */
+.kind-tag.k-datasheet{display:inline-block;background:#b02020;color:#fff;border:1px solid #6d1111;font-family:var(--mono);font-size:.54rem;padding:0 3px;margin-right:4px;}
+.doc.datasheet{--doc-color:#b02020;}
+.doc.datasheet .page{fill:#fff;}
+.doc.datasheet .spine{fill:#b02020;}
+.doc.datasheet .pdf-word{font-family:Arial,Helvetica,sans-serif;font-size:5.4px;font-weight:700;fill:#b02020;}
+.pv-badge.k-datasheet{background:#fde8e8;border-color:#b02020;color:#8b1616;font-weight:700;}
+.ds-facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin:8px 0;padding:7px 9px;background:#f7f7f2;border:1px solid #c8c4ba;font-size:.72rem;}
+.ds-facts b{color:#444;font-weight:700;}
+.ds-source{margin-top:8px;padding:6px 8px;background:#f4f3ef;border:1px dashed #aca899;font-size:.62rem;color:#555;line-height:1.5;}
+.ds-actions{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0;}
+.ds-actions .btn{font-size:.7rem;}
+.media-dialog .media-hint{max-width:360px;}
+
+/* context menu */
+.ctx-menu{
+  position:fixed;z-index:92;min-width:188px;padding:2px;
+  background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:3px 3px 0 rgba(0,0,0,.28);font-size:.74rem;
+}
+.ctx-menu button{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  width:100%;padding:5px 14px 5px 22px;border:0;background:none;text-align:left;font-size:.74rem;cursor:pointer;
+}
+.ctx-menu button:hover{background:var(--w98-navy);color:#fff;}
+.ctx-menu button:disabled{color:#808080;pointer-events:none;text-shadow:1px 1px 0 #fff;}
+.ctx-menu .ctx-kbd{font-family:var(--mono);font-size:.58rem;color:#666;}
+.ctx-menu button:hover .ctx-kbd{color:#d8e4f4;}
+.ctx-menu hr{border:0;border-top:1px solid #808080;border-bottom:1px solid #fff;margin:3px 2px;}
+.ctx-head{padding:4px 8px 3px 22px;font-size:.6rem;color:#555;border-bottom:1px solid #aca899;margin-bottom:2px;}
+
+@media (max-width:1240px){
+  .tb-btn.wide .tb-txt{display:none;}
+  .tb-btn.wide{width:26px;padding:0;justify-content:center;}
+}
+@media (max-width:980px){
+  .content{background:var(--w98-face);}
+  .content,.screen.tree-hide .content,.screen.preview-hide .content,.screen.tree-hide.preview-hide .content{grid-template-columns:minmax(0,1fr);}
+  .tree{background:#fff;}
+  .menubar{display:none;}
+  .toolbar{padding:3px 4px;gap:3px;}
+  .address{order:1;flex:1 1 auto;height:24px;}
+  .searchbox{order:2;flex:1 1 100%;height:25px;}
+  .tb-btn.wide .tb-txt{display:inline;}
+  .tb-btn.wide{width:auto;padding:0 5px 0 3px;}
+  .list-head{display:none;}
+  .file-row,.proj-file-row{display:flex;padding:7px 7px;gap:5px;min-height:34px;}
+  .file-row .meta,.proj-file-row .meta,.proj-file-row .difficulty,
+  .file-row .col-type,.file-row .col-lang,.file-row .col-size,.file-row .col-time,
+  .proj-file-row .col-role,.proj-file-row .col-time{display:none;}
+  .file-row .file-name{flex:1;min-width:0;}
+  .file-row .star-btn{margin-left:auto;}
+  .ds-facts{grid-template-columns:auto minmax(0,1fr);}
+}
 /* ================= 个人文件库 / PERSONAL LIBRARY ================= */
 .pl-view{display:flex;flex-direction:column;min-height:100%;background:var(--screen);}
 .pl-drive{
@@ -1372,24 +1709,53 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
           <div class="menu" data-menu>
             <button type="button" class="menu-btn">文件(<u>F</u>)</button>
             <div class="menu-pop">
-              <button type="button" data-cmd="nav:library">资源库 <span class="menu-kbd">1</span></button>
-              <button type="button" data-cmd="nav:paths">岗位路径 <span class="menu-kbd">2</span></button>
-              <button type="button" data-cmd="nav:projects">项目雷达 <span class="menu-kbd">3</span></button>
-              <button type="button" data-cmd="nav:favorites">收藏 <span class="menu-kbd">4</span></button>
-              <button type="button" data-cmd="nav:personal">我的文件 <span class="menu-kbd">5</span></button>
+              <button type="button" data-cmd="nav:library">打开资源库 <span class="menu-kbd">1</span></button>
+              <button type="button" data-cmd="nav:paths">打开岗位路径 <span class="menu-kbd">2</span></button>
+              <button type="button" data-cmd="nav:projects">打开项目雷达 <span class="menu-kbd">3</span></button>
+              <button type="button" data-cmd="nav:favorites">打开收藏夹 <span class="menu-kbd">4</span></button>
+              <button type="button" data-cmd="nav:personal">打开我的文件 <span class="menu-kbd">5</span></button>
+              <button type="button" data-cmd="nav:datasheets">打开数据手册 <span class="menu-kbd">6</span></button>
               <hr>
+              <button type="button" data-cmd="pl:upload">上传到我的文件…</button>
+              <button type="button" data-cmd="pl:cloud">同步 / 导出我的文件…</button>
+              <hr>
+              <button type="button" data-cmd="open:tab">在新标签打开当前页</button>
               <button type="button" data-cmd="reset">重置当前筛选 <span class="menu-kbd">R</span></button>
               <button type="button" data-cmd="home">回到首页 <span class="menu-kbd">H</span></button>
             </div>
           </div>
           <div class="menu" data-menu>
+            <button type="button" class="menu-btn">编辑(<u>E</u>)</button>
+            <div class="menu-pop">
+              <button type="button" data-cmd="select:all">全选当前列表 <span class="menu-kbd">Ctrl+A</span></button>
+              <button type="button" data-cmd="copy:page">复制当前页地址</button>
+              <button type="button" data-cmd="copy:selected">复制选中项链接</button>
+              <hr>
+              <button type="button" data-cmd="fav:selected">收藏选中项</button>
+              <button type="button" data-cmd="unfav:selected">取消收藏选中项</button>
+              <hr>
+              <button type="button" data-cmd="find">聚焦搜索框 <span class="menu-kbd">Ctrl+K</span></button>
+              <button type="button" data-cmd="refresh">刷新 <span class="menu-kbd">F5</span></button>
+            </div>
+          </div>
+          <div class="menu" data-menu>
             <button type="button" class="menu-btn">查看(<u>V</u>)</button>
             <div class="menu-pop">
-              <button type="button" data-cmd="font:100" data-check-font="100">字号 100% <span class="menu-kbd">A</span></button>
-              <button type="button" data-cmd="font:112" data-check-font="112">字号 112% <span class="menu-kbd">A</span></button>
-              <button type="button" data-cmd="font:125" data-check-font="125">字号 125% <span class="menu-kbd">A</span></button>
-              <button type="button" data-cmd="font:140" data-check-font="140">字号 140% <span class="menu-kbd">A</span></button>
-              <button type="button" data-cmd="font-panel">字号设置… <span class="menu-kbd">A</span></button>
+              <button type="button" data-cmd="view:large" data-check-view="large">大图标</button>
+              <button type="button" data-cmd="view:small" data-check-view="small">小图标</button>
+              <button type="button" data-cmd="view:list" data-check-view="list">列表</button>
+              <button type="button" data-cmd="view:details" data-check-view="details">详细资料</button>
+              <hr>
+              <button type="button" data-cmd="sort:name" data-check-sort="name">按名称排序</button>
+              <button type="button" data-cmd="sort:type" data-check-sort="type">按类型排序</button>
+              <button type="button" data-cmd="sort:size" data-check-sort="size">按大小排序</button>
+              <button type="button" data-cmd="sort:time" data-check-sort="time">按修改时间排序</button>
+              <hr>
+              <button type="button" data-cmd="font:100" data-check-font="100">字号 100%</button>
+              <button type="button" data-cmd="font:112" data-check-font="112">字号 112%</button>
+              <button type="button" data-cmd="font:125" data-check-font="125">字号 125%</button>
+              <button type="button" data-cmd="font:140" data-check-font="140">字号 140%</button>
+              <button type="button" data-cmd="font-panel">字号设置…</button>
               <hr>
               <button type="button" data-cmd="tree">显示 / 收起目录树 <span class="menu-kbd">T</span></button>
               <button type="button" data-cmd="ai-pane">AI 助理 / 详情面板 <span class="menu-kbd">I</span></button>
@@ -1397,15 +1763,39 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
             </div>
           </div>
           <div class="menu" data-menu>
+            <button type="button" class="menu-btn">转到(<u>G</u>)</button>
+            <div class="menu-pop">
+              <button type="button" data-cmd="hist:back">后退 <span class="menu-kbd">Alt+←</span></button>
+              <button type="button" data-cmd="hist:forward">前进 <span class="menu-kbd">Alt+→</span></button>
+              <button type="button" data-cmd="hist:up">向上一级 <span class="menu-kbd">Backspace</span></button>
+              <hr>
+              <button type="button" data-cmd="nav:library">我的电脑 / 资源库 <span class="menu-kbd">1</span></button>
+              <button type="button" data-cmd="nav:datasheets">电子元器件数据手册 <span class="menu-kbd">6</span></button>
+              <button type="button" data-cmd="nav:paths">岗位路径 <span class="menu-kbd">2</span></button>
+              <button type="button" data-cmd="nav:projects">项目雷达 <span class="menu-kbd">3</span></button>
+              <button type="button" data-cmd="nav:favorites">收藏夹 <span class="menu-kbd">4</span></button>
+              <button type="button" data-cmd="nav:personal">我的文件 <span class="menu-kbd">5</span></button>
+            </div>
+          </div>
+          <div class="menu" data-menu>
+            <button type="button" class="menu-btn">收藏(<u>A</u>)</button>
+            <div class="menu-pop">
+              <button type="button" data-cmd="fav:current">收藏当前项</button>
+              <button type="button" data-cmd="nav:favorites">打开收藏夹</button>
+              <hr>
+              <button type="button" data-cmd="help:usage">收藏与使用说明</button>
+            </div>
+          </div>
+          <div class="menu" data-menu>
             <button type="button" class="menu-btn">帮助(<u>H</u>)</button>
             <div class="menu-pop">
               <button type="button" data-cmd="help:usage">使用说明 <span class="menu-kbd">F1</span></button>
               <button type="button" data-cmd="help:shortcuts">快捷键 <span class="menu-kbd">?</span></button>
-              <button type="button" data-cmd="help:ai">AI 搜索怎么用 <span class="menu-kbd"></span></button>
+              <button type="button" data-cmd="help:ai">AI 搜索怎么用</button>
               <hr>
-              <button type="button" data-cmd="ai-config">接入 AI 模型 <span class="menu-kbd"></span></button>
-              <button type="button" data-cmd="help:privacy">隐私与免责声明 <span class="menu-kbd"></span></button>
-              <button type="button" data-cmd="help:about">关于 EE-INDEX <span class="menu-kbd"></span></button>
+              <button type="button" data-cmd="ai-config">接入 AI 模型</button>
+              <button type="button" data-cmd="help:privacy">隐私与免责声明</button>
+              <button type="button" data-cmd="help:about">关于 EE-INDEX</button>
             </div>
           </div>
           <span class="menubar-spacer"></span>
@@ -1413,13 +1803,29 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
         </div>
 
         <div class="toolbar">
-          <button type="button" class="tb-btn" id="backBtn" title="返回上一级 / 清除搜索" aria-label="返回"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button>
-          <button type="button" class="tb-btn up" id="upBtn" title="向上一级" aria-label="向上一级"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button>
-          <button type="button" class="tb-btn treebtn" id="treeToggle" title="打开目录树" aria-label="打开目录树"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h5M2 8h5M2 12h5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="3" width="5" height="2" fill="none" stroke="currentColor" stroke-width="1.1"/><rect x="9" y="7" width="5" height="2" fill="none" stroke="currentColor" stroke-width="1.1"/><rect x="9" y="11" width="5" height="2" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></button>
+          <button type="button" class="tb-btn wide" id="backBtn" title="后退（Alt+←）" aria-label="后退"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg><span class="tb-txt">后退</span></button>
+          <button type="button" class="tb-btn wide" id="fwdBtn" title="前进（Alt+→）" aria-label="前进" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg><span class="tb-txt">前进</span></button>
+          <button type="button" class="tb-btn wide up" id="upBtn" title="向上一级（Backspace）" aria-label="向上一级"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg><span class="tb-txt">向上</span></button>
+          <span class="tb-sep" aria-hidden="true"></span>
+          <button type="button" class="tb-btn wide" id="searchFocusBtn" title="搜索 / AI 查找（Ctrl+K）" aria-label="搜索"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.2 10.2L14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg><span class="tb-txt">搜索</span></button>
+          <button type="button" class="tb-btn wide treebtn tb-folder-btn" id="treeToggle" title="显示 / 收起文件夹目录树" aria-label="文件夹"><span class="folder-mini" aria-hidden="true"></span><span class="tb-txt">文件夹</span></button>
+          <div class="menu tb-view-menu" data-menu>
+            <button type="button" class="menu-btn tb-btn wide" title="查看方式" aria-haspopup="true" aria-label="查看方式"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="5" height="5" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="2" width="5" height="5" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="9" width="5" height="5" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="9" width="5" height="5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span class="tb-txt">视图</span></button>
+            <div class="menu-pop">
+              <button type="button" data-cmd="view:large">大图标</button>
+              <button type="button" data-cmd="view:small">小图标</button>
+              <button type="button" data-cmd="view:list">列表</button>
+              <button type="button" data-cmd="view:details">详细资料</button>
+              <hr>
+              <button type="button" data-cmd="sort:name">按名称排序</button>
+              <button type="button" data-cmd="sort:size">按大小排序</button>
+              <button type="button" data-cmd="sort:time">按修改时间排序</button>
+            </div>
+          </div>
           <span class="tb-sep" aria-hidden="true"></span>
 
           <div class="address">
-            <span class="addr-label">地址</span>
+            <span class="folder-mini" aria-hidden="true"></span>
             <div class="crumbs" id="crumbs"></div>
           </div>
 
@@ -1496,7 +1902,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
             <span>开始</span>
           </button>
           <span class="status-sep"></span>
-          <span id="statusText">243 个对象</span>
+          <span id="statusText">330 个对象</span>
           <span class="status-sep"></span>
           <span id="statusSel">未选择</span>
           <span class="status-spacer"></span>
@@ -1517,7 +1923,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
               <span class="logo-chip">EE</span>
               <div><b>EE-INDEX 98</b></div>
             </div>
-            <button type="button" data-cmd="nav:library"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d8a33f" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/></svg>资源库</span><span class="start-count">243</span></button>
+            <button type="button" data-cmd="nav:library"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d8a33f" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/></svg>资源库</span><span class="start-count">330</span></button>
             <button type="button" data-cmd="nav:paths"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#8faec6" stroke="#3d5d78"/><path d="M1 6h14" stroke="#3d5d78"/></svg>岗位路径</span><span class="start-count">8</span></button>
             <button type="button" data-cmd="nav:projects"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="4" width="8" height="8" fill="#e8dcc0" stroke="#8a5a00"/><rect x="6" y="6" width="4" height="4" fill="#a5622b"/><path d="M6 4V1.5M8 4V1.5M10 4V1.5M6 12v2.5M8 12v2.5M10 12v2.5M4 6H1.5M4 8H1.5M4 10H1.5M12 6h2.5M12 8h2.5M12 10h2.5" stroke="#8a5a00"/></svg>项目雷达</span><span class="start-count">30</span></button>
             <button type="button" data-cmd="nav:favorites"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2l1.9 4 4.4.5-3.3 3 .9 4.4L8 10.9l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="#d8a33f" stroke="#8a5a00"/></svg>收藏</span><span class="start-count" id="startFavCount">0</span></button>
@@ -1619,6 +2025,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
     <div class="dlg-foot">
       <button type="button" class="btn small" id="mediaLocalBtn">打开本地文件</button>
       <button type="button" class="btn small" id="mediaOpenBtn">在新标签打开 ↗</button>
+      <a class="btn small" id="mediaDownloadBtn" href="#" download hidden>下载 PDF</a>
       <span class="spacer"></span>
       <span class="media-hint">部分站点禁止嵌入播放；若画面空白，请点“在新标签打开”。</span>
       <button type="button" class="btn primary" id="mediaOk">关闭</button>
@@ -1628,6 +2035,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 <input id="mediaLocalInput" type="file" accept="video/*,audio/*,application/pdf,image/*" hidden>
 
 <div id="toast" role="status" aria-live="polite"></div>
+<div class="ctx-menu" id="ctxMenu" hidden role="menu"></div>
 
 <script>
 /* EE-INDEX 98 — 官方软件入口
@@ -1849,6 +2257,1412 @@ window.EE_EXTRA_RESOURCES = [
    proof:'Microsoft Learn 官方文档；WSL 是 Windows 上运行 Linux 的官方方案。',
    first:'先执行 wsl --install 装 Ubuntu；在 WSL 里装 gcc-arm-none-eabi，编译一个 Cortex-M 点灯工程。'}
 ];
+
+;
+/* 电子元器件数据手册：PDF 为厂商公开资料，自托管以便站内预览。 */
+window.EE_EXTRA_CATS = (window.EE_EXTRA_CATS || []).concat([
+  { id: 'datasheets', name: '电子元器件数据手册', en: 'DATASHEETS' }
+]);
+window.EE_EXTRA_DATASHEETS = [
+  {
+    "id": "ds-crcw-e3",
+    "name": "Vishay CRCW e3 厚膜贴片电阻",
+    "alt": "D/CRCW e3 Thick Film Chip Resistors",
+    "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电阻",
+    "part": "CRCW0402 / 0603 / 0805 / 1206 / 1210",
+    "manufacturer": "Vishay",
+    "package": "0402–2512 贴片",
+    "params": "1 Ω – 10 MΩ；±1% / ±5%；0.063 W – 0.5 W；TCR 100/200 ppm/K",
+    "useCase": "通用限流、分压、上拉/下拉、运放反馈与采样电阻",
+    "lang": "en",
+    "desc": "Vishay D/CRCW e3 系列厚膜贴片电阻的官方数据手册，覆盖常用封装、额定功率、阻值范围、温度系数、脉冲负载与回流焊曲线，是选型和降额计算的直接依据。",
+    "proof": "Vishay 官方 Document Number 20035；系列覆盖 0402–2512，常用 0603/0805 都在内，比单颗料号页更适合作为电阻选型总表。",
+    "first": "先看料号命名规则和额定功率表，确认封装、阻值、精度与功率降额；再做一次脉冲/温升核对。",
+    "license": "free",
+    "tags": [
+      "电阻",
+      "贴片电阻",
+      "厚膜",
+      "CRCW",
+      "Vishay"
+    ],
+    "alias": [
+      "电阻",
+      "resistor",
+      "CRCW0805",
+      "厚膜电阻"
+    ],
+    "file": "datasheets/resistor/vishay-crcw-e3.pdf",
+    "preview": "pdf",
+    "size": "147 KB",
+    "sizeBytes": 150402,
+    "pages": 13,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Vishay 官网公开数据手册（Document Number 20035）。本站自托管仅用于站内预览，版权归 Vishay 所有。"
+  },
+  {
+    "id": "ds-vj-mlcc",
+    "name": "Vishay VJ 商用 MLCC 陶瓷电容",
+    "alt": "VJ Commercial Series Multilayer Ceramic Capacitors",
+    "url": "https://www.vishay.com/docs/45199/vjcommercialseries.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电容",
+    "part": "VJ0402 / 0603 / 0805 / 1206 / 1210…",
+    "manufacturer": "Vishay Vitramon",
+    "package": "0402–2225 贴片",
+    "params": "C0G / X7R / X5R / Y5V；16–500 V；pF – µF 级",
+    "useCase": "电源去耦、滤波、定时、谐振与高频旁路",
+    "lang": "en",
+    "desc": "Vishay Vitramon VJ 商用系列 MLCC 总手册，按介质类型列出容值、耐压、温度特性与尺寸，适合在原理图阶段快速确定 100 nF、10 µF 等常用去耦电容的介质和耐压。",
+    "proof": "官方 VJ Commercial Series 总手册（Document Number 45199），一册覆盖 C0G/X7R/X5R 等常用介质，比零散单料号页更好查。",
+    "first": "先看介质类型与温度特性表，再按工作电压做降额；去耦优先 X7R/X5R，谐振与定时优先 C0G。",
+    "license": "free",
+    "tags": [
+      "电容",
+      "MLCC",
+      "陶瓷电容",
+      "去耦",
+      "Vishay"
+    ],
+    "alias": [
+      "电容",
+      "capacitor",
+      "MLCC",
+      "0603电容",
+      "100nF"
+    ],
+    "file": "datasheets/capacitor/vishay-vj-mlcc.pdf",
+    "preview": "pdf",
+    "size": "184 KB",
+    "sizeBytes": 188640,
+    "pages": 17,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Vishay 官网公开数据手册（Document Number 45199）。本站自托管仅用于站内预览，版权归 Vishay 所有。"
+  },
+  {
+    "id": "ds-593d",
+    "name": "Vishay 593D 固体钽电容",
+    "alt": "593D Solid Tantalum Surface Mount Chip Capacitors",
+    "url": "https://www.vishay.com/docs/40005/593d.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电容",
+    "part": "593D 系列（A/B/C/D 壳号）",
+    "manufacturer": "Vishay Sprague",
+    "package": " molded case A–D 贴片",
+    "params": "0.47–680 µF；4–50 V；低 ESR；极性器件",
+    "useCase": "电源滤波、储能、低 ESR 旁路与空间受限的模拟供电",
+    "lang": "en",
+    "desc": "Vishay Sprague 593D 固体钽电容数据手册，给出壳号、容值/耐压矩阵、ESR、纹波电流与降额要求。钽电容极性接反或过压会失效，手册中的降额曲线必须看。",
+    "proof": "官方 593D 系列手册（Document Number 40005），包含壳号尺寸、ESR 与纹波电流表，适合做电源滤波选型。",
+    "first": "先确认壳号与极性标记，再按 50% 电压降额和纹波电流校核；上电前用万用表确认极性。",
+    "license": "free",
+    "tags": [
+      "电容",
+      "钽电容",
+      "593D",
+      "低ESR",
+      "Vishay"
+    ],
+    "alias": [
+      "钽电容",
+      "tantalum",
+      "593D"
+    ],
+    "file": "datasheets/capacitor/vishay-593d-tantalum.pdf",
+    "preview": "pdf",
+    "size": "482 KB",
+    "sizeBytes": 493128,
+    "pages": 19,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Vishay 官网公开数据手册（Document Number 40005）。本站自托管仅用于站内预览，版权归 Vishay 所有。"
+  },
+  {
+    "id": "ds-srn6045",
+    "name": "Bourns SRN6045 半屏蔽功率电感",
+    "alt": "SRN6045 Semi-Shielded Power Inductors",
+    "url": "https://www.bourns.com/docs/Product-Datasheets/SRN6045.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电感/磁珠",
+    "part": "SRN6045 系列",
+    "manufacturer": "Bourns",
+    "package": "6.0 × 4.5 mm 贴片",
+    "params": "1–220 µH；额定电流最高 4.2 A；高度 4.5 mm；半屏蔽",
+    "useCase": "DC-DC 降压/升压输出滤波、电源储能电感",
+    "lang": "en",
+    "desc": "Bourns SRN6045 半屏蔽功率电感数据手册，列出电感量、直流电阻、饱和电流与温升电流。做 Buck 电路时，电感量、饱和电流和 DCR 三项要一起看。",
+    "proof": "Bourns 官方 SRN6045 系列手册，参数表完整，是常用的 6 mm 级功率电感选型资料。",
+    "first": "先按开关频率和纹波电流选电感量，再确认饱和电流大于峰值电流的 1.2–1.5 倍。",
+    "license": "free",
+    "tags": [
+      "电感",
+      "功率电感",
+      "SRN6045",
+      "Buck",
+      "Bourns"
+    ],
+    "alias": [
+      "电感",
+      "inductor",
+      "功率电感",
+      "SRN6045"
+    ],
+    "file": "datasheets/inductor/bourns-srn6045.pdf",
+    "preview": "pdf",
+    "size": "455 KB",
+    "sizeBytes": 465439,
+    "pages": 3,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Bourns 官网公开数据手册。本站自托管仅用于站内预览，版权归 Bourns 所有。"
+  },
+  {
+    "id": "ds-ss32-ss36",
+    "name": "Vishay SS32–SS36 肖特基二极管",
+    "alt": "SS32, SS33, SS34, SS35, SS36 Schottky Rectifiers",
+    "url": "https://www.vishay.com/docs/88751/ss32.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "二极管",
+    "part": "SS32 / SS33 / SS34 / SS35 / SS36",
+    "manufacturer": "Vishay General Semiconductor",
+    "package": "SMA (DO-214AC)",
+    "params": "20–60 V；3 A；低正向压降；肖特基整流",
+    "useCase": "电源整流、反接保护、续流与 OR-ing",
+    "lang": "en",
+    "desc": "Vishay SS32–SS36 肖特基整流二极管数据手册，覆盖 20–60 V/3 A 常用档位，给出正向压降、反向漏电、浪涌电流与热阻。SS34 是 40 V/3 A 的常见料号。",
+    "proof": "Vishay 官方 Document Number 88751，系列覆盖 SS32–SS36，SMA 封装通用性好。",
+    "first": "先确认反向耐压留 20–30% 余量，再看正向压降与结温；高频续流优先低 VF 的肖特基。",
+    "license": "free",
+    "tags": [
+      "二极管",
+      "肖特基",
+      "SS34",
+      "整流",
+      "Vishay"
+    ],
+    "alias": [
+      "肖特基",
+      "schottky",
+      "SS34",
+      "SS32"
+    ],
+    "file": "datasheets/diode/vishay-ss32-ss36.pdf",
+    "preview": "pdf",
+    "size": "1.01 MB",
+    "sizeBytes": 1055136,
+    "pages": 4,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Vishay 官网公开数据手册（Document Number 88751）。本站自托管仅用于站内预览，版权归 Vishay 所有。"
+  },
+  {
+    "id": "ds-b5819w",
+    "name": "Diodes B5819W 肖特基二极管",
+    "alt": "B5819W 1.0 A Schottky Barrier Rectifier",
+    "url": "https://www.diodes.com/assets/Datasheets/ds30301.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "二极管",
+    "part": "B5819W",
+    "manufacturer": "Diodes Incorporated",
+    "package": "SOD-123",
+    "params": "40 V；1 A；低正向压降；表面贴装",
+    "useCase": "低压整流、续流、反接保护、升压/降压续流",
+    "lang": "en",
+    "desc": "Diodes Incorporated B5819W 肖特基二极管数据手册，SOD-123 小封装、40 V/1 A，常用于低电压电源和续流路径。手册包含 VF–IF 曲线、反向漏电与热特性。",
+    "proof": "Diodes 官方数据手册，SOD-123 封装比通孔 1N5819 更适合现代小板。",
+    "first": "先看正向压降曲线在目标电流下的 VF，再核对反向漏电与结温；电池供电要特别关注漏电。",
+    "license": "free",
+    "tags": [
+      "二极管",
+      "肖特基",
+      "B5819W",
+      "SOD-123",
+      "Diodes"
+    ],
+    "alias": [
+      "肖特基",
+      "B5819W",
+      "SOD123"
+    ],
+    "file": "datasheets/diode/diodes-b5819w.pdf",
+    "preview": "pdf",
+    "size": "435 KB",
+    "sizeBytes": 445739,
+    "pages": 5,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Diodes Incorporated 官网公开数据手册。本站自托管仅用于站内预览，版权归 Diodes 所有。"
+  },
+  {
+    "id": "ds-1n5819",
+    "name": "onsemi 1N5817–1N5819 肖特基二极管",
+    "alt": "1N5817, 1N5818, 1N5819 Schottky Barrier Rectifiers",
+    "url": "https://www.onsemi.com/download/data-sheet/pdf/1n5817-d.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "二极管",
+    "part": "1N5817 / 1N5818 / 1N5819",
+    "manufacturer": "onsemi",
+    "package": "DO-41 轴向",
+    "params": "20 / 30 / 40 V；1 A；低 VF；通孔封装",
+    "useCase": "实验板/通孔项目整流、续流、反接保护",
+    "lang": "en",
+    "desc": "onsemi 1N5817–1N5819 肖特基二极管数据手册，DO-41 通孔封装，1 A 电流档。适合面包板、洞洞板和维修替换，手册给出 VF、漏电与浪涌能力。",
+    "proof": "onsemi 官方数据手册，覆盖 1N5817/18/19 三个耐压档，通孔场景的常用基线料。",
+    "first": "先按电路峰值反向电压选 1N5817/18/19 档位，再核对平均电流与浪涌电流。",
+    "license": "free",
+    "tags": [
+      "二极管",
+      "肖特基",
+      "1N5819",
+      "DO-41",
+      "onsemi"
+    ],
+    "alias": [
+      "1N5819",
+      "1N5817",
+      "通孔肖特基"
+    ],
+    "file": "datasheets/diode/onsemi-1n5817-1n5819.pdf",
+    "preview": "pdf",
+    "size": "377 KB",
+    "sizeBytes": 386468,
+    "pages": 8,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：onsemi 官网公开数据手册。本站自托管仅用于站内预览，版权归 onsemi 所有。"
+  },
+  {
+    "id": "ds-2n3904",
+    "name": "onsemi 2N3904 NPN 三极管",
+    "alt": "2N3904 NPN General Purpose Transistor",
+    "url": "https://www.onsemi.com/download/data-sheet/pdf/2n3903-d.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "三极管/MOSFET",
+    "part": "2N3904",
+    "manufacturer": "onsemi",
+    "package": "TO-92",
+    "params": "40 V；200 mA；hFE 100–300；fT 300 MHz",
+    "useCase": "小信号放大、开关、LED/继电器驱动、电平转换",
+    "lang": "en",
+    "desc": "onsemi 2N3904 通用 NPN 双极型三极管数据手册，TO-92 通孔封装，40 V/200 mA。手册给出 hFE 分档、VCE(sat)、开关时间与安全工作区，是入门三极管电路的基准器件。",
+    "proof": "onsemi 官方数据手册，2N3904 是通用小信号 NPN 的经典料号，资料完整、易采购。",
+    "first": "先确认集电极电流与功耗，再按 hFE 分档设计基极电阻；开关应用要让管子进入饱和区。",
+    "license": "free",
+    "tags": [
+      "三极管",
+      "NPN",
+      "2N3904",
+      "TO-92",
+      "onsemi"
+    ],
+    "alias": [
+      "三极管",
+      "NPN",
+      "2N3904",
+      "BJT"
+    ],
+    "file": "datasheets/transistor/onsemi-2n3904.pdf",
+    "preview": "pdf",
+    "size": "227 KB",
+    "sizeBytes": 232662,
+    "pages": 9,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：onsemi 官网公开数据手册。本站自托管仅用于站内预览，版权归 onsemi 所有。"
+  },
+  {
+    "id": "ds-ao3400a",
+    "name": "AOS AO3400A N 沟道 MOSFET",
+    "alt": "AO3400A 30V N-Channel MOSFET",
+    "url": "https://www.aosmd.com/sites/default/files/res/datasheets/AO3400A.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "三极管/MOSFET",
+    "part": "AO3400A",
+    "manufacturer": "Alpha & Omega Semiconductor",
+    "package": "SOT-23",
+    "params": "30 V；5.7 A；RDS(on) 约 28 mΩ @ 4.5 V；逻辑电平",
+    "useCase": "低边开关、LED 驱动、负载开关、电机小电流驱动",
+    "lang": "en",
+    "desc": "AOS AO3400A 30 V N 沟道 MOSFET 数据手册，SOT-23 小封装，低导通电阻，适合 3.3 V/5 V 逻辑直接驱动的低边开关。手册包含 RDS(on)–VGS、栅极电荷与热阻曲线。",
+    "proof": "AOS 官方数据手册，AO3400A 是 SOT-23 逻辑电平 N-MOS 的常用料号，参数覆盖完整。",
+    "first": "先看 4.5 V 与 2.5 V 下的 RDS(on)，再核对栅极阈值与结温；驱动感性负载要加续流二极管。",
+    "license": "free",
+    "tags": [
+      "MOSFET",
+      "N沟道",
+      "AO3400A",
+      "SOT-23",
+      "AOS"
+    ],
+    "alias": [
+      "MOS",
+      "NMOS",
+      "AO3400",
+      "AO3400A"
+    ],
+    "file": "datasheets/transistor/aos-ao3400a.pdf",
+    "preview": "pdf",
+    "size": "310 KB",
+    "sizeBytes": 317848,
+    "pages": 5,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Alpha & Omega Semiconductor 官网公开数据手册。本站自托管仅用于站内预览，版权归 AOS 所有。"
+  },
+  {
+    "id": "ds-ao3401a",
+    "name": "AOS AO3401A P 沟道 MOSFET",
+    "alt": "AO3401A -30V P-Channel MOSFET",
+    "url": "https://www.aosmd.com/sites/default/files/res/datasheets/AO3401A.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "三极管/MOSFET",
+    "part": "AO3401A",
+    "manufacturer": "Alpha & Omega Semiconductor",
+    "package": "SOT-23",
+    "params": "-30 V；-4 A；RDS(on) 约 60 mΩ @ -4.5 V；逻辑电平",
+    "useCase": "高边开关、反接保护、电源路径切换",
+    "lang": "en",
+    "desc": "AOS AO3401A -30 V P 沟道 MOSFET 数据手册，SOT-23 封装，适合高边开关和反接保护。手册给出 RDS(on)–VGS、体二极管特性与安全工作区。",
+    "proof": "AOS 官方数据手册，与 AO3400A 组成常用 N/P 对管，方便做高边/低边开关。",
+    "first": "先确认栅极驱动电平与 VGS 极限，再核对体二极管方向；反接保护要加栅极钳位。",
+    "license": "free",
+    "tags": [
+      "MOSFET",
+      "P沟道",
+      "AO3401A",
+      "SOT-23",
+      "AOS"
+    ],
+    "alias": [
+      "PMOS",
+      "AO3401",
+      "AO3401A",
+      "高边开关"
+    ],
+    "file": "datasheets/transistor/aos-ao3401a.pdf",
+    "preview": "pdf",
+    "size": "319 KB",
+    "sizeBytes": 326568,
+    "pages": 5,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Alpha & Omega Semiconductor 官网公开数据手册。本站自托管仅用于站内预览，版权归 AOS 所有。"
+  },
+  {
+    "id": "ds-bss138",
+    "name": "onsemi BSS138 逻辑电平 N-MOS",
+    "alt": "BSS138 N-Channel Logic Level MOSFET",
+    "url": "https://www.onsemi.com/download/data-sheet/pdf/bss138-d.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "三极管/MOSFET",
+    "part": "BSS138",
+    "manufacturer": "onsemi",
+    "package": "SOT-23",
+    "params": "50 V；220 mA；RDS(on) 约 3.5 Ω @ 10 V；逻辑电平",
+    "useCase": "I2C 电平转换、小负载开关、信号隔离",
+    "lang": "en",
+    "desc": "onsemi BSS138 逻辑电平 N 沟道 MOSFET 数据手册，SOT-23 封装，50 V/220 mA。常见用途是 I2C 电平转换和低电流开关；手册包含转移特性、电容与开关时间。",
+    "proof": "onsemi 官方数据手册，BSS138 是 I2C 电平转换的经典小信号 MOS。",
+    "first": "先确认栅极阈值与目标电平，再核对 RDS(on)；I2C 电平转换注意上拉电阻与总线电容。",
+    "license": "free",
+    "tags": [
+      "MOSFET",
+      "N沟道",
+      "BSS138",
+      "电平转换",
+      "onsemi"
+    ],
+    "alias": [
+      "BSS138",
+      "电平转换",
+      "I2C"
+    ],
+    "file": "datasheets/transistor/onsemi-bss138.pdf",
+    "preview": "pdf",
+    "size": "411 KB",
+    "sizeBytes": 420993,
+    "pages": 8,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：onsemi 官网公开数据手册。本站自托管仅用于站内预览，版权归 onsemi 所有。"
+  },
+  {
+    "id": "ds-ams1117",
+    "name": "AMS1117 1A 低压差线性稳压器",
+    "alt": "AMS1117 1A Low Dropout Voltage Regulator",
+    "url": "http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电源管理",
+    "part": "AMS1117-3.3 / 5.0 / ADJ",
+    "manufacturer": "Advanced Monolithic Systems",
+    "package": "SOT-223 / TO-252 / TO-220",
+    "params": "1 A；固定 1.8/2.5/3.3/5 V 或可调；压差约 1.1 V @ 1 A",
+    "useCase": "5 V→3.3 V、3.3 V→1.8 V、小电流模拟供电",
+    "lang": "en",
+    "desc": "AMS1117 系列 1 A 低压差线性稳压器数据手册，覆盖固定与可调版本。SOT-223 封装常见于开发板和模块，手册给出压差、负载调整率、纹波抑制与热阻。",
+    "proof": "Advanced Monolithic Systems 官方数据手册，AMS1117 是入门电源与开发板最常见的 LDO 之一。",
+    "first": "先算功耗 (Vin−Vout)×I 并核对 SOT-223 热阻，再按输出电容 ESR 要求选型；大压差时考虑开关电源。",
+    "license": "free",
+    "tags": [
+      "电源",
+      "LDO",
+      "AMS1117",
+      "3.3V",
+      "线性稳压"
+    ],
+    "alias": [
+      "LDO",
+      "AMS1117",
+      "1117",
+      "3.3V稳压"
+    ],
+    "file": "datasheets/power/ams1117.pdf",
+    "preview": "pdf",
+    "size": "93 KB",
+    "sizeBytes": 95151,
+    "pages": 8,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Advanced Monolithic Systems 官网公开数据手册。本站自托管仅用于站内预览，版权归原厂所有。"
+  },
+  {
+    "id": "ds-lm2596",
+    "name": "TI LM2596 3A 降压稳压器",
+    "alt": "LM2596 SIMPLE SWITCHER 3A Step-Down Regulator",
+    "url": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电源管理",
+    "part": "LM2596-ADJ / -3.3 / -5.0 / -12",
+    "manufacturer": "Texas Instruments",
+    "package": "TO-220-5 / TO-263-5",
+    "params": "4.5–40 V 输入；3 A；1.2–37 V 可调；150 kHz",
+    "useCase": "12 V/24 V→5 V、车载电源、实验电源模块",
+    "lang": "en",
+    "desc": "TI LM2596 SIMPLE SWITCHER 3 A 降压稳压器数据手册，覆盖固定与可调输出版本。手册包含典型应用电路、电感/输出电容选型、效率曲线与热设计，是经典 Buck 入门器件。",
+    "proof": "TI 官方数据手册，LM2596 是使用极广的 3 A Buck，资料完整、替代料多。",
+    "first": "先按输入/输出/电流算占空比与电感量，再核对续流二极管和输出电容；注意 40 V 输入上限与散热。",
+    "license": "free",
+    "tags": [
+      "电源",
+      "Buck",
+      "LM2596",
+      "降压",
+      "TI"
+    ],
+    "alias": [
+      "LM2596",
+      "Buck",
+      "降压模块",
+      "开关电源"
+    ],
+    "file": "datasheets/power/ti-lm2596.pdf",
+    "preview": "pdf",
+    "size": "4.86 MB",
+    "sizeBytes": 5095029,
+    "pages": 47,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-tps5430",
+    "name": "TI TPS5430 3A 宽压降压转换器",
+    "alt": "TPS5430 3A Wide Input Step-Down Converter",
+    "url": "https://www.ti.com/lit/ds/symlink/tps5430.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电源管理",
+    "part": "TPS5430",
+    "manufacturer": "Texas Instruments",
+    "package": "SOIC-8 PowerPAD",
+    "params": "5.5–36 V 输入；3 A；输出低至 1.22 V；500 kHz",
+    "useCase": "工业 12/24 V 转 5 V/3.3 V、分布式电源",
+    "lang": "en",
+    "desc": "TI TPS5430 3 A 宽输入降压转换器数据手册，500 kHz 开关频率，SOIC-8 PowerPAD 封装。手册给出补偿网络、电感与输出电容设计步骤，适合从模块走向自主电源设计。",
+    "proof": "TI 官方数据手册，TPS5430 输入范围宽、外围简单，是学习 Buck 补偿与布局的好样本。",
+    "first": "先按数据手册的设计流程算电感与补偿，再照参考布局处理功率回路和散热焊盘。",
+    "license": "free",
+    "tags": [
+      "电源",
+      "Buck",
+      "TPS5430",
+      "宽压",
+      "TI"
+    ],
+    "alias": [
+      "TPS5430",
+      "Buck",
+      "降压转换器"
+    ],
+    "file": "datasheets/power/ti-tps5430.pdf",
+    "preview": "pdf",
+    "size": "2.06 MB",
+    "sizeBytes": 2165300,
+    "pages": 39,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-lm317",
+    "name": "TI LM317 可调线性稳压器",
+    "alt": "LM317 3-Terminal Adjustable Regulator",
+    "url": "https://www.ti.com/lit/ds/symlink/lm317.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电源管理",
+    "part": "LM317",
+    "manufacturer": "Texas Instruments",
+    "package": "TO-220 / TO-263 / SOT-223",
+    "params": "1.25–37 V 可调；1.5 A；压差约 2 V；内置限流/热保护",
+    "useCase": "可调线性电源、恒流源、电池充电、低噪声模拟供电",
+    "lang": "en",
+    "desc": "TI LM317 三端可调线性稳压器数据手册，1.25–37 V 输出、1.5 A，内置限流与过热保护。手册包含基准电压、纹波抑制、恒流接法与散热计算，是线性电源入门的标准器件。",
+    "proof": "TI 官方数据手册，LM317 是经典可调线性稳压器，资料完整且衍生料号多。",
+    "first": "先按 (Vout−1.25)/I 选电阻分压，再算功耗与散热；大压差/大电流时改用开关电源。",
+    "license": "free",
+    "tags": [
+      "电源",
+      "LDO",
+      "LM317",
+      "可调",
+      "TI"
+    ],
+    "alias": [
+      "LM317",
+      "可调稳压",
+      "线性电源"
+    ],
+    "file": "datasheets/power/ti-lm317.pdf",
+    "preview": "pdf",
+    "size": "2.46 MB",
+    "sizeBytes": 2578150,
+    "pages": 45,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-lm340",
+    "name": "TI LM340 / LM7805 固定线性稳压器",
+    "alt": "LM340 / LM78xx Series Fixed Voltage Regulators",
+    "url": "https://www.ti.com/lit/ds/symlink/lm340.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电源管理",
+    "part": "LM340-5 / LM7805 / LM7812",
+    "manufacturer": "Texas Instruments",
+    "package": "TO-220 / TO-263",
+    "params": "固定 5/12/15 V；1.5 A；压差约 2 V；内置保护",
+    "useCase": "5 V 线性稳压、低噪声模拟供电、实验电源",
+    "lang": "en",
+    "desc": "TI LM340/LM78xx 系列固定线性稳压器数据手册，覆盖 5 V、12 V、15 V 等常用档位。手册给出输出容差、纹波抑制、短路/过热保护与散热设计，是 7805 类器件的权威参考。",
+    "proof": "TI 官方数据手册，LM340/LM78xx 是通孔时代最常用的固定稳压器系列。",
+    "first": "先确认输入输出压差与功耗，再按热阻选散热片；输入/输出各放 0.33 µF/0.1 µF 电容。",
+    "license": "free",
+    "tags": [
+      "电源",
+      "LDO",
+      "LM7805",
+      "LM340",
+      "TI"
+    ],
+    "alias": [
+      "7805",
+      "LM7805",
+      "LM340",
+      "固定稳压"
+    ],
+    "file": "datasheets/power/ti-lm340-lm7805.pdf",
+    "preview": "pdf",
+    "size": "2.59 MB",
+    "sizeBytes": 2712955,
+    "pages": 38,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-l298",
+    "name": "ST L298 双 H 桥电机驱动",
+    "alt": "L298 Dual Full-Bridge Driver",
+    "url": "https://www.st.com/resource/en/datasheet/l298.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "电源管理",
+    "part": "L298",
+    "manufacturer": "STMicroelectronics",
+    "package": "Multiwatt15",
+    "params": "最高 46 V；单通道 2 A；总电流 4 A；双 H 桥",
+    "useCase": "双直流电机、步进电机、继电器/电磁阀驱动",
+    "lang": "en",
+    "desc": "ST L298 双 H 桥驱动器数据手册，最高 46 V、单通道 2 A，可驱动两台直流电机或一台步进电机。手册包含真值表、续流二极管接法、功耗与热设计，是电机驱动入门的经典器件。",
+    "proof": "ST 官方数据手册，L298 是教学与模块市场最常见的双 H 桥之一。",
+    "first": "先看真值表和使能端逻辑，再确认续流二极管与散热；电机电源与逻辑电源要分开去耦。",
+    "license": "free",
+    "tags": [
+      "电机驱动",
+      "H桥",
+      "L298",
+      "ST"
+    ],
+    "alias": [
+      "L298",
+      "电机驱动",
+      "H桥",
+      "步进电机"
+    ],
+    "file": "datasheets/power/st-l298.pdf",
+    "preview": "pdf",
+    "size": "1.41 MB",
+    "sizeBytes": 1473850,
+    "pages": 23,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：STMicroelectronics 官网公开数据手册。本站自托管仅用于站内预览，版权归 ST 所有。"
+  },
+  {
+    "id": "ds-ne555",
+    "name": "TI NE555 精密定时器",
+    "alt": "NE555 / SA555 / SE555 Precision Timers",
+    "url": "https://www.ti.com/lit/ds/symlink/ne555.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "模拟/运放",
+    "part": "NE555 / SA555 / SE555",
+    "manufacturer": "Texas Instruments",
+    "package": "DIP-8 / SOIC-8",
+    "params": "4.5–16 V；定时 µs–小时；输出约 ±200 mA；单/双稳态",
+    "useCase": "PWM、延时、振荡、去抖、简单时序控制",
+    "lang": "en",
+    "desc": "TI xx555 精密定时器数据手册，覆盖 NE555/SA555/SE555。手册给出单稳态、无稳态、施密特触发等接法、定时公式与输出驱动能力，是模拟时序电路的入门基准。",
+    "proof": "TI 官方数据手册，NE555 是最经典的定时器 IC，接法与公式完整。",
+    "first": "先用定时公式算 R/C，再核对输出负载与电源去耦；长延时优先用 CMOS 版本降低功耗。",
+    "license": "free",
+    "tags": [
+      "模拟",
+      "定时器",
+      "NE555",
+      "PWM",
+      "TI"
+    ],
+    "alias": [
+      "555",
+      "NE555",
+      "定时器",
+      "PWM"
+    ],
+    "file": "datasheets/analog/ti-ne555.pdf",
+    "preview": "pdf",
+    "size": "2.15 MB",
+    "sizeBytes": 2258813,
+    "pages": 39,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-lm358",
+    "name": "TI LM358 双运算放大器",
+    "alt": "LM358 Dual Operational Amplifier",
+    "url": "https://www.ti.com/lit/ds/symlink/lm358.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "模拟/运放",
+    "part": "LM358",
+    "manufacturer": "Texas Instruments",
+    "package": "DIP-8 / SOIC-8",
+    "params": "3–32 V 单/双电源；GBW 约 1 MHz；输入共模含地",
+    "useCase": "传感器信号放大、比较器、低通滤波、电流检测",
+    "lang": "en",
+    "desc": "TI LM358 双运算放大器数据手册，单/双电源工作、输入共模范围包含地，适合单电源传感器前端。手册包含开环增益、带宽、压摆率、输入偏置与典型应用电路。",
+    "proof": "TI 官方数据手册，LM358 是单电源运放入门与低成本信号链的常用器件。",
+    "first": "先确认输入共模范围和输出摆幅，再按 GBW 选增益；单电源交流放大要加偏置。",
+    "license": "free",
+    "tags": [
+      "模拟",
+      "运放",
+      "LM358",
+      "信号放大",
+      "TI"
+    ],
+    "alias": [
+      "运放",
+      "LM358",
+      "opamp",
+      "放大器"
+    ],
+    "file": "datasheets/analog/ti-lm358.pdf",
+    "preview": "pdf",
+    "size": "3.96 MB",
+    "sizeBytes": 4150801,
+    "pages": 68,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-ina219",
+    "name": "TI INA219 电流/功率监测器",
+    "alt": "INA219 Zero-Drift Current/Power Monitor",
+    "url": "https://www.ti.com/lit/ds/symlink/ina219.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "模拟/运放",
+    "part": "INA219",
+    "manufacturer": "Texas Instruments",
+    "package": "SOT-23-8",
+    "params": "I2C；0–26 V 总线；12-bit；分流压降 ±320 mV",
+    "useCase": "电流/功耗监测、电池管理、太阳能与电源调试",
+    "lang": "en",
+    "desc": "TI INA219 零漂移电流/功率监测器数据手册，I2C 接口、0–26 V 总线、12 位 ADC，内置功率计算。手册包含校准寄存器、分流电阻选型与高/低边检测接法。",
+    "proof": "TI 官方数据手册，INA219 是入门电流监测最常用的 I2C 方案之一。",
+    "first": "先按最大电流选分流电阻并算功耗，再写入校准寄存器；高边检测注意共模电压范围。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "电流检测",
+      "INA219",
+      "I2C",
+      "TI"
+    ],
+    "alias": [
+      "INA219",
+      "电流检测",
+      "功率监测",
+      "I2C"
+    ],
+    "file": "datasheets/analog/ti-ina219.pdf",
+    "preview": "pdf",
+    "size": "872 KB",
+    "sizeBytes": 892731,
+    "pages": 38,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-max7219",
+    "name": "Analog Devices MAX7219 数码管驱动",
+    "alt": "MAX7219 / MAX7221 Serially Interfaced LED Display Driver",
+    "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/MAX7219-MAX7221.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "模拟/运放",
+    "part": "MAX7219 / MAX7221",
+    "manufacturer": "Analog Devices (Maxim)",
+    "package": "DIP-24 / SOIC-24",
+    "params": "SPI 三线接口；8 位 7 段数码管；5 V；段驱动电流可调",
+    "useCase": "数码管、LED 点阵、条形显示、仪器面板",
+    "lang": "en",
+    "desc": "Analog Devices MAX7219/MAX7221 串行 LED 显示驱动数据手册，单芯片驱动 8 位数码管或 64 个 LED。手册包含寄存器映射、亮度控制、扫描限制与级联接法，是数码管项目的常用方案。",
+    "proof": "Analog Devices 官方数据手册，MAX7219 是数码管/点阵模块最常见的驱动 IC。",
+    "first": "先看寄存器映射和扫描限制寄存器，再按数码管共阴/共阳接法确认型号；级联注意 LOAD/CLK 时序。",
+    "license": "free",
+    "tags": [
+      "驱动",
+      "数码管",
+      "MAX7219",
+      "SPI",
+      "ADI"
+    ],
+    "alias": [
+      "MAX7219",
+      "数码管",
+      "点阵",
+      "LED驱动"
+    ],
+    "file": "datasheets/analog/maxim-max7219.pdf",
+    "preview": "pdf",
+    "size": "1.32 MB",
+    "sizeBytes": 1379413,
+    "pages": 15,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Analog Devices 官网公开数据手册。本站自托管仅用于站内预览，版权归 ADI 所有。"
+  },
+  {
+    "id": "ds-stm32f103c8",
+    "name": "ST STM32F103C8 微控制器",
+    "alt": "STM32F103C8 Medium-Density Performance Line MCU",
+    "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "MCU/逻辑",
+    "part": "STM32F103C8T6",
+    "manufacturer": "STMicroelectronics",
+    "package": "LQFP48",
+    "params": "Cortex-M3 72 MHz；64 KB Flash；20 KB RAM；2×12-bit ADC；CAN/USB",
+    "useCase": "通用 MCU 项目、电机控制、USB 设备、工业控制",
+    "lang": "en",
+    "desc": "ST STM32F103C8 主流性能线微控制器数据手册，Cortex-M3 72 MHz、64 KB Flash、20 KB RAM，外设覆盖 ADC、定时器、CAN、USB 与多路串口。Blue Pill 等开发板的核心器件。",
+    "proof": "ST 官方数据手册（DS5319），STM32F103C8 是入门 ARM 与嵌入式项目最常见的型号之一。",
+    "first": "先看引脚复用表和时钟树，再确认启动方式与 BOOT0；画板时优先核对电源/复位/晶振与 SWD 引脚。",
+    "license": "free",
+    "tags": [
+      "MCU",
+      "STM32",
+      "Cortex-M3",
+      "ARM",
+      "ST"
+    ],
+    "alias": [
+      "STM32",
+      "STM32F103",
+      "C8T6",
+      "BluePill"
+    ],
+    "file": "datasheets/mcu/st-stm32f103c8.pdf",
+    "preview": "pdf",
+    "size": "1.87 MB",
+    "sizeBytes": 1965230,
+    "pages": 114,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：STMicroelectronics 官网公开数据手册（DS5319）。本站自托管仅用于站内预览，版权归 ST 所有。"
+  },
+  {
+    "id": "ds-stm32f401cc",
+    "name": "ST STM32F401CC 微控制器",
+    "alt": "STM32F401CC High-Performance Access Line MCU",
+    "url": "https://www.st.com/resource/en/datasheet/stm32f401cc.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "MCU/逻辑",
+    "part": "STM32F401CCU6",
+    "manufacturer": "STMicroelectronics",
+    "package": "UFQFPN48",
+    "params": "Cortex-M4F 84 MHz；256 KB Flash；64 KB RAM；FPU；USB OTG",
+    "useCase": "需要浮点/DSP 的项目、USB 设备、信号处理、Black Pill",
+    "lang": "en",
+    "desc": "ST STM32F401CC 高性能接入线微控制器数据手册，Cortex-M4F 84 MHz、256 KB Flash、64 KB RAM，带浮点单元与 USB OTG。适合从 F103 升级到需要 DSP/浮点运算的项目。",
+    "proof": "ST 官方数据手册，STM32F401CC 是 Black Pill 等开发板的核心，性能/价格平衡好。",
+    "first": "先看时钟树与 USB 引脚，再确认 FPU 编译选项；UFQFPN48 封装焊接需要热风/回流。",
+    "license": "free",
+    "tags": [
+      "MCU",
+      "STM32",
+      "Cortex-M4",
+      "FPU",
+      "ST"
+    ],
+    "alias": [
+      "STM32F401",
+      "F401",
+      "BlackPill"
+    ],
+    "file": "datasheets/mcu/st-stm32f401cc.pdf",
+    "preview": "pdf",
+    "size": "2.11 MB",
+    "sizeBytes": 2209723,
+    "pages": 139,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：STMicroelectronics 官网公开数据手册。本站自托管仅用于站内预览，版权归 ST 所有。"
+  },
+  {
+    "id": "ds-attiny85",
+    "name": "Microchip ATtiny85 8 位 MCU",
+    "alt": "ATtiny25 / ATtiny45 / ATtiny85 8-bit AVR Microcontroller",
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "MCU/逻辑",
+    "part": "ATtiny85",
+    "manufacturer": "Microchip (Atmel)",
+    "package": "DIP-8 / SOIC-8 / QFN-20",
+    "params": "AVR 20 MHz；8 KB Flash；512 B SRAM；5 个 GPIO；低功耗",
+    "useCase": "小体积控制、USBtiny 编程器、低功耗传感器节点、LED 控制",
+    "lang": "en",
+    "desc": "Microchip ATtiny25/45/85 系列 8 位 AVR 微控制器数据手册，ATtiny85 提供 8 KB Flash、512 B SRAM、5 个 GPIO，DIP-8 封装适合极小体积项目。手册覆盖定时器、ADC、USI、睡眠模式与熔丝位。",
+    "proof": "Microchip 官方数据手册（Atmel-2586），ATtiny85 是 DIP-8 小项目与 USBtiny 的经典 MCU。",
+    "first": "先看熔丝位与时钟源，再确认复位引脚复用；用 ISP 下载时注意 SCK/MOSI/MISO 与复位引脚。",
+    "license": "free",
+    "tags": [
+      "MCU",
+      "AVR",
+      "ATtiny85",
+      "DIP-8",
+      "Microchip"
+    ],
+    "alias": [
+      "ATtiny85",
+      "tiny85",
+      "AVR",
+      "DIP8"
+    ],
+    "file": "datasheets/mcu/microchip-attiny85.pdf",
+    "preview": "pdf",
+    "size": "3.67 MB",
+    "sizeBytes": 3848169,
+    "pages": 234,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Microchip 官网公开数据手册（Atmel-2586）。本站自托管仅用于站内预览，版权归 Microchip 所有。"
+  },
+  {
+    "id": "ds-esp32-wroom-32",
+    "name": "Espressif ESP32-WROOM-32 模组",
+    "alt": "ESP32-WROOM-32 Wi-Fi + Bluetooth Module",
+    "url": "https://documentation.espressif.com/esp32-wroom-32_datasheet_en.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "MCU/逻辑",
+    "part": "ESP32-WROOM-32",
+    "manufacturer": "Espressif Systems",
+    "package": "SMD 模组",
+    "params": "双核 240 MHz；Wi-Fi 802.11 b/g/n；Bluetooth 4.2；3.0–3.6 V",
+    "useCase": "IoT、Wi-Fi/BLE 网关、无线传感器、Web 控制",
+    "lang": "en",
+    "desc": "Espressif ESP32-WROOM-32 模组数据手册，集成双核 240 MHz MCU、Wi-Fi 与蓝牙，模组自带 Flash 与天线。手册给出引脚定义、电源去耦、射频布局与回流焊要求，是 ESP32 硬件设计的起点。",
+    "proof": "Espressif 官方模组数据手册，ESP32-WROOM-32 是使用最广的 ESP32 模组之一。",
+    "first": "先看引脚定义与启动 Strapping 引脚，再按射频布局要求处理天线净空；电源要能提供 Wi-Fi 峰值电流。",
+    "license": "free",
+    "tags": [
+      "MCU",
+      "ESP32",
+      "Wi-Fi",
+      "BLE",
+      "Espressif"
+    ],
+    "alias": [
+      "ESP32",
+      "WROOM32",
+      "WiFi",
+      "物联网"
+    ],
+    "file": "datasheets/mcu/espressif-esp32-wroom-32.pdf",
+    "preview": "pdf",
+    "size": "605 KB",
+    "sizeBytes": 619353,
+    "pages": 46,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Espressif 官网公开数据手册。本站自托管仅用于站内预览，版权归 Espressif 所有。"
+  },
+  {
+    "id": "ds-w25q64jv",
+    "name": "Winbond W25Q64JV SPI Flash",
+    "alt": "W25Q64JV 64M-bit Serial Flash Memory",
+    "url": "https://www.winbond.com/resource-files/w25q64jv%20revj%2003272018%20plus.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "MCU/逻辑",
+    "part": "W25Q64JV",
+    "manufacturer": "Winbond",
+    "package": "SOIC-8 / WSON-8",
+    "params": "64 Mbit (8 MB)；3 V；SPI/Dual/Quad；最高 104 MHz",
+    "useCase": "外部程序存储、字库/图片、数据日志、OTA 备份",
+    "lang": "en",
+    "desc": "Winbond W25Q64JV 64 Mbit 串行 Flash 数据手册，3 V 供电，支持标准/双线/四线 SPI。手册包含命令集、扇区/块擦除、状态寄存器、时序与掉电保护，是外部存储设计的常用参考。",
+    "proof": "Winbond 官方数据手册（Rev J），W25Q64JV 是 8 MB SPI Flash 的常用型号。",
+    "first": "先看命令集与 JEDEC ID，再确认 3.3 V 电平和 /CS 上拉；写前擦除、掉电时注意忙等待。",
+    "license": "free",
+    "tags": [
+      "存储",
+      "Flash",
+      "W25Q64",
+      "SPI",
+      "Winbond"
+    ],
+    "alias": [
+      "W25Q64",
+      "SPI Flash",
+      "外部Flash",
+      "字库"
+    ],
+    "file": "datasheets/mcu/winbond-w25q64jv.pdf",
+    "preview": "pdf",
+    "size": "2.45 MB",
+    "sizeBytes": 2565802,
+    "pages": 78,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Winbond 官网公开数据手册（Rev J）。本站自托管仅用于站内预览，版权归 Winbond 所有。"
+  },
+  {
+    "id": "ds-sn74hc595",
+    "name": "TI SN74HC595 8 位移位寄存器",
+    "alt": "SNx4HC595 8-Bit Shift Registers With 3-State Output",
+    "url": "https://www.ti.com/lit/ds/symlink/sn74hc595.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "MCU/逻辑",
+    "part": "SN74HC595",
+    "manufacturer": "Texas Instruments",
+    "package": "DIP-16 / SOIC-16 / TSSOP-16",
+    "params": "2–6 V；8 位串入并出；三态输出；级联输出",
+    "useCase": "GPIO 扩展、LED/数码管驱动、继电器阵列、扫描键盘",
+    "lang": "en",
+    "desc": "TI SNx4HC595 8 位串入并出移位寄存器数据手册，三态输出、可级联，2–6 V 工作。手册包含真值表、时序、级联接法与时序参数，是 GPIO 扩展和 LED 驱动的经典器件。",
+    "proof": "TI 官方数据手册，SN74HC595 是使用最广的 8 位移位寄存器之一。",
+    "first": "先看移位/锁存时序与三态使能，再确认输出电流；驱动 LED 时加限流电阻或改用恒流驱动。",
+    "license": "free",
+    "tags": [
+      "逻辑",
+      "移位寄存器",
+      "74HC595",
+      "GPIO扩展",
+      "TI"
+    ],
+    "alias": [
+      "74HC595",
+      "595",
+      "移位寄存器",
+      "GPIO扩展"
+    ],
+    "file": "datasheets/mcu/ti-sn74hc595.pdf",
+    "preview": "pdf",
+    "size": "2.59 MB",
+    "sizeBytes": 2710710,
+    "pages": 41,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Texas Instruments 官网公开数据手册。本站自托管仅用于站内预览，版权归 TI 所有。"
+  },
+  {
+    "id": "ds-bme280",
+    "name": "Bosch BME280 温湿度气压传感器",
+    "alt": "BME280 Combined Humidity, Pressure and Temperature Sensor",
+    "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "传感器",
+    "part": "BME280",
+    "manufacturer": "Bosch Sensortec",
+    "package": "LGA-8",
+    "params": "1.71–3.6 V；I2C/SPI；温度/湿度/气压；低功耗",
+    "useCase": "环境监测、气象站、室内舒适度、海拔估算",
+    "lang": "en",
+    "desc": "Bosch BME280 温湿度气压三合一传感器数据手册，I2C/SPI 接口、LGA-8 封装。手册包含校准系数读取、补偿算法、功耗模式与焊接注意事项，是环境监测项目的常用传感器。",
+    "proof": "Bosch Sensortec 官方数据手册（BST-BME280-DS002），补偿算法与校准流程完整。",
+    "first": "先读校准系数并按手册公式补偿，再选过采样与功耗模式；回流焊后按手册做恢复时间。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "温湿度",
+      "气压",
+      "BME280",
+      "Bosch"
+    ],
+    "alias": [
+      "BME280",
+      "温湿度",
+      "气压计",
+      "环境传感器"
+    ],
+    "file": "datasheets/sensor/bosch-bme280.pdf",
+    "preview": "pdf",
+    "size": "1.59 MB",
+    "sizeBytes": 1663806,
+    "pages": 60,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Bosch Sensortec 官网公开数据手册（BST-BME280-DS002）。本站自托管仅用于站内预览，版权归 Bosch 所有。"
+  },
+  {
+    "id": "ds-bmp280",
+    "name": "Bosch BMP280 气压温度传感器",
+    "alt": "BMP280 Pressure and Temperature Sensor",
+    "url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "传感器",
+    "part": "BMP280",
+    "manufacturer": "Bosch Sensortec",
+    "package": "LGA-8",
+    "params": "1.71–3.6 V；I2C/SPI；300–1100 hPa；温度 -40–85 °C",
+    "useCase": "气压/高度计、室内导航、天气站、无人机定高",
+    "lang": "en",
+    "desc": "Bosch BMP280 气压与温度传感器数据手册，BME280 的无湿度版本，I2C/SPI 接口、LGA-8 封装。手册包含校准数据、补偿公式、噪声与功耗模式，适合做气压高度计。",
+    "proof": "Bosch Sensortec 官方数据手册（BST-BMP280-DS001），与 BME280 同一家族，代码可复用。",
+    "first": "先读校准系数并实现补偿，再用滑动平均降噪；高度换算需要当地海平面气压。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "气压",
+      "BMP280",
+      "高度计",
+      "Bosch"
+    ],
+    "alias": [
+      "BMP280",
+      "气压计",
+      "高度计",
+      "环境传感器"
+    ],
+    "file": "datasheets/sensor/bosch-bmp280.pdf",
+    "preview": "pdf",
+    "size": "1.11 MB",
+    "sizeBytes": 1162932,
+    "pages": 49,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Bosch Sensortec 官网公开数据手册（BST-BMP280-DS001）。本站自托管仅用于站内预览，版权归 Bosch 所有。"
+  },
+  {
+    "id": "ds-ds18b20",
+    "name": "Analog Devices DS18B20 数字温度传感器",
+    "alt": "DS18B20 Programmable Resolution 1-Wire Digital Thermometer",
+    "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/DS18B20.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "传感器",
+    "part": "DS18B20",
+    "manufacturer": "Analog Devices (Maxim)",
+    "package": "TO-92 / 8-pin µSOP / 防水探头",
+    "params": "3–5.5 V；-55–125 °C；±0.5 °C；1-Wire；可多点并联",
+    "useCase": "多点温度测量、防水探头、恒温控制、1-Wire 总线实验",
+    "lang": "en",
+    "desc": "Analog Devices DS18B20 可编程分辨率 1-Wire 数字温度传感器数据手册，TO-92/µSOP 封装，支持多点并联。手册包含 ROM 命令、温度转换时序、分辨率配置与寄生供电接法。",
+    "proof": "Analog Devices 官方数据手册，DS18B20 是 1-Wire 温度测量的经典器件。",
+    "first": "先看 1-Wire 时序与 ROM 搜索流程，再加 4.7 kΩ 上拉；长线多点要注意总线电容与寄生供电。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "温度",
+      "DS18B20",
+      "1-Wire",
+      "ADI"
+    ],
+    "alias": [
+      "DS18B20",
+      "温度传感器",
+      "1Wire",
+      "防水探头"
+    ],
+    "file": "datasheets/sensor/maxim-ds18b20.pdf",
+    "preview": "pdf",
+    "size": "383 KB",
+    "sizeBytes": 392186,
+    "pages": 20,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Analog Devices 官网公开数据手册。本站自托管仅用于站内预览，版权归 ADI 所有。"
+  },
+  {
+    "id": "ds-adxl345",
+    "name": "Analog Devices ADXL345 三轴加速度计",
+    "alt": "ADXL345 3-Axis Digital Accelerometer",
+    "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "传感器",
+    "part": "ADXL345",
+    "manufacturer": "Analog Devices",
+    "package": "LGA-14",
+    "params": "±2/4/8/16 g；13-bit；I2C/SPI；3.3 V；低功耗",
+    "useCase": "姿态检测、振动监测、跌倒检测、倾角测量",
+    "lang": "en",
+    "desc": "Analog Devices ADXL345 三轴数字加速度计数据手册，可选 ±2/4/8/16 g 量程、13 位分辨率、I2C/SPI 接口。手册包含 FIFO、自由落体/敲击中断、校准与 PCB 布局建议。",
+    "proof": "Analog Devices 官方数据手册，ADXL345 是入门姿态与振动检测的常用加速度计。",
+    "first": "先选量程与输出数据率，再做零偏/灵敏度校准；焊接后按手册做 PCB 应力与贴装方向核对。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "加速度计",
+      "ADXL345",
+      "I2C",
+      "ADI"
+    ],
+    "alias": [
+      "ADXL345",
+      "加速度计",
+      "姿态",
+      "振动"
+    ],
+    "file": "datasheets/sensor/analog-adxl345.pdf",
+    "preview": "pdf",
+    "size": "1.42 MB",
+    "sizeBytes": 1487158,
+    "pages": 36,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Analog Devices 官网公开数据手册。本站自托管仅用于站内预览，版权归 ADI 所有。"
+  },
+  {
+    "id": "ds-dht22",
+    "name": "Aosong DHT22 / AM2302 温湿度传感器",
+    "alt": "DHT22 / AM2302 Humidity and Temperature Sensor",
+    "url": "https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "传感器",
+    "part": "DHT22 / AM2302",
+    "manufacturer": "Aosong Electronics",
+    "package": "4-pin 模块",
+    "params": "3.3–6 V；0–100 %RH；-40–80 °C；单总线数字输出",
+    "useCase": "低成本温湿度采集、环境监测、农业/仓储",
+    "lang": "en",
+    "desc": "Aosong DHT22/AM2302 温湿度传感器数据手册，单总线数字输出，3.3–6 V 供电。手册包含通信时序、数据格式、采样间隔与电气特性，是低成本环境监测的常用器件。",
+    "proof": "Aosong 官方英文数据手册，DHT22 资料完整且模块易采购。",
+    "first": "先看单总线时序与最小采样间隔（约 2 s），再加 4.7–10 kΩ 上拉；长线要缩短或加缓冲。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "温湿度",
+      "DHT22",
+      "单总线",
+      "Aosong"
+    ],
+    "alias": [
+      "DHT22",
+      "AM2302",
+      "温湿度",
+      "DHT11"
+    ],
+    "file": "datasheets/sensor/aosong-dht22.pdf",
+    "preview": "pdf",
+    "size": "371 KB",
+    "sizeBytes": 380189,
+    "pages": 10,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Aosong 官方数据手册（SparkFun 镜像）。本站自托管仅用于站内预览，版权归 Aosong 所有。"
+  },
+  {
+    "id": "ds-hx711",
+    "name": "Avia HX711 称重 ADC",
+    "alt": "HX711 24-Bit Analog-to-Digital Converter for Weigh Scales",
+    "url": "https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "传感器",
+    "part": "HX711",
+    "manufacturer": "Avia Semiconductor",
+    "package": "SOP-16",
+    "params": "2.6–5.5 V；24-bit；双差分输入；10/80 SPS；增益 32/64/128",
+    "useCase": "称重传感器、电子秤、应变片、压力检测",
+    "lang": "en",
+    "desc": "Avia HX711 24 位称重 ADC 数据手册，内置可编程增益放大器，双差分输入，10/80 SPS 输出速率。手册包含通道 A/B 切换、增益选择、时序与参考电路，是电子秤项目的常用方案。",
+    "proof": "Avia 官方英文数据手册，HX711 是称重传感器与电子秤的常用 24 位 ADC。",
+    "first": "先看通道 A 的增益选择与输出速率，再按传感器灵敏度算满量程；电源去耦和屏蔽对微小信号很关键。",
+    "license": "free",
+    "tags": [
+      "传感器",
+      "称重",
+      "HX711",
+      "24位ADC",
+      "Avia"
+    ],
+    "alias": [
+      "HX711",
+      "称重",
+      "电子秤",
+      "ADC"
+    ],
+    "file": "datasheets/sensor/avia-hx711.pdf",
+    "preview": "pdf",
+    "size": "160 KB",
+    "sizeBytes": 164280,
+    "pages": 9,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Avia Semiconductor 官方数据手册（SparkFun 镜像）。本站自托管仅用于站内预览，版权归 Avia 所有。"
+  },
+  {
+    "id": "ds-jst-ph",
+    "name": "JST PH 2.0 mm 线对板连接器",
+    "alt": "JST PH Series 2.0 mm Pitch Wire-to-Board Connector",
+    "url": "https://www.jst-mfg.com/product/pdf/eng/ePH.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "连接器/保护",
+    "part": "PH 系列（2–16 pin）",
+    "manufacturer": "JST",
+    "package": "2.0 mm 间距",
+    "params": "2.0 mm 间距；2–16 pin；额定 2 A / 100 V；压接式",
+    "useCase": "电池/电源连接、开发板接口、传感器线束",
+    "lang": "en",
+    "desc": "JST PH 系列 2.0 mm 间距线对板连接器数据手册，覆盖针座、压接端子与胶壳。手册包含 pin 数、额定电流/电压、压接工具与 PCB 布局尺寸，是电池和电源接口的常用型号。",
+    "proof": "JST 官方连接器数据手册，PH 系列是 2.0 mm 线对板的通用标准。",
+    "first": "先确认针数与针座方向，再按线规选压接端子；压接后做拉拔检查，避免只压绝缘层。",
+    "license": "free",
+    "tags": [
+      "连接器",
+      "JST",
+      "PH",
+      "线对板",
+      "2.0mm"
+    ],
+    "alias": [
+      "PH2.0",
+      "JST PH",
+      "电池接口",
+      "连接器"
+    ],
+    "file": "datasheets/connector/jst-ph.pdf",
+    "preview": "pdf",
+    "size": "101 KB",
+    "sizeBytes": 103369,
+    "pages": 5,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：JST 官网公开数据手册。本站自托管仅用于站内预览，版权归 JST 所有。"
+  },
+  {
+    "id": "ds-jst-xh",
+    "name": "JST XH 2.5 mm 线对板连接器",
+    "alt": "JST XH Series 2.5 mm Pitch Wire-to-Board Connector",
+    "url": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "连接器/保护",
+    "part": "XH 系列（2–20 pin）",
+    "manufacturer": "JST",
+    "package": "2.5 mm 间距",
+    "params": "2.5 mm 间距；2–20 pin；额定 3 A / 250 V；压接式",
+    "useCase": "电源线束、信号连接、3D 打印机/航模接口",
+    "lang": "en",
+    "desc": "JST XH 系列 2.5 mm 间距线对板连接器数据手册，覆盖针座、压接端子与胶壳。XH 比 PH 更大、载流更高，常用于电源与信号线束；手册给出 pin 数、额定值与 PCB 布局。",
+    "proof": "JST 官方连接器数据手册，XH 系列是 2.5 mm 线对板的常用标准。",
+    "first": "先确认针数与公母端，再按线规选端子；压接后检查锁扣方向，插拔时不要拉线。",
+    "license": "free",
+    "tags": [
+      "连接器",
+      "JST",
+      "XH",
+      "线对板",
+      "2.5mm"
+    ],
+    "alias": [
+      "XH2.54",
+      "JST XH",
+      "电源接口",
+      "连接器"
+    ],
+    "file": "datasheets/connector/jst-xh.pdf",
+    "preview": "pdf",
+    "size": "172 KB",
+    "sizeBytes": 175724,
+    "pages": 9,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：JST 官网公开数据手册。本站自托管仅用于站内预览，版权归 JST 所有。"
+  },
+  {
+    "id": "ds-cdsot23-sm712",
+    "name": "Bourns CDSOT23-SM712 ESD 保护",
+    "alt": "CDSOT23-SM712 Surface Mount TVS Diode Array",
+    "url": "https://www.bourns.com/docs/Product-Datasheets/CDSOT23-SM712.pdf",
+    "kind": "datasheet",
+    "cat": "datasheets",
+    "sub": "连接器/保护",
+    "part": "CDSOT23-SM712",
+    "manufacturer": "Bourns",
+    "package": "SOT-23",
+    "params": "RS-485 专用非对称 TVS；峰值脉冲 400 W；SOT-23",
+    "useCase": "RS-485/RS-232 接口防护、工业通信端口 ESD/浪涌保护",
+    "lang": "en",
+    "desc": "Bourns CDSOT23-SM712 表面贴装 TVS 二极管阵列数据手册，专为 RS-485 等差分接口设计，SOT-23 封装。手册包含钳位电压、峰值脉冲功率、电容与典型保护接法。",
+    "proof": "Bourns 官方数据手册，SM712 是 RS-485 端口防护的经典非对称 TVS。",
+    "first": "先看工作电压与钳位电压是否匹配接口，再按 IEC 61000-4-2 接法布置；保护器件要靠近接口。",
+    "license": "free",
+    "tags": [
+      "保护",
+      "TVS",
+      "ESD",
+      "RS-485",
+      "Bourns"
+    ],
+    "alias": [
+      "SM712",
+      "TVS",
+      "ESD保护",
+      "RS485"
+    ],
+    "file": "datasheets/connector/bourns-cdsot23-sm712.pdf",
+    "preview": "pdf",
+    "size": "486 KB",
+    "sizeBytes": 498058,
+    "pages": 5,
+    "verifiedAt": "2026-11-16",
+    "sourceNote": "来源：Bourns 官网公开数据手册。本站自托管仅用于站内预览，版权归 Bourns 所有。"
+  }
+];
+window.EE_EXTRA_RESOURCES = (window.EE_EXTRA_RESOURCES || []).concat(window.EE_EXTRA_DATASHEETS);
 
 ;
 /* 复古交互音效与动效引擎：Web Audio 合成，不依赖外部音频版权 */
@@ -3830,9 +5644,9 @@ var GUIDES = {
   var DATA_BY_ID = {};
   var ROLE_MAP = {};
   var PROJECT_MAP = {};
-  var KIND_MAP = { site:'网站', book:'书籍', notes:'笔记', video:'视频', course:'课程' };
-  var KIND_SHORT = { site:'WEB', book:'PDF', notes:'NOTE', video:'VID', course:'CRS' };
-  var KIND_ORDER = ['all', 'site', 'book', 'notes', 'video', 'course'];
+  var KIND_MAP = { site:'网站', book:'书籍', notes:'笔记', video:'视频', course:'课程', datasheet:'数据手册' };
+  var KIND_SHORT = { site:'WEB', book:'PDF', notes:'NOTE', video:'VID', course:'CRS', datasheet:'PDF' };
+  var KIND_ORDER = ['all', 'site', 'book', 'datasheet', 'notes', 'video', 'course'];
   function kindOf(item){
     if (item.kind && KIND_MAP[item.kind]) return item.kind;
     var sub = item.sub || '';
@@ -3892,7 +5706,7 @@ var GUIDES = {
   });
 
   /* ================= 工具 ================= */
-  function norm(s){ return (s || '').toLowerCase().normalize('NFKC'); }
+  function norm(s){ return (Array.isArray(s) ? s.join(' ') : String(s == null ? '' : s)).toLowerCase().normalize('NFKC'); }
   function squash(s){ return norm(s).replace(/[\s\-_·/.,]+/g, ''); }
   function esc(s){
     return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
@@ -4043,11 +5857,19 @@ var GUIDES = {
 
   /* ================= 状态 ================= */
   var state = {
-    view: 'library', cat: 'all', kind: 'all', lang: 'all', favOnly: false, q: '',
+    view: 'library', cat: 'all', subCat: 'all', kind: 'all', lang: 'all', favOnly: false, q: '',
     page: 1, pageSize: 16, role: 'highspeed', stage: 0, stageTab: 'books',
     projectLevel: 'all', projectRole: 'all', projPage: 1, projPageSize: 12,
-    selectedId: null, selectedProject: null, previewTab: 'detail', fontPct: 112
+    selectedId: null, selectedProject: null, previewTab: 'detail', fontPct: 112,
+    viewMode: 'details', sortKey: 'name', sortDir: 'asc',
+    multiSel: [], anchorId: null
   };
+  try {
+    var savedMode = localStorage.getItem('eeidx.view.mode');
+    if (/^(large|small|list|details)$/.test(savedMode || '')) state.viewMode = savedMode;
+    var savedSort = JSON.parse(localStorage.getItem('eeidx.view.sort') || 'null');
+    if (savedSort && /^(name|type|size|time)$/.test(savedSort.key || '')){ state.sortKey = savedSort.key; state.sortDir = savedSort.dir === 'desc' ? 'desc' : 'asc'; }
+  } catch (e) {}
   var favs = new Set();
   var searchTimer = null;
   try {
@@ -4099,7 +5921,14 @@ var GUIDES = {
   var mediaMeta = $('#mediaMeta');
   var mediaStage = $('#mediaStage');
   var mediaOpenBtn = $('#mediaOpenBtn');
+  var mediaDownloadBtn = $('#mediaDownloadBtn');
   var mediaLocalBtn = $('#mediaLocalBtn');
+  var fwdBtn = $('#fwdBtn');
+  var backBtnEl = $('#backBtn');
+  var ctxMenu = $('#ctxMenu');
+  var navHist = [];
+  var navFwd = [];
+  var histLock = false;
   var mediaLocalInput = $('#mediaLocalInput');
   var helpModal = $('#helpModal');
   var helpTitle = $('#helpTitle');
@@ -4210,13 +6039,13 @@ var GUIDES = {
     CATS.forEach(function(c){ catCounts[c.id] = 0; });
     DATA.forEach(function(d){ if (catCounts[d.cat] != null) catCounts[d.cat]++; });
     var roleNodes = ROLES.map(function(r){
-      return '<button type="button" class="tree-node" data-nav="paths" data-role-pick="' + r.id + '">' +
-        folderIcon('blue') + '<span>' + esc(r.name) + '</span></button>';
+      return '<button type="button" class="tree-node" data-nav="paths" data-role-pick="' + r.id + '" role="treeitem">' +
+        '<span class="tree-indent" aria-hidden="true"></span>' + folderIcon('blue') + '<span>' + esc(r.name) + '</span></button>';
     }).join('');
     var catColor = { books:'', notes:'blue', video:'green' };
-    var catNodes = CATS.map(function(c){
-      return '<button type="button" class="tree-node" data-nav="library" data-cat="' + c.id + '">' +
-        folderIcon(catColor[c.id] || '') + '<span>' + esc(c.name) + '</span><span class="tree-count">' + catCounts[c.id] + '</span></button>';
+    var catNodes = CATS.filter(function(c){ return c.id !== 'datasheets'; }).map(function(c){
+      return '<button type="button" class="tree-node" data-nav="library" data-cat="' + c.id + '" role="treeitem">' +
+        '<span class="tree-indent" aria-hidden="true"></span>' + folderIcon(catColor[c.id] || '') + '<span>' + esc(c.name) + '</span><span class="tree-count">' + catCounts[c.id] + '</span></button>';
     }).join('');
     var levelNodes = [
       { id: 'all', label: '全部项目', n: PROJECTS.length },
@@ -4224,28 +6053,56 @@ var GUIDES = {
       { id: 'advanced', label: '进阶项目', n: PROJECTS.filter(function(p){ return p.level === 'advanced'; }).length },
       { id: 'flagship', label: '旗舰项目', n: PROJECTS.filter(function(p){ return p.level === 'flagship'; }).length }
     ].map(function(l){
-      return '<button type="button" class="tree-node" data-nav="projects" data-plv-pick="' + l.id + '">' +
-        folderIcon('green') + '<span>' + l.label + '</span><span class="tree-count">' + l.n + '</span></button>';
+      return '<button type="button" class="tree-node" data-nav="projects" data-plv-pick="' + l.id + '" role="treeitem">' +
+        '<span class="tree-indent" aria-hidden="true"></span>' + folderIcon('green') + '<span>' + l.label + '</span><span class="tree-count">' + l.n + '</span></button>';
+    }).join('');
+    var dsItems = DATA.filter(function(d){ return d.cat === 'datasheets'; });
+    var dsOrder = ['电阻', '电容', '电感/磁珠', '二极管', '三极管/MOSFET', '电源管理', '模拟/运放', 'MCU/逻辑', '传感器', '连接器/保护'];
+    var dsNames = [];
+    dsItems.forEach(function(d){ if (d.sub && dsNames.indexOf(d.sub) === -1) dsNames.push(d.sub); });
+    dsNames.sort(function(a, b){
+      var ia = dsOrder.indexOf(a), ib = dsOrder.indexOf(b);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+    });
+    var dsNodes = dsNames.map(function(name){
+      var n = dsItems.filter(function(d){ return d.sub === name; }).length;
+      return '<button type="button" class="tree-node" data-nav="library" data-cat="datasheets" data-sub="' + esc(name) + '" role="treeitem">' +
+        '<span class="tree-indent" aria-hidden="true"></span>' + folderIcon('red') + '<span>' + esc(name) + '</span><span class="tree-count">' + n + '</span></button>';
     }).join('');
 
     treeEl.innerHTML =
       '<div class="tree-mobile-head"><span>目录 / FOLDERS</span><button type="button" class="tree-close" data-tree-close aria-label="关闭目录树">×</button></div>' +
-      '<div class="tree-root">▣ 我的电脑</div>' +
-      '<details class="tree-group" open data-group="library">' +
-        '<summary>' + folderIcon() + '<span>资源库</span><span class="tree-count">' + DATA.length + '</span></summary>' +
-        '<button type="button" class="tree-node" data-nav="library" data-cat="all">' + folderIcon() + '<span>全部资源</span><span class="tree-count">' + DATA.length + '</span></button>' +
-        catNodes +
+      '<div class="tree-root"><span class="computer-ico" aria-hidden="true"></span><span class="tree-root-txt">我的电脑</span></div>' +
+      '<details class="tree-group" open data-group="drive">' +
+        '<summary role="treeitem"><span class="drive-ico" aria-hidden="true"></span><span>EE-INDEX (C:)</span></summary>' +
+        '<div class="tree-body">' +
+          '<details class="tree-group" open data-group="library">' +
+            '<summary><span class="folder-ico" aria-hidden="true"></span><span>资源库</span><span class="tree-count">' + DATA.length + '</span></summary>' +
+            '<div class="tree-body">' +
+              '<button type="button" class="tree-node" data-nav="library" data-cat="all" role="treeitem"><span class="tree-indent" aria-hidden="true"></span>' + folderIcon() + '<span>全部资源</span><span class="tree-count">' + DATA.length + '</span></button>' +
+              catNodes +
+              '<details class="tree-group" data-group="datasheets"' + (state.cat === 'datasheets' ? ' open' : '') + '>' +
+                '<summary><span class="folder-ico red" aria-hidden="true"></span><span>电子元器件数据手册</span><span class="tree-count">' + dsItems.length + '</span></summary>' +
+                '<div class="tree-body">' +
+                  '<button type="button" class="tree-node" data-nav="library" data-cat="datasheets" data-sub="all" role="treeitem"><span class="tree-indent" aria-hidden="true"></span>' + folderIcon('red') + '<span>全部数据手册</span><span class="tree-count">' + dsItems.length + '</span></button>' +
+                  dsNodes +
+                '</div>' +
+              '</details>' +
+            '</div>' +
+          '</details>' +
+          '<details class="tree-group" data-group="paths">' +
+            '<summary><span class="folder-ico blue" aria-hidden="true"></span><span>岗位路径</span><span class="tree-count">' + ROLES.length + '</span></summary>' +
+            '<div class="tree-body">' + roleNodes + '</div>' +
+          '</details>' +
+          '<details class="tree-group" data-group="projects">' +
+            '<summary><span class="folder-ico green" aria-hidden="true"></span><span>项目雷达</span><span class="tree-count">' + PROJECTS.length + '</span></summary>' +
+            '<div class="tree-body">' + levelNodes + '</div>' +
+          '</details>' +
+          '<button type="button" class="tree-node" data-nav="favorites" role="treeitem"><span class="tree-indent" aria-hidden="true"></span>' + folderIcon() + '<span>收藏夹</span><span class="tree-count" id="treeFavCount">' + favs.size + '</span></button>' +
+          '<button type="button" class="tree-node" data-nav="personal" role="treeitem"><span class="tree-indent" aria-hidden="true"></span>' + folderIcon('blue') + '<span>我的文件</span></button>' +
+          '<div id="plTreeMount"></div>' +
+        '</div>' +
       '</details>' +
-      '<details class="tree-group" data-group="paths">' +
-        '<summary>' + folderIcon('blue') + '<span>岗位路径</span><span class="tree-count">' + ROLES.length + '</span></summary>' +
-        roleNodes +
-      '</details>' +
-      '<details class="tree-group" data-group="projects">' +
-        '<summary>' + folderIcon('green') + '<span>项目雷达</span><span class="tree-count">' + PROJECTS.length + '</span></summary>' +
-        levelNodes +
-      '</details>' +
-      '<button type="button" class="tree-node" data-nav="favorites">' + folderIcon() + '<span>收藏</span><span class="tree-count" id="treeFavCount">' + favs.size + '</span></button>' +
-      '<div id="plTreeMount"></div>' +
       '<div class="tree-sep"></div>' +
       '<div class="tree-label">快速开始 / QUICK</div>' +
       '<button type="button" class="tree-node quick" data-quick="我完全零基础，想学硬件，应该从哪开始？">零基础怎么开始</button>' +
@@ -4256,23 +6113,31 @@ var GUIDES = {
   }
   function updateTree(){
     $$('.tree-group', treeEl).forEach(function(g){
-      g.open = (state.view === 'library' && g.dataset.group === 'library') ||
-        (state.view === 'paths' && g.dataset.group === 'paths') ||
-        (state.view === 'projects' && g.dataset.group === 'projects');
+      var name = g.dataset.group;
+      if (name === 'drive'){ g.open = true; return; }
+      if (name === 'datasheets'){ g.open = state.view === 'library' && state.cat === 'datasheets'; return; }
+      g.open = (state.view === 'library' && name === 'library') ||
+        (state.view === 'paths' && name === 'paths') ||
+        (state.view === 'projects' && name === 'projects');
     });
     var target = null;
-    if (state.view === 'library') target = treeEl.querySelector('[data-nav="library"][data-cat="' + state.cat + '"]');
+    if (state.view === 'library'){
+      if (state.cat === 'datasheets' && state.subCat && state.subCat !== 'all'){
+        target = treeEl.querySelector('[data-nav="library"][data-cat="datasheets"][data-sub="' + state.subCat.replace(/"/g, '\\"') + '"]');
+      }
+      if (!target) target = treeEl.querySelector('[data-nav="library"][data-cat="' + state.cat + '"]');
+    }
     else if (state.view === 'favorites') target = treeEl.querySelector('[data-nav="favorites"]');
+    else if (state.view === 'personal') target = treeEl.querySelector('[data-nav="personal"]');
     else if (state.view === 'paths') target = treeEl.querySelector('[data-role-pick="' + state.role + '"]');
     else if (state.view === 'projects') target = treeEl.querySelector('[data-plv-pick="' + state.projectLevel + '"]');
     $$('.tree-node', treeEl).forEach(function(n){ n.classList.remove('on'); });
     if (target){
       target.classList.add('on');
       var group = target.closest('details');
-      if (group) group.open = true;
-      if (target.dataset.cat && target.dataset.cat !== 'all'){
-        var libGroup = treeEl.querySelector('[data-group="library"]');
-        if (libGroup) libGroup.open = true;
+      while (group){
+        group.open = true;
+        group = group.parentElement ? group.parentElement.closest('details') : null;
       }
     }
     var favCount = $('#treeFavCount');
@@ -4286,8 +6151,10 @@ var GUIDES = {
   function crumbsHtml(){
     var parts = [{ label: '我的电脑', cmd: 'root' }];
     if (state.view === 'library'){
+      parts.push({ label: 'EE-INDEX (C:)', cmd: 'library' });
       parts.push({ label: '资源库', cmd: 'library' });
       if (state.cat !== 'all') parts.push({ label: CAT_MAP[state.cat] ? CAT_MAP[state.cat].name : '', cmd: '' });
+      if (state.cat === 'datasheets' && state.subCat !== 'all') parts.push({ label: state.subCat, cmd: '' });
     } else if (state.view === 'favorites'){
       parts.push({ label: '收藏', cmd: '' });
     } else if (state.view === 'paths'){
@@ -4315,16 +6182,20 @@ var GUIDES = {
   function updateChrome(){
     crumbsEl.innerHTML = crumbsHtml();
     var title = 'EE-INDEX 资源管理器';
-    if (state.view === 'library') title = 'EE-INDEX — 资源库' + (state.cat !== 'all' ? ' / ' + (CAT_MAP[state.cat] ? CAT_MAP[state.cat].name : '') : '');
-    else if (state.view === 'favorites') title = 'EE-INDEX — 收藏';
+    if (state.view === 'library') title = 'EE-INDEX — 资源库' + (state.cat !== 'all' ? ' / ' + (CAT_MAP[state.cat] ? CAT_MAP[state.cat].name : '') : '') + (state.cat === 'datasheets' && state.subCat !== 'all' ? ' / ' + state.subCat : '');
+    else if (state.view === 'favorites') title = 'EE-INDEX — 收藏夹';
     else if (state.view === 'paths') title = 'EE-INDEX — 岗位路径 / ' + (ROLE_MAP[state.role] ? ROLE_MAP[state.role].name : '');
     else if (state.view === 'projects') title = 'EE-INDEX — 项目雷达';
     else if (state.view === 'personal') title = 'EE-INDEX — 我的文件';
     winTitle.textContent = title;
     document.title = title;
     fontStatus.textContent = '字号 ' + state.fontPct + '%';
+    if (backBtnEl) backBtnEl.disabled = !state.q && !navHist.length;
+    if (fwdBtn) fwdBtn.disabled = !navFwd.length;
     var sc = $('#searchClear');
     if (sc) sc.hidden = !qInput.value;
+    $$('[data-check-view]').forEach(function(b){ b.classList.toggle('checked', b.dataset.checkView === state.viewMode); });
+    $$('[data-check-sort]').forEach(function(b){ b.classList.toggle('checked', b.dataset.checkSort === state.sortKey); });
   }
 
   /* ================= 数据列表 ================= */
@@ -4340,6 +6211,7 @@ var GUIDES = {
       } else {
         if (state.favOnly && !favs.has(item.id)) return;
         if (state.cat !== 'all' && item.cat !== state.cat) return;
+        if (state.cat === 'datasheets' && state.subCat !== 'all' && item.sub !== state.subCat) return;
         if (state.kind !== 'all' && item.kind !== state.kind) return;
       }
       if (state.lang !== 'all' && item.lang !== state.lang) return;
@@ -4351,8 +6223,31 @@ var GUIDES = {
       item._score = m ? m.total : 0;
       out.push(item);
     });
-    if (tokens.length) out.sort(function(a, b){ return (b._score - a._score) || (a._order - b._order); });
-    return out;
+    if (tokens.length && state.sortKey === 'name' && state.sortDir === 'asc') out.sort(function(a, b){ return (b._score - a._score) || (a._order - b._order); });
+    return sortLibraryList(out);
+  }
+  function itemTime(item){ return item.verifiedAt || item.updated || ''; }
+  function sortLibraryList(list){
+    var key = state.sortKey;
+    if (!key) return list;
+    var dir = state.sortDir === 'desc' ? -1 : 1;
+    return list.slice().sort(function(a, b){
+      var cmp = 0;
+      if (key === 'size') cmp = (a.sizeBytes || 0) - (b.sizeBytes || 0);
+      else if (key === 'time') cmp = String(itemTime(a)).localeCompare(String(itemTime(b)));
+      else if (key === 'type') cmp = String(a._catName + ' ' + a.sub).localeCompare(String(b._catName + ' ' + b.sub), 'zh-CN');
+      else cmp = String(a.name).localeCompare(String(b.name), 'zh-CN');
+      return cmp * dir || a._order - b._order;
+    });
+  }
+  function sizeLabel(item){
+    if (item.size) return item.size;
+    if (item.sizeBytes) return item.sizeBytes >= 1048576 ? (item.sizeBytes / 1048576).toFixed(2) + ' MB' : Math.round(item.sizeBytes / 1024) + ' KB';
+    return item.kind === 'datasheet' ? 'PDF' : '—';
+  }
+  function typeLabel(item){
+    if (item.kind === 'datasheet') return item.sub || '数据手册';
+    return item.sub || item._catName || '';
   }
   function kindCount(kind){
     var tokens = searchTokens(state.q);
@@ -4361,6 +6256,7 @@ var GUIDES = {
       if (state.view === 'favorites' && !favs.has(item.id)) return;
       if (state.favOnly && !favs.has(item.id)) return;
       if (state.cat !== 'all' && item.cat !== state.cat) return;
+      if (state.cat === 'datasheets' && state.subCat !== 'all' && item.sub !== state.subCat) return;
       if (kind !== 'all' && item.kind !== kind) return;
       if (state.lang !== 'all' && item.lang !== state.lang) return;
       if (tokens.length && !matchTokens(item, tokens)) return;
@@ -4382,7 +6278,9 @@ var GUIDES = {
   }
   function docIcon(kind){
     var inner = '';
-    if (kind === 'book'){
+    if (kind === 'datasheet'){
+      inner = '<text class="pdf-word" x="10.4" y="18.6" text-anchor="middle">PDF</text>';
+    } else if (kind === 'book'){
       inner = '<path class="mark" d="M12 14v6l2-1.5 2 1.5v-6"/>';
     } else if (kind === 'proj'){
       inner = '<rect class="chip" x="8.5" y="10" width="5" height="5"/>' +
@@ -4531,8 +6429,9 @@ var GUIDES = {
     return '<span class="site-mono" style="--mono-h:' + (h % 360) + '" aria-hidden="true">' + esc(txt) + '</span>';
   }
   function siteIcon(item, extra){
-    var host = faviconHost(item.url);
     var cls = 'site-ico' + (extra ? ' ' + extra : '');
+    if (item.kind === 'datasheet') return '<span class="' + cls + ' no-fav">' + docIcon('datasheet') + '</span>';
+    var host = faviconHost(item.url);
     var badge = host ? siteBadge(item) : docIcon(item.cat);
     if (!host) return '<span class="' + cls + ' no-fav">' + badge + '</span>';
     if (faviconStatus[host] === 'ok' && faviconCache[host]){
@@ -4590,13 +6489,19 @@ var GUIDES = {
 
   function renderLibraryRows(){
     var all = libraryList();
-    var pages = Math.max(1, Math.ceil(all.length / state.pageSize));
+    var pageSize = state.viewMode === 'large' ? 24 : state.viewMode === 'small' ? 60 : state.viewMode === 'list' ? 48 : 16;
+    var pages = Math.max(1, Math.ceil(all.length / pageSize));
     state.page = clamp(state.page, 1, pages);
-    var slice = all.slice((state.page - 1) * state.pageSize, state.page * state.pageSize);
+    var slice = all.slice((state.page - 1) * pageSize, state.page * pageSize);
     var tokens = sortTokens();
-    listHead.className = 'list-head';
-    listHead.hidden = false;
-    listHead.innerHTML = '<span>名称 / NAME</span><span class="col-type">类型</span><span class="col-lang">语言</span><span></span>';
+    listEl.className = 'list view-' + state.viewMode;
+    if (state.viewMode === 'details'){
+      listHead.className = 'list-head';
+      listHead.hidden = false;
+      listHead.innerHTML = sortHeadHtml('name', '名称') + sortHeadHtml('size', '大小') + sortHeadHtml('type', '类型') + sortHeadHtml('time', '修改时间') + '<span></span>';
+    } else {
+      listHead.hidden = true;
+    }
     filterBar.hidden = false;
     var kindBtns = KIND_ORDER.map(function(k){
       var n = kindCount(k);
@@ -4607,10 +6512,24 @@ var GUIDES = {
     var langBtns = [['all','全部'],['en','英文'],['zh','中文']].map(function(x){
       return '<button type="button" class="chip-btn' + (state.lang === x[0] ? ' on' : '') + '" data-lang-filter="' + x[0] + '">' + x[1] + '</button>';
     }).join('');
-    filterBar.innerHTML = '<span class="fb-label">类型</span><div class="kind-filters">' + kindBtns + '</div>' +
+    var subChips = '';
+    if (state.view === 'library' && state.cat === 'datasheets'){
+      var dsAll = DATA.filter(function(d){ return d.cat === 'datasheets'; });
+      var subs = [];
+      dsAll.forEach(function(d){ if (d.sub && subs.indexOf(d.sub) === -1) subs.push(d.sub); });
+      subChips = '<span class="fb-label">子类</span>' +
+        '<button type="button" class="chip-btn' + (state.subCat === 'all' ? ' on' : '') + '" data-sub-filter="all">全部<span class="n">' + dsAll.length + '</span></button>' +
+        subs.map(function(name){
+          var n = dsAll.filter(function(d){ return d.sub === name; }).length;
+          return '<button type="button" class="chip-btn' + (state.subCat === name ? ' on' : '') + '" data-sub-filter="' + esc(name) + '">' + esc(name) + '<span class="n">' + n + '</span></button>';
+        }).join('') + '<span class="fb-sep"></span>';
+    }
+    filterBar.innerHTML = subChips +
+      '<span class="fb-label">类型</span><div class="kind-filters">' + kindBtns + '</div>' +
       '<span class="fb-sep"></span><span class="fb-label">语言</span>' + langBtns +
       (state.view === 'library' ? '<button type="button" class="chip-btn' + (state.favOnly ? ' on' : '') + '" data-fav-only>☆ 只看收藏<span class="n">' + favs.size + '</span></button>' : '') +
       '<span class="fb-spacer"></span><span class="fb-label">' + all.length + ' 个对象</span>';
+    var sel = state.multiSel.length ? state.multiSel : (state.selectedId ? [state.selectedId] : []);
     if (!slice.length){
       listEl.innerHTML = '<div style="padding:26px 16px;text-align:center">' +
         '<div style="font-family:var(--mono);font-size:.66rem;color:var(--amber)">0 OBJECTS</div>' +
@@ -4619,25 +6538,33 @@ var GUIDES = {
         '<button type="button" class="chip-btn" data-quick="' + (state.q ? esc(state.q) : '我是零基础，想学硬件') + '">让 AI 找</button></div>';
     } else {
       listEl.innerHTML = slice.map(function(item){
-        var on = state.selectedId === item.id;
+        var on = sel.indexOf(item.id) !== -1;
         var saved = favs.has(item.id);
-        return '<div class="file-row' + (on ? ' on' : '') + '" data-item="' + item.id + '" tabindex="0">' +
+        var title = item.name + (item.alt ? ' — ' + item.alt : '') + '\n' + (item.desc || '');
+        return '<div class="file-row' + (on ? ' on' : '') + '" data-item="' + item.id + '" tabindex="0" role="option" aria-selected="' + (on ? 'true' : 'false') + '" title="' + esc(title) + '">' +
           '<div class="file-name">' + siteIcon(item) +
             '<div class="nm-wrap"><span class="nm"><span class="kind-tag k-' + item.kind + '">' + (KIND_SHORT[item.kind] || 'WEB') + '</span>' + highlight(item.name, tokens) + '</span>' +
             '<span class="sub">' + highlight(item.alt || item.desc, tokens) +
               '<span class="inline-meta"> · ' + esc(item._catName) + ' · ' + langLabel(item) + '</span></span></div></div>' +
-          '<span class="meta col-type" title="' + esc(item._catName + ' / ' + item.sub) + '">' + esc(item.sub) + '</span>' +
-          '<span class="meta col-lang">' + langLabel(item) + '</span>' +
+          '<span class="meta col-size">' + esc(sizeLabel(item)) + '</span>' +
+          '<span class="meta col-type" title="' + esc(item._catName + ' / ' + item.sub) + '">' + esc(typeLabel(item)) + '</span>' +
+          '<span class="meta col-time">' + esc(itemTime(item) || langLabel(item)) + '</span>' +
           '<button type="button" class="star-btn' + (saved ? ' on' : '') + '" data-fav="' + item.id + '" aria-label="收藏' + esc(item.name) + '">' + (saved ? '★' : '☆') + '</button>' +
         '</div>';
       }).join('');
     }
     pagerEl.hidden = false;
-    pagerEl.innerHTML = pagerHtml(all.length, state.page, state.pageSize);
+    pagerEl.innerHTML = pagerHtml(all.length, state.page, pageSize);
     statusText.textContent = all.length + ' 个对象 · 第 ' + state.page + ' / ' + pages + ' 页';
+  }
+  function sortHeadHtml(key, label){
+    var active = state.sortKey === key;
+    var arrow = active ? (state.sortDir === 'asc' ? '▲' : '▼') : '';
+    return '<span class="sort-h" data-sort="' + key + '" role="button" tabindex="0" title="按' + label + '排序">' + label + '<span class="arrow">' + arrow + '</span></span>';
   }
 
   function renderProjectRows(){
+    listEl.className = 'list';
     var list = PROJECTS.filter(function(p){
       if (state.projectLevel !== 'all' && p.level !== state.projectLevel) return false;
       if (state.projectRole !== 'all' && p.roles.indexOf(state.projectRole) === -1) return false;
@@ -4792,7 +6719,41 @@ var GUIDES = {
       return { role: r, score: score };
     }).filter(function(x){ return x.score > 0; }).sort(function(a, b){ return b.score - a.score; }).slice(0, 2);
   }
+  function datasheetHtml(item){
+    var file = preferredFile(item);
+    var saved = favs.has(item.id);
+    var pages = item.pages ? item.pages + ' 页' : '';
+    var facts = '';
+    if (item.manufacturer) facts += '<b>厂商</b><span>' + esc(item.manufacturer) + '</span>';
+    if (item.part) facts += '<b>料号</b><span>' + esc(item.part) + '</span>';
+    if (item.package) facts += '<b>封装</b><span>' + esc(item.package) + '</span>';
+    if (item.params) facts += '<b>关键参数</b><span>' + esc(item.params) + '</span>';
+    if (item.useCase) facts += '<b>适用场景</b><span>' + esc(item.useCase) + '</span>';
+    facts += '<b>文件</b><span>' + esc(pages || 'PDF') + (item.size ? ' · ' + esc(item.size) : '') + ' · 站内自托管</span>';
+    var actions = '';
+    if (file){
+      actions += '<button type="button" class="btn primary" data-preview="' + item.id + '">▶ 预览 PDF</button>';
+      actions += '<a class="btn" href="' + esc(file) + '" download="' + esc(file.split('/').pop()) + '">下载 PDF</a>';
+    }
+    if (item.url && item.url !== file) actions += '<a class="btn" href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">原厂 PDF ↗</a>';
+    actions += '<button type="button" class="btn" data-fav="' + item.id + '">' + (saved ? '★ 已收藏' : '☆ 收藏') + '</button>' +
+      '<button type="button" class="btn" data-copy="' + esc(file || item.url) + '">复制文件链接</button>' +
+      '<button type="button" class="help-dot" data-help="media" title="预览与下载说明">?</button>';
+    return '<div class="pv-head">' + docIcon('datasheet') + '<div>' +
+      '<h2>' + esc(item.name) + '</h2><div class="pv-alt">' + esc(item.alt || '') + '</div></div></div>' +
+      '<div class="pv-badges"><span class="pv-badge k-datasheet">PDF · 数据手册</span>' +
+        '<span class="pv-badge">原厂公开资料</span>' +
+        (pages ? '<span class="pv-badge">' + esc(pages) + '</span>' : '') +
+        '<span class="pv-badge">可站内预览</span></div>' +
+      '<div class="ds-facts">' + facts + '</div>' +
+      '<p class="desc">' + esc(item.desc) + '</p>' +
+      (item.proof ? '<div class="pv-proof"><b>为什么收录 / WHY THIS ONE</b>' + esc(item.proof) + '</div>' : '') +
+      '<div class="pv-note"><b>打开后先看 / FIRST STEP</b>' + esc(guideFor(item)) + '</div>' +
+      '<div class="ds-actions">' + actions + '</div>' +
+      (item.sourceNote ? '<div class="ds-source"><b>来源与版权</b><br>' + esc(item.sourceNote) + '<br>本地路径：' + esc(file || '') + '</div>' : '');
+  }
   function resourceHtml(item){
+    if (item.kind === 'datasheet') return datasheetHtml(item);
     var guide = guideFor(item);
     var related = relatedRoles(item);
     var saved = favs.has(item.id);
@@ -4902,7 +6863,8 @@ var GUIDES = {
   }
   function updateStatusSel(){
     var label = '未选择';
-    if (state.selectedProject && PROJECT_MAP[state.selectedProject]) label = PROJECT_MAP[state.selectedProject].name;
+    if (state.multiSel.length > 1) label = '已选择 ' + state.multiSel.length + ' 个对象';
+    else if (state.selectedProject && PROJECT_MAP[state.selectedProject]) label = PROJECT_MAP[state.selectedProject].name;
     else if (state.selectedId && DATA_BY_ID[state.selectedId]) label = DATA_BY_ID[state.selectedId].name;
     else if (state.view === 'paths' && ROLE_MAP[state.role]) label = ROLE_MAP[state.role].name;
     else if (state.view === 'personal' && window.EEPLUI){
@@ -4922,6 +6884,7 @@ var GUIDES = {
   /* ================= 列表渲染 ================= */
   function renderList(){
     if (state.view === 'personal'){
+      listEl.className = 'list';
       listHead.hidden = true;
       filterBar.hidden = true;
       pagerEl.hidden = true;
@@ -4938,6 +6901,7 @@ var GUIDES = {
       return;
     }
     if (state.view === 'paths'){
+      listEl.className = 'list';
       listHead.hidden = true;
       filterBar.hidden = true;
       pagerEl.hidden = true;
@@ -4986,13 +6950,36 @@ var GUIDES = {
   }
   function markSelection(){
     $$('.file-row', listEl).forEach(function(r){
-      var on = (r.dataset.item && r.dataset.item === state.selectedId) ||
+      var on = (r.dataset.item && (state.multiSel.length ? state.multiSel.indexOf(r.dataset.item) !== -1 : r.dataset.item === state.selectedId)) ||
         (r.dataset.project && r.dataset.project === state.selectedProject);
       r.classList.toggle('on', !!on);
+      if (r.dataset.item) r.setAttribute('aria-selected', on ? 'true' : 'false');
     });
+  }
+  function clearSelection(){
+    state.multiSel = [];
+    state.anchorId = null;
+    state.selectedId = null;
+    state.selectedProject = null;
   }
   function selectResource(id){
     state.selectedId = id;
+    state.selectedProject = null;
+    state.multiSel = [id];
+    state.anchorId = id;
+    state.previewTab = 'detail';
+    markSelection();
+    renderPreview();
+    updateStatusSel();
+    openPreviewPane();
+  }
+  function toggleMultiSelection(id, rowEl){
+    var list = state.multiSel.slice();
+    var idx = list.indexOf(id);
+    if (idx === -1) list.push(id); else list.splice(idx, 1);
+    state.multiSel = list;
+    state.selectedId = id;
+    state.anchorId = id;
     state.selectedProject = null;
     state.previewTab = 'detail';
     markSelection();
@@ -5000,11 +6987,37 @@ var GUIDES = {
     updateStatusSel();
     openPreviewPane();
   }
+  function extendSelection(id){
+    var rows = $$('.file-row[data-item]', listEl);
+    var ids = rows.map(function(r){ return r.dataset.item; });
+    var from = ids.indexOf(state.anchorId);
+    var to = ids.indexOf(id);
+    if (from === -1 || to === -1){ state.multiSel = [id]; state.anchorId = id; state.selectedId = id; markSelection(); renderPreview(); updateStatusSel(); return; }
+    var lo = Math.min(from, to), hi = Math.max(from, to);
+    state.multiSel = ids.slice(lo, hi + 1);
+    state.selectedId = id;
+    state.previewTab = 'detail';
+    markSelection();
+    renderPreview();
+    updateStatusSel();
+    openPreviewPane();
+  }
+  function selectAllVisible(){
+    var rows = $$('.file-row[data-item]', listEl);
+    if (!rows.length) return;
+    state.multiSel = rows.map(function(r){ return r.dataset.item; });
+    state.selectedId = state.multiSel[state.multiSel.length - 1];
+    state.anchorId = state.multiSel[0];
+    markSelection();
+    updateStatusSel();
+    showToast('已选择 ' + state.multiSel.length + ' 个对象');
+  }
   function selectProject(id){
     var sameView = state.view === 'projects';
     state.view = 'projects';
     state.selectedProject = id;
     state.selectedId = null;
+    state.multiSel = [];
     state.previewTab = 'detail';
     if (sameView){
       markSelection();
@@ -5039,75 +7052,222 @@ var GUIDES = {
   }
 
   /* ================= 导航 ================= */
+  function navSnapshot(){
+    return {
+      view: state.view, cat: state.cat, subCat: state.subCat, kind: state.kind, lang: state.lang,
+      favOnly: state.favOnly, q: state.q, page: state.page, role: state.role, stage: state.stage,
+      stageTab: state.stageTab, projectLevel: state.projectLevel, projectRole: state.projectRole,
+      projPage: state.projPage
+    };
+  }
+  function pushHistory(){
+    if (histLock) return;
+    var snap = navSnapshot();
+    var last = navHist[navHist.length - 1];
+    if (last && JSON.stringify(last) === JSON.stringify(snap)) return;
+    navHist.push(snap);
+    if (navHist.length > 60) navHist.shift();
+    navFwd.length = 0;
+  }
+  function applySnapshot(s){
+    if (!s) return;
+    state.view = s.view; state.cat = s.cat; state.subCat = s.subCat || 'all';
+    state.kind = s.kind; state.lang = s.lang; state.favOnly = !!s.favOnly;
+    state.q = s.q || ''; if (qInput) qInput.value = state.q;
+    state.page = s.page || 1; state.role = s.role || state.role;
+    state.stage = s.stage || 0; state.stageTab = s.stageTab || 'books';
+    state.projectLevel = s.projectLevel || 'all'; state.projectRole = s.projectRole || 'all';
+    state.projPage = s.projPage || 1;
+    clearSelection();
+    state.previewTab = 'detail';
+    closeDrawers();
+    renderAll();
+  }
+  function goBack(){
+    if (state.q){ state.q = ''; qInput.value = ''; state.page = 1; renderAll(); return; }
+    if (!navHist.length) return;
+    navFwd.push(navSnapshot());
+    histLock = true;
+    applySnapshot(navHist.pop());
+    histLock = false;
+    updateChrome();
+  }
+  function goForward(){
+    if (!navFwd.length) return;
+    navHist.push(navSnapshot());
+    histLock = true;
+    applySnapshot(navFwd.pop());
+    histLock = false;
+    updateChrome();
+  }
+  function goUp(){
+    if (state.q){ state.q = ''; qInput.value = ''; state.page = 1; renderAll(); return; }
+    if (state.view === 'library'){
+      if (state.subCat !== 'all'){ pushHistory(); state.subCat = 'all'; state.page = 1; clearSelection(); renderAll(); return; }
+      if (state.cat !== 'all'){ goLibrary('all'); return; }
+      return;
+    }
+    if (state.view === 'paths' && state.stage > 0){
+      pushHistory();
+      state.stage--; state.stageTab = 'books'; clearSelection(); renderAll(); return;
+    }
+    if (state.view === 'projects' && state.projectLevel !== 'all'){
+      pushHistory();
+      state.projectLevel = 'all'; state.projPage = 1; clearSelection(); renderAll(); return;
+    }
+    if (state.view !== 'library'){ goLibrary('all'); return; }
+  }
   function goLibrary(cat){
+    pushHistory();
     state.view = 'library';
     state.cat = cat || 'all';
+    state.subCat = 'all';
     state.kind = 'all';
     state.q = '';
     if (qInput) qInput.value = '';
     state.page = 1;
-    state.selectedId = null;
-    state.selectedProject = null;
+    clearSelection();
     state.previewTab = 'detail';
     state.favOnly = false;
     closeDrawers();
     renderAll();
   }
+  function goDatasheets(sub){
+    pushHistory();
+    state.view = 'library';
+    state.cat = 'datasheets';
+    state.subCat = sub || 'all';
+    state.kind = 'all';
+    state.q = '';
+    if (qInput) qInput.value = '';
+    state.page = 1;
+    state.lang = 'all';
+    state.favOnly = false;
+    clearSelection();
+    state.previewTab = 'detail';
+    closeDrawers();
+    renderAll();
+  }
   function goPaths(roleId){
+    pushHistory();
     state.view = 'paths';
     state.q = '';
     if (qInput) qInput.value = '';
     state.role = roleId && ROLE_MAP[roleId] ? roleId : state.role;
     state.stage = 0;
     state.stageTab = 'books';
-    state.selectedId = null;
-    state.selectedProject = null;
+    clearSelection();
     state.previewTab = 'detail';
     closeDrawers();
     renderAll();
   }
   function goProjects(level){
+    pushHistory();
     state.view = 'projects';
     state.q = '';
     if (qInput) qInput.value = '';
     state.projectLevel = level || 'all';
     state.projectRole = 'all';
     state.projPage = 1;
-    state.selectedId = null;
-    state.selectedProject = null;
+    clearSelection();
     state.previewTab = 'detail';
     closeDrawers();
     renderAll();
   }
   function goFavorites(){
+    pushHistory();
     state.view = 'favorites';
     state.q = '';
     if (qInput) qInput.value = '';
     state.cat = 'all';
+    state.subCat = 'all';
     state.kind = 'all';
     state.favOnly = false;
     state.lang = 'all';
     state.page = 1;
-    state.selectedId = null;
-    state.selectedProject = null;
+    clearSelection();
     state.previewTab = 'detail';
     closeDrawers();
     renderAll();
   }
   function goPersonal(){
+    pushHistory();
     state.view = 'personal';
     state.q = '';
     if (qInput) qInput.value = '';
     state.cat = 'all';
+    state.subCat = 'all';
     state.kind = 'all';
     state.favOnly = false;
     state.lang = 'all';
     state.page = 1;
-    state.selectedId = null;
-    state.selectedProject = null;
+    clearSelection();
     state.previewTab = 'detail';
     closeDrawers();
     renderAll();
+  }
+  function setViewMode(mode){
+    if (!/^(large|small|list|details)$/.test(mode || '')) return;
+    state.viewMode = mode;
+    state.page = 1;
+    try { localStorage.setItem('eeidx.view.mode', mode); } catch (e) {}
+    renderList();
+    updateChrome();
+    showToast('视图：' + ({ large:'大图标', small:'小图标', list:'列表', details:'详细资料' }[mode]));
+  }
+  function setSort(key){
+    if (!/^(name|type|size|time)$/.test(key || '')) return;
+    if (state.sortKey === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+    else { state.sortKey = key; state.sortDir = 'asc'; }
+    state.page = 1;
+    try { localStorage.setItem('eeidx.view.sort', JSON.stringify({ key: state.sortKey, dir: state.sortDir })); } catch (e) {}
+    renderList();
+    updateChrome();
+  }
+  function openCurrentInNewTab(){
+    try { window.open(location.href, '_blank', 'noopener'); } catch (e) { showToast('浏览器阻止了新标签'); }
+  }
+  function copyText(text, okMsg){
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ showToast(okMsg || '已复制'); }, function(){ showToast('复制失败，请手动复制'); });
+    } else { showToast('当前浏览器不支持剪贴板'); }
+  }
+  function hideCtxMenu(){
+    if (ctxMenu) ctxMenu.hidden = true;
+  }
+  function showCtxMenu(x, y, items, head){
+    if (!ctxMenu) return;
+    var html = head ? '<div class="ctx-head">' + esc(head) + '</div>' : '';
+    html += items.map(function(it){
+      if (it === '-') return '<hr>';
+      return '<button type="button" data-ctx="' + it.cmd + '"' + (it.disabled ? ' disabled' : '') + '>' +
+        '<span>' + esc(it.label) + '</span>' + (it.kbd ? '<span class="ctx-kbd">' + esc(it.kbd) + '</span>' : '') + '</button>';
+    }).join('');
+    ctxMenu.innerHTML = html;
+    ctxMenu.hidden = false;
+    var w = ctxMenu.offsetWidth, h = ctxMenu.offsetHeight;
+    ctxMenu.style.left = Math.max(4, Math.min(x, window.innerWidth - w - 6)) + 'px';
+    ctxMenu.style.top = Math.max(4, Math.min(y, window.innerHeight - h - 6)) + 'px';
+  }
+  function ctxAction(cmd){
+    var item = currentItem();
+    hideCtxMenu();
+    if (cmd === 'open' && item){
+      if (item.kind === 'datasheet' || item.embed || (item.file && item.preview !== 'none')) openMediaItem(item);
+      else window.open(preferredFile(item) || item.url, '_blank', 'noopener');
+      return;
+    }
+    if (cmd === 'open-tab' && item){ window.open(preferredFile(item) || item.url || item.repo, '_blank', 'noopener'); return; }
+    if (cmd === 'fav' && item){ toggleFav(item.id); return; }
+    if (cmd === 'copy' && item){ copyText(preferredFile(item) || item.url || item.repo || '', '链接已复制'); return; }
+    if (cmd === 'props' && item){ state.previewTab = 'detail'; renderPreview(); openPreviewPane(); return; }
+    if (cmd === 'select-all'){ selectAllVisible(); return; }
+    if (cmd === 'refresh'){ renderAll(); showToast('已刷新'); return; }
+    if (cmd === 'upload'){ executeCmd('pl:upload'); return; }
+    if (cmd === 'cloud'){ executeCmd('pl:cloud'); return; }
+    if (cmd === 'up'){ goUp(); return; }
+    if (cmd === 'back'){ goBack(); return; }
   }
   function resetCurrent(){
     state.q = '';
@@ -5134,7 +7294,7 @@ var GUIDES = {
   var HELP = {
     usage: {
       t: '使用说明',
-      h: '<h3>三步就够了</h3><ol><li>左侧选目录：资源库、书籍与教材、笔记、视频课程、岗位路径、项目雷达、收藏或我的文件。手机上点工具栏的 ▤。</li><li>中间点文件：单击看右侧详情（手机在底部），双击直接打开资源；书籍/视频可点“预览”站内查看。</li><li>搜索框描述你的情况，按 Enter 让 AI 解读。</li></ol><div class="tip">右侧面板可随时点 × 收起，再用工具栏的 ✦ 重新打开；窗口右上角 □ 进入全屏。</div><div class="tip">“我的文件”支持拖拽上传、最多 5 级分类、批量移动/标签/删除、回收站、ZIP 导入导出与 AI 自动归档；删除文件会先进入回收站。</div>'
+      h: '<h3>像用资源管理器一样</h3><ol><li>左侧目录树：我的电脑 → EE-INDEX (C:) → 资源库 / 电子元器件数据手册 / 岗位路径 / 项目雷达 / 收藏 / 我的文件。</li><li>中间文件列表：单击选中并在右侧看详情，双击打开；Ctrl / Shift 可多选，右键有快捷菜单。</li><li>顶部工具栏：后退、前进、向上、搜索、文件夹、视图；地址栏显示当前路径。</li><li>搜索框描述你的情况，按 Enter 让 AI 解读。</li></ol><div class="tip">视图支持大图标 / 小图标 / 列表 / 详细资料，并可按名称、类型、大小、修改时间排序；选择会记在本机。</div><div class="tip">“我的文件”支持拖拽上传、最多 5 级分类、批量移动/标签/删除、回收站、ZIP 导入导出与 AI 自动归档；删除文件会先进入回收站。</div>'
     },
     search: {
       t: '搜索与 AI',
@@ -5162,15 +7322,19 @@ var GUIDES = {
     },
     media: {
       t: '预览与下载',
-      h: '<h3>书籍 / 视频怎么预览</h3><p>详情页的 <b>▶ 预览 PDF</b> 会在站内打开 PDF；<b>▶ 站内播放</b> 用 B 站播放器直接看视频，不跳转。</p><ul><li>PDF 若空白：部分站点禁止被嵌入，点“下载 / 打开 PDF”或“在新标签打开”。</li><li>视频若空白：B 站播放器偶尔限制来源，点“原站观看”。</li><li>本地文件：预览窗口里点“打开本地文件”，可播放本地视频/音频或查看 PDF，文件不会上传。</li></ul><div class="tip">站内只收录官方免费、开源授权或作者公开的资源；商业软件只链官方下载、试用或教育版，不提供破解、激活工具或网盘转载。</div>'
+      h: '<h3>书籍 / 数据手册 / 视频怎么预览</h3><p>详情页的 <b>▶ 预览 PDF</b> 会在站内打开 PDF；<b>▶ 站内播放</b> 用 B 站播放器直接看视频，不跳转。</p><ul><li>数据手册：PDF 已自托管到站内，预览窗口里可“下载 PDF”或“在新标签打开”。</li><li>PDF 若空白：部分站点禁止被嵌入，点“下载 / 打开 PDF”或“在新标签打开”。</li><li>视频若空白：B 站播放器偶尔限制来源，点“原站观看”。</li><li>本地文件：预览窗口里点“打开本地文件”，可播放本地视频/音频或查看 PDF，文件不会上传。</li></ul><div class="tip">站内只收录官方免费、开源授权或作者公开的资源；商业软件只链官方下载、试用或教育版，不提供破解、激活工具或网盘转载。</div>'
+    },
+    datasheets: {
+      t: '数据手册',
+      h: '<h3>电子元器件数据手册</h3><p>左侧树「EE-INDEX (C:) → 资源库 → 电子元器件数据手册」收录 36 份常用料号的厂商公开 PDF：电阻、电容、电感、二极管、三极管/MOSFET、电源、模拟/运放、MCU/逻辑、传感器、连接器/保护。</p><ul><li>按子类筛选：列表上方的“子类”按钮，或目录树里的 10 个子目录。</li><li>详情页先看“关键参数”和“打开后先看”，再点“预览 PDF”。</li><li>每份文件都标注原厂来源；PDF 自托管是为了解决厂商站点禁止 iframe 嵌入的问题。</li></ul><div class="tip">PDF 版权归原厂所有，本站仅作学习用途镜像；如权利人要求下架，会按 README 中的联系方式处理。</div>'
     },
     shortcuts: {
       t: '快捷键',
-      h: '<h3>键盘操作</h3><ul><li><span class="help-kbd">/</span> 或 <span class="help-kbd">Ctrl K</span>：聚焦搜索</li><li><span class="help-kbd">Enter</span>：AI 查找</li><li><span class="help-kbd">↑</span> <span class="help-kbd">↓</span>：在列表中移动选择</li><li><span class="help-kbd">Enter</span>：查看选中项</li><li><span class="help-kbd">1–4</span>：资源库 / 岗位路径 / 项目 / 收藏</li><li><span class="help-kbd">I</span>：AI 助理 / 详情面板</li><li><span class="help-kbd">A</span>：字号 +6%</li><li><span class="help-kbd">F1</span>：帮助</li><li><span class="help-kbd">Esc</span>：关闭弹窗 / 详情</li></ul>'
+      h: '<h3>键盘操作</h3><ul><li><span class="help-kbd">/</span> 或 <span class="help-kbd">Ctrl K</span>：聚焦搜索</li><li><span class="help-kbd">Enter</span>：AI 查找；列表中打开选中项</li><li><span class="help-kbd">Ctrl Enter</span>：在新标签打开选中项</li><li><span class="help-kbd">↑</span> <span class="help-kbd">↓</span>：移动选择</li><li><span class="help-kbd">Alt ←</span> / <span class="help-kbd">Alt →</span>：后退 / 前进</li><li><span class="help-kbd">Backspace</span>：向上一级</li><li><span class="help-kbd">Ctrl A</span>：全选当前列表</li><li><span class="help-kbd">F5</span>：刷新列表</li><li><span class="help-kbd">1–6</span>：资源库 / 岗位路径 / 项目 / 收藏 / 我的文件 / 数据手册</li><li><span class="help-kbd">I</span>：AI 助理 / 详情面板</li><li><span class="help-kbd">A</span>：字号 +6%</li><li><span class="help-kbd">F1</span>：帮助</li><li><span class="help-kbd">Esc</span>：关闭弹窗 / 右键菜单</li></ul>'
     },
     about: {
       t: '关于 EE-INDEX',
-      h: '<h3>EE-INDEX 98</h3><p>一台复古 CRT 里的硬件工程资源管理器。' + DATA.length + ' 条资源、' + ROLES.length + ' 个岗位路径、' + PROJECTS.length + ' 个项目。</p><p>数据人工校对，项目复核于 2026-11，每季度更新。资源图标首次访问时并行读取网站 favicon 并缓存在本机，1.2 秒未返回就回退本地图标，不阻塞列表。</p><div class="tip">本地优先：收藏、字号、AI Key 都只保存在这台电脑的浏览器里。</div>'
+      h: '<h3>EE-INDEX 98</h3><p>一台复古 CRT 里的硬件工程资源管理器。' + DATA.length + ' 条资源、' + ROLES.length + ' 个岗位路径、' + PROJECTS.length + ' 个项目，其中包含 36 份自托管的元器件数据手册。</p><p>数据人工校对，项目复核于 2026-11，每季度更新。资源图标首次访问时并行读取网站 favicon 并缓存在本机，1.2 秒未返回就回退本地图标，不阻塞列表。</p><div class="tip">本地优先：收藏、字号、视图、排序、AI Key 都只保存在这台电脑的浏览器里。</div>'
     },
     privacy: {
       t: '隐私与免责声明',
@@ -5180,7 +7344,7 @@ var GUIDES = {
   function openHelp(key){
     var info = HELP[key] ? HELP[key] : HELP.usage;
     var active = HELP[key] ? key : 'usage';
-    var topics = [['usage','总览'],['search','搜索与 AI'],['media','预览与下载'],['voicesearch','语音'],['paths','岗位路径'],['projects','项目难度'],['font','字号'],['shortcuts','快捷键'],['privacy','隐私'],['about','关于']];
+    var topics = [['usage','总览'],['search','搜索与 AI'],['media','预览与下载'],['datasheets','数据手册'],['voicesearch','语音'],['paths','岗位路径'],['projects','项目难度'],['font','字号'],['shortcuts','快捷键'],['privacy','隐私'],['about','关于']];
     helpTitle.textContent = '帮助 — ' + info.t;
     helpBody.innerHTML = '<div class="help-nav">' + topics.map(function(t){
       return '<button type="button" data-help-topic="' + t[0] + '" class="' + (t[0] === active ? 'on' : '') + '">' + t[1] + '</button>';
@@ -5261,12 +7425,31 @@ var GUIDES = {
     if (!item || !mediaModal) return;
     mediaTitle.textContent = item.name;
     var file = preferredFile(item);
-    mediaMeta.innerHTML = '<b>' + esc(KIND_MAP[item.kind] || '资源') + '</b>' +
-      (item.author ? '<span>' + esc(item.author) + '</span>' : '') +
-      (item.license ? '<span>' + esc(licenseLabel(item)) + '</span>' : '') +
-      (item.embed ? '<span>B 站播放器 · 可切原站</span>' : (file ? '<span>站内文件预览</span>' : ''));
-    mediaItemUrl = item.url || file || '';
+    if (item.kind === 'datasheet'){
+      mediaMeta.innerHTML = '<b>数据手册</b>' +
+        (item.manufacturer ? '<span>' + esc(item.manufacturer) + '</span>' : '') +
+        (item.pages ? '<span>' + item.pages + ' 页</span>' : '') +
+        (item.size ? '<span>' + esc(item.size) + '</span>' : '') +
+        '<span>站内自托管 PDF</span>';
+    } else {
+      mediaMeta.innerHTML = '<b>' + esc(KIND_MAP[item.kind] || '资源') + '</b>' +
+        (item.author ? '<span>' + esc(item.author) + '</span>' : '') +
+        (item.license ? '<span>' + esc(licenseLabel(item)) + '</span>' : '') +
+        (item.embed ? '<span>B 站播放器 · 可切原站</span>' : (file ? '<span>站内文件预览</span>' : ''));
+    }
+    mediaItemUrl = item.kind === 'datasheet' ? (file || item.url || '') : (item.url || file || '');
     mediaOpenBtn.hidden = !mediaItemUrl;
+    if (mediaDownloadBtn){
+      if (item.kind === 'datasheet' && file){
+        mediaDownloadBtn.hidden = false;
+        mediaDownloadBtn.href = file;
+        mediaDownloadBtn.setAttribute('download', file.split('/').pop());
+      } else {
+        mediaDownloadBtn.hidden = true;
+        mediaDownloadBtn.href = '#';
+        mediaDownloadBtn.removeAttribute('download');
+      }
+    }
     if (item.embed){
       renderMediaFrame(item.embed, item.name, '正在载入 B 站播放器…4K 视频可能需要 10–20 秒');
     } else if (file && item.preview === 'pdf'){
@@ -5294,6 +7477,7 @@ var GUIDES = {
     mediaTitle.textContent = file.name || '本地文件';
     mediaMeta.innerHTML = '<b>本地文件</b><span>' + esc(file.type || '未知类型') + '</span><span>' + (file.size ? (file.size / 1024 / 1024).toFixed(2) + ' MB' : '') + '</span><span>不会上传</span>';
     mediaOpenBtn.hidden = false;
+    if (mediaDownloadBtn){ mediaDownloadBtn.hidden = true; mediaDownloadBtn.href = '#'; mediaDownloadBtn.removeAttribute('download'); }
     var kind = mediaTypeOf(file);
     if (kind === 'video') renderMediaTag('video', mediaLocalUrl, file.name);
     else if (kind === 'audio') renderMediaTag('audio', mediaLocalUrl, file.name);
@@ -5313,6 +7497,7 @@ var GUIDES = {
   }
   function closeMedia(){
     clearMediaStage();
+    if (mediaDownloadBtn){ mediaDownloadBtn.hidden = true; mediaDownloadBtn.href = '#'; mediaDownloadBtn.removeAttribute('download'); }
     if (mediaLocalUrl){ try { URL.revokeObjectURL(mediaLocalUrl); } catch (e) {} mediaLocalUrl = ''; }
     mediaItemUrl = '';
     if (mediaModal && mediaModal.open){
@@ -6304,18 +8489,65 @@ var GUIDES = {
       screenEl.classList.toggle('tree-hide');
     }
   }
+  function currentItem(){
+    if (state.selectedId && DATA_BY_ID[state.selectedId]) return DATA_BY_ID[state.selectedId];
+    if (state.selectedProject && PROJECT_MAP[state.selectedProject]) return PROJECT_MAP[state.selectedProject];
+    return null;
+  }
   function executeCmd(cmd){
     if (!cmd) return;
     toggleStart(false);
     if (cmd.indexOf('nav:') === 0){
       var v = cmd.slice(4);
       if (v === 'library'){ state.q = ''; qInput.value = ''; state.lang = 'all'; goLibrary('all'); }
+      else if (v === 'datasheets') goDatasheets('all');
       else if (v === 'paths') goPaths(state.role);
       else if (v === 'projects') goProjects('all');
       else if (v === 'favorites') goFavorites();
       else if (v === 'personal'){ if (window.EEPLUI) window.EEPLUI.go('root'); else goPersonal(); }
       return;
     }
+    if (cmd.indexOf('view:') === 0){ setViewMode(cmd.slice(5)); return; }
+    if (cmd.indexOf('sort:') === 0){ setSort(cmd.slice(5)); return; }
+    if (cmd.indexOf('hist:') === 0){
+      var h = cmd.slice(5);
+      if (h === 'back') goBack();
+      else if (h === 'forward') goForward();
+      else if (h === 'up') goUp();
+      return;
+    }
+    if (cmd === 'fav:current' || cmd === 'fav:selected'){
+      var fi = currentItem();
+      if (fi) toggleFav(fi.id); else showToast('先选中一个对象');
+      return;
+    }
+    if (cmd === 'unfav:selected'){
+      var ui = currentItem();
+      if (!ui){ showToast('先选中一个对象'); return; }
+      if (favs.has(ui.id)) toggleFav(ui.id); else showToast('这个对象还没有收藏');
+      return;
+    }
+    if (cmd === 'select:all'){ selectAllVisible(); return; }
+    if (cmd === 'copy:page'){ copyText(location.href, '当前页地址已复制'); return; }
+    if (cmd === 'copy:selected'){
+      var ci = currentItem();
+      if (!ci){ showToast('先选中一个对象'); return; }
+      copyText(preferredFile(ci) || ci.url || ci.repo || '', '选中项链接已复制');
+      return;
+    }
+    if (cmd === 'find'){ qInput.focus(); qInput.select(); return; }
+    if (cmd === 'refresh'){ renderAll(); blinkHdd(); showToast('已刷新'); return; }
+    if (cmd === 'pl:upload'){
+      if (window.EEPLUI && window.EEPLUI.uploadFlow) window.EEPLUI.uploadFlow();
+      else showToast('个人文件库正在加载，请稍后再试');
+      return;
+    }
+    if (cmd === 'pl:cloud'){
+      if (window.EEPLUI && window.EEPLUI.openCloudPanel) window.EEPLUI.openCloudPanel();
+      else showToast('云同步面板正在加载，请稍后再试');
+      return;
+    }
+    if (cmd === 'open:tab'){ openCurrentInNewTab(); return; }
     if (cmd.indexOf('font:') === 0){
       var pct = parseInt(cmd.slice(5), 10);
       applyFontPct(pct, true);
@@ -6410,10 +8642,23 @@ var GUIDES = {
       e.stopPropagation();
       var fav = e.target.closest('[data-fav]');
       if (fav){ toggleFav(fav.dataset.fav); return; }
+      var sortH = e.target.closest('[data-sort]');
+      if (sortH){ setSort(sortH.dataset.sort); return; }
+      var subFilter = e.target.closest('[data-sub-filter]');
+      if (subFilter){
+        pushHistory();
+        state.subCat = subFilter.dataset.subFilter || 'all';
+        state.page = 1;
+        clearSelection();
+        renderAll();
+        return;
+      }
       var item = e.target.closest('[data-item]');
       if (item){
         try { item.focus({ preventScroll: true }); } catch (err) { item.focus(); }
-        selectResource(item.dataset.item);
+        if (e.ctrlKey || e.metaKey) toggleMultiSelection(item.dataset.item);
+        else if (e.shiftKey) extendSelection(item.dataset.item);
+        else selectResource(item.dataset.item);
         return;
       }
       var proj = e.target.closest('[data-project]');
@@ -6473,6 +8718,43 @@ var GUIDES = {
         renderAll();
       }
     });
+    listPane.addEventListener('contextmenu', function(e){
+      if (state.view === 'personal') return;
+      var row = e.target.closest('[data-item]');
+      var proj = e.target.closest('[data-project]');
+      if (row){
+        if (!(e.ctrlKey || e.metaKey) || state.multiSel.indexOf(row.dataset.item) === -1) selectResource(row.dataset.item);
+      } else if (proj){
+        selectProject(proj.dataset.project);
+      } else {
+        clearSelection();
+        markSelection();
+        updateStatusSel();
+      }
+      e.preventDefault();
+      var item = currentItem();
+      var isResource = !!(item && item.kind);
+      var items = [];
+      if (item){
+        var canPreview = isResource && (item.kind === 'datasheet' || item.embed || (preferredFile(item) && item.preview !== 'none'));
+        items.push({ cmd:'open', label: canPreview ? '预览 / 打开' : '在新标签打开', kbd:'Enter' });
+        items.push({ cmd:'open-tab', label:'在新标签打开', kbd:'Ctrl+Enter' });
+        items.push('-');
+        if (isResource) items.push({ cmd:'fav', label: favs.has(item.id) ? '取消收藏' : '收藏' });
+        items.push({ cmd:'copy', label:'复制链接' });
+        items.push({ cmd:'props', label:'属性 / 详情' });
+        items.push('-');
+      }
+      items.push({ cmd:'select-all', label:'全选', kbd:'Ctrl+A' });
+      items.push({ cmd:'refresh', label:'刷新', kbd:'F5' });
+      if (state.view !== 'library' || state.cat !== 'all'){
+        items.push('-');
+        items.push({ cmd:'up', label:'向上一级', kbd:'Backspace' });
+      }
+      showCtxMenu(e.clientX, e.clientY, items, item ? item.name : 'EE-INDEX (C:)');
+    });
+    window.addEventListener('scroll', hideCtxMenu, true);
+    window.addEventListener('resize', hideCtxMenu);
     listEl.addEventListener('keydown', function(e){
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
         var rows = $$('.file-row', listEl);
@@ -6480,16 +8762,26 @@ var GUIDES = {
         var idx = rows.findIndex(function(r){ return r === document.activeElement; });
         var next = clamp(idx + (e.key === 'ArrowDown' ? 1 : -1), 0, rows.length - 1);
         rows[next].focus();
+        if (rows[next].dataset.item) selectResource(rows[next].dataset.item);
+        else if (rows[next].dataset.project) selectProject(rows[next].dataset.project);
         e.preventDefault();
       }
       if (e.key === 'Enter'){
         var row = document.activeElement;
-        if (row && row.dataset && row.dataset.item) selectResource(row.dataset.item);
-        else if (row && row.dataset && row.dataset.project) selectProject(row.dataset.project);
+        if (row && row.dataset && row.dataset.item){
+          var data = DATA_BY_ID[row.dataset.item];
+          if (e.ctrlKey || e.metaKey) window.open(preferredFile(data) || data.url, '_blank', 'noopener');
+          else if (data.kind === 'datasheet' || data.embed || (data.file && data.preview !== 'none')) openMediaItem(data);
+          else selectResource(data.id);
+        } else if (row && row.dataset && row.dataset.project) selectProject(row.dataset.project);
+        e.preventDefault();
       }
     });
 
     document.addEventListener('click', function(e){
+      var ctxBtn = e.target.closest('[data-ctx]');
+      if (ctxBtn){ ctxAction(ctxBtn.dataset.ctx); return; }
+      if (!e.target.closest('#ctxMenu')) hideCtxMenu();
       var menuBtn = e.target.closest('.menu-btn');
       if (menuBtn){
         var menu = menuBtn.closest('.menu');
@@ -6542,7 +8834,11 @@ var GUIDES = {
       var nav = e.target.closest('[data-nav]');
       if (nav){
         var v = nav.dataset.nav;
-        if (v === 'library'){ state.q = ''; qInput.value = ''; goLibrary(nav.dataset.cat || 'all'); }
+        if (v === 'library'){
+          state.q = ''; qInput.value = '';
+          if (nav.dataset.cat === 'datasheets' && nav.dataset.sub) goDatasheets(nav.dataset.sub);
+          else goLibrary(nav.dataset.cat || 'all');
+        }
         else if (v === 'favorites') goFavorites();
         else if (v === 'paths') goPaths(nav.dataset.rolePick);
         else if (v === 'projects') goProjects(nav.dataset.plvPick);
@@ -6608,6 +8904,7 @@ var GUIDES = {
       var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(tag);
       if (e.key === 'F1'){ e.preventDefault(); openHelp('usage'); return; }
       if (e.key === 'Escape'){
+        hideCtxMenu();
         closeMenus();
         toggleFontPanel(false);
         toggleStart(false);
@@ -6625,10 +8922,20 @@ var GUIDES = {
         e.preventDefault(); qInput.focus(); qInput.select(); return;
       }
       if (typing) return;
+      if (e.altKey && e.key === 'ArrowLeft'){ e.preventDefault(); goBack(); return; }
+      if (e.altKey && e.key === 'ArrowRight'){ e.preventDefault(); goForward(); return; }
+      if (e.altKey && e.key === 'ArrowUp'){ e.preventDefault(); goUp(); return; }
+      if (e.key === 'Backspace'){ e.preventDefault(); goUp(); return; }
+      if (e.key === 'F5'){ e.preventDefault(); renderAll(); blinkHdd(); showToast('已刷新'); return; }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'a' && state.view !== 'personal'){
+        e.preventDefault(); selectAllVisible(); return;
+      }
       if (e.key === '1'){ goLibrary('all'); }
       else if (e.key === '2'){ goPaths(state.role); }
       else if (e.key === '3'){ goProjects(state.projectLevel); }
       else if (e.key === '4'){ goFavorites(); }
+      else if (e.key === '5'){ if (window.EEPLUI) window.EEPLUI.go('root'); else goPersonal(); }
+      else if (e.key === '6'){ goDatasheets('all'); }
       else if (e.key.toLowerCase() === 'a'){ cycleFont(); }
       else if (e.key.toLowerCase() === 'r'){ resetCurrent(); }
       else if (e.key.toLowerCase() === 't'){ executeCmd('tree'); }
@@ -6650,22 +8957,11 @@ var GUIDES = {
     fontStatus.addEventListener('click', function(){ toggleFontPanel(); });
     document.addEventListener('fullscreenchange', syncFullscreen);
     document.addEventListener('webkitfullscreenchange', syncFullscreen);
-    $('#backBtn').addEventListener('click', function(){
-      if (state.q){ state.q = ''; qInput.value = ''; state.page = 1; renderAll(); return; }
-      if (state.view === 'paths' && state.stage > 0){ state.stage--; state.stageTab = 'books'; renderList(); renderPreview(); return; }
-      if (state.view === 'paths'){ goLibrary('all'); return; }
-      if (state.view === 'projects' && state.projectLevel !== 'all'){ state.projectLevel = 'all'; state.projPage = 1; renderAll(); return; }
-      if (state.view !== 'library'){ goLibrary('all'); return; }
-      if (state.cat !== 'all'){ goLibrary('all'); return; }
-      if (state.selectedId || state.selectedProject){ state.selectedId = null; state.selectedProject = null; state.previewTab = 'detail'; document.body.classList.remove('preview-open'); renderAll(); }
-    });
-    $('#upBtn').addEventListener('click', function(){
-      if (state.view === 'paths'){ goLibrary('all'); return; }
-      if (state.view === 'projects'){ goLibrary('all'); return; }
-      if (state.view === 'favorites'){ goLibrary('all'); return; }
-      if (state.cat !== 'all'){ goLibrary('all'); return; }
-      if (state.selectedId || state.selectedProject){ state.selectedId = null; state.selectedProject = null; state.previewTab = 'detail'; document.body.classList.remove('preview-open'); renderAll(); }
-    });
+    $('#backBtn').addEventListener('click', goBack);
+    $('#fwdBtn').addEventListener('click', goForward);
+    $('#upBtn').addEventListener('click', goUp);
+    $('#searchFocusBtn').addEventListener('click', function(){ qInput.focus(); qInput.select(); });
+    if (mediaDownloadBtn) mediaDownloadBtn.addEventListener('click', function(){ if (!mediaDownloadBtn.href || mediaDownloadBtn.href === location.href + '#') return; setTimeout(function(){ showToast('已开始下载 PDF'); }, 60); });
     $('#treeToggle').addEventListener('click', toggleTree);
     $('#treeBackdrop').addEventListener('click', function(){ document.body.classList.remove('tree-open'); });
     previewClose.addEventListener('click', closePreviewPane);
