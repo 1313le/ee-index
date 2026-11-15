@@ -7926,6 +7926,7 @@ var GUIDES = {
           '<div class="pl-up-log" id="plImpLog"></div></div>' +
         '<div class="dlg-foot"><span class="spacer"></span><button type="button" class="btn" data-x>关闭</button></div>'
       );
+      $$('[data-x]', dlg).forEach(function(b){ b.addEventListener('click', function(){ dlg.close(); }); });
       var bar = $('#plImpBar i', dlg), pctEl = $('#plImpPct', dlg), logEl = $('#plImpLog', dlg);
       function log(msg, cls){ var d = document.createElement('div'); d.className = cls || ''; d.textContent = msg; logEl.appendChild(d); logEl.scrollTop = logEl.scrollHeight; }
       dlg.classList.add('busy');
@@ -8174,6 +8175,7 @@ var GUIDES = {
         '<button type="button" class="btn primary" data-cloud="push">推送到云端</button></div>',
       'wide'
     );
+    $$('[data-x]', dlg).forEach(function(b){ b.addEventListener('click', function(){ dlg.close(); }); });
     var statusEl = $('#plCloudStatus', dlg);
     function log(msg){ statusEl.textContent = msg; }
     function saveCfg(){
