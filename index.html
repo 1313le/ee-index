@@ -1722,6 +1722,10 @@ body.app-dragging{cursor:default;}
 .pl-ico.k-text{--k-color:#8a7b53;}
 .pl-ico.k-code{--k-color:#5b6f3a;}
 .pl-ico.k-archive{--k-color:#a06a24;}
+.pl-ico.k-markdown{--k-color:#4d6d8a;}
+.pl-ico.k-doc{--k-color:#2f5d8a;}
+.pl-ico.k-sheet{--k-color:#3f7a4f;}
+.pl-ico.k-slide{--k-color:#a05a24;}
 .pl-ico.k-other{--k-color:#6d6455;}
 .pl-meta{font-family:var(--ui);font-size:.64rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 5px;}
 .pl-cat-path{font-size:.62rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 5px;}
@@ -1772,16 +1776,71 @@ body.app-dragging{cursor:default;}
 .pl-preview-sub{font-size:.68rem;color:#444;margin:0 0 8px;word-break:break-all;}
 .pl-preview-stage{
   border:2px solid;border-color:#808080 #fff #fff #808080;background:#fff;padding:4px;margin:0 0 9px;
-  min-height:70px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  min-height:70px;display:flex;align-items:flex-start;justify-content:flex-start;overflow:auto;max-height:480px;
 }
-.pl-preview-stage img{max-width:100%;max-height:220px;object-fit:contain;border:1px solid #aca899;background:#fff;}
-.pl-preview-stage video,.pl-preview-stage audio{max-width:100%;width:100%;}
+.pl-preview-stage.modal{max-height:none;min-height:240px;padding:0;border:0;background:transparent;}
+.pl-preview-stage img{display:block;max-width:100%;max-height:340px;margin:0 auto;object-fit:contain;border:1px solid #aca899;background:#fff;}
+.pl-preview-stage video{max-width:100%;width:100%;max-height:340px;background:#000;}
+.pl-preview-stage audio{max-width:100%;width:100%;}
 .pl-preview-stage pre{
-  width:100%;max-height:240px;overflow:auto;margin:0;padding:6px;background:#fff;
+  width:100%;max-height:420px;overflow:auto;margin:0;padding:6px;background:#fff;
   border:1px solid #aca899;font-family:var(--mono);font-size:.6rem;line-height:1.5;white-space:pre-wrap;
   word-break:break-all;
 }
-.pl-preview-stage .pl-big-ico{font-family:var(--mono);font-size:.66rem;color:#555;letter-spacing:.08em;}
+.pl-preview-stage .pl-big-ico{font-family:var(--mono);font-size:.66rem;color:#555;letter-spacing:.08em;margin:auto;}
+.pl-media-link{display:block;width:100%;text-align:center;}
+.pl-audio{width:100%;display:flex;flex-direction:column;gap:4px;align-items:center;padding:12px;}
+.pl-audio span{font-size:.62rem;color:#555;word-break:break-all;text-align:center;}
+.pl-pdf-wrap{width:100%;display:flex;flex-direction:column;gap:3px;}
+.pl-pdf{width:100%;height:380px;border:1px solid #aca899;background:#fff;}
+.pl-preview-stage.modal .pl-pdf{height:70vh;}
+.pl-preview-link{display:block;padding:2px;font-size:.62rem;color:#000080;}
+.pl-preview-note{margin:4px 0;font-size:.6rem;color:#7a5b2a;line-height:1.5;}
+.pl-preview-fallback{width:100%;padding:10px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;}
+.pl-preview-fallback b{font-size:.78rem;}
+.pl-preview-fallback p{margin:0;font-size:.66rem;line-height:1.55;color:#444;}
+.pl-preview-fallback .btn{text-decoration:none;display:inline-flex;align-items:center;}
+.pl-doc-preview{width:100%;max-height:420px;overflow:auto;padding:8px 10px;background:#fff;color:#222;font-size:.76rem;line-height:1.65;}
+.pl-preview-stage.modal .pl-doc-preview{max-height:70vh;font-size:.82rem;}
+.pl-doc-preview h1,.pl-doc-preview h2,.pl-doc-preview h3,.pl-doc-preview h4,.pl-doc-preview h5,.pl-doc-preview h6{
+  margin:.65em 0 .3em;line-height:1.3;font-weight:700;color:#111;
+}
+.pl-doc-preview h1{font-size:1.15rem;}
+.pl-doc-preview h2{font-size:1.02rem;}
+.pl-doc-preview h3{font-size:.9rem;}
+.pl-doc-preview p{margin:0 0 .55em;}
+.pl-doc-preview ul,.pl-doc-preview ol{margin:.2em 0 .6em;padding-left:1.4em;}
+.pl-doc-preview li{margin:0 0 .18em;}
+.pl-doc-preview blockquote{margin:.4em 0;padding:3px 8px;border-left:3px solid #aca899;color:#555;background:#f6f3e8;}
+.pl-doc-preview code{font-family:var(--mono);font-size:.66rem;background:#f0eddf;padding:0 2px;}
+.pl-doc-preview pre.md-code{margin:.4em 0;padding:6px;background:#f7f5ea;border:1px solid #d5cfb8;overflow:auto;max-height:280px;}
+.pl-doc-preview pre.md-code code{background:transparent;padding:0;white-space:pre;}
+.pl-doc-preview hr{border:0;border-top:1px solid #c9c2ab;margin:.8em 0;}
+.pl-doc-preview img{max-width:100%;}
+.pl-doc-preview a{color:#000080;}
+.pl-word-empty{margin:0;line-height:1.2;}
+.pl-word-li{margin:0 0 .15em;}
+.pl-md-table,.pl-office-table{border-collapse:collapse;width:100%;font-size:.68rem;background:#fff;}
+.pl-md-table th,.pl-md-table td,.pl-office-table th,.pl-office-table td{
+  border:1px solid #b8b09a;padding:2px 5px;text-align:left;vertical-align:top;white-space:pre-wrap;word-break:break-word;
+}
+.pl-md-table th,.pl-office-table th{background:#e8e4d6;font-weight:700;position:sticky;top:0;z-index:1;}
+.pl-office-table .pl-rownum{width:28px;min-width:28px;text-align:right;color:#777;background:#f2efe2;font-weight:400;}
+.pl-md-table{margin:.4em 0;}
+.pl-xlsx{width:100%;}
+.pl-xlsx-tabs{display:flex;flex-wrap:wrap;gap:2px;margin:0 0 4px;}
+.pl-xlsx-tabs button{
+  height:21px;padding:0 8px;border:1px solid;border-color:#fff #404040 #404040 #fff;
+  background:var(--w98-face);font-size:.62rem;cursor:pointer;
+}
+.pl-xlsx-tabs button.on{background:var(--w98-navy);color:#fff;border-color:#404040 #fff #fff #404040;}
+.pl-xlsx-body{width:100%;max-height:420px;overflow:auto;background:#fff;}
+.pl-preview-stage.modal .pl-xlsx-body{max-height:70vh;}
+.pl-slide-deck{width:100%;max-height:420px;overflow:auto;display:flex;flex-direction:column;gap:6px;background:#d8d4c4;padding:4px;}
+.pl-preview-stage.modal .pl-slide-deck{max-height:70vh;}
+.pl-slide-card{background:#fff;border:1px solid #aca899;padding:7px 9px;}
+.pl-slide-card h4{margin:0 0 4px;font-size:.64rem;color:#a04000;font-family:var(--mono);letter-spacing:.06em;}
+.pl-slide-card p{margin:0 0 .35em;font-size:.74rem;line-height:1.5;}
 
 /* ================= 复古上传窗口 ================= */
 .pl-dlg{
@@ -1931,17 +1990,21 @@ body.app-dragging{cursor:default;}
 }
 .pl-sync-badge.off{border-color:#808080;color:#666;background:var(--w98-face);}
 
-/* 窄屏 */
+/* 窄屏：先让出分类列，保证文件名不被挤没 */
+@media (max-width:1100px){
+  .pl-head,.pl-row{grid-template-columns:22px minmax(0,1fr) 62px 108px 82px;}
+  .pl-head span:nth-child(3),.pl-row .pl-cat-path{display:none;}
+}
 @media (max-width:900px){
-  .pl-head,.pl-row{grid-template-columns:20px minmax(0,1fr) 88px 58px 92px;}
-  .pl-head span:nth-child(5),.pl-row .pl-cat-path{display:none;}
+  .pl-head,.pl-row{grid-template-columns:20px minmax(0,1fr) 58px 92px 80px;}
+  .pl-head span:nth-child(3),.pl-row .pl-cat-path{display:none;}
 }
 @media (max-width:640px){
   .pl-drive{flex-wrap:wrap;}
   .pl-quota{width:80px;}
   .pl-drive-actions{width:100%;justify-content:flex-start;}
-  .pl-head,.pl-row{grid-template-columns:20px minmax(0,1fr) 66px 58px;}
-  .pl-head span:nth-child(3),.pl-row .pl-cat-path,.pl-row .pl-meta:nth-of-type(2){display:none;}
+  .pl-head,.pl-row{grid-template-columns:20px minmax(0,1fr) 58px 70px;}
+  .pl-head span:nth-child(3),.pl-head span:nth-child(5),.pl-row .pl-cat-path,.pl-row .pl-meta:nth-of-type(2){display:none;}
   .pl-pathbar input[type=search]{width:110px;}
   .pl-dlg{width:calc(100vw - 20px);}
 }
@@ -5149,16 +5212,21 @@ window.EE_EXTRA_RESOURCES = (window.EE_EXTRA_RESOURCES || []).concat(window.EE_E
   }
   function kindOf(f){
     var ext = f.ext || extOf(f.name);
-    if (f.mime && f.mime.indexOf('video/') === 0) return 'video';
-    if (f.mime && f.mime.indexOf('audio/') === 0) return 'audio';
-    if (f.mime && f.mime.indexOf('image/') === 0) return 'image';
+    var mime = String(f.mime || '');
+    if (mime.indexOf('video/') === 0 || /^(mp4|webm|ogv|mov|m4v|mkv|avi)$/.test(ext)) return 'video';
+    if (mime.indexOf('audio/') === 0 || /^(mp3|wav|ogg|oga|m4a|aac|flac|opus)$/.test(ext)) return 'audio';
+    if (mime.indexOf('image/') === 0 || /^(png|jpe?g|gif|webp|svg|bmp|avif|ico)$/.test(ext)) return 'image';
     if (/^(pdf)$/.test(ext)) return 'pdf';
-    if (/^(md|markdown|txt|log|csv|json|xml|yaml|yml|ini|cfg)$/.test(ext)) return 'text';
-    if (/^(c|h|cpp|hpp|cc|py|js|ts|v|sv|vhd|vhdl|ino|rs|go|java|m|sh|bat|ps1)$/.test(ext)) return 'code';
-    if (/^(zip|7z|rar|tar|gz)$/.test(ext)) return 'archive';
+    if (/^(md|markdown|mdown|mkd)$/.test(ext)) return 'markdown';
+    if (/^(xlsx|xlsm|xltx|xltm|xls|ods|csv|tsv)$/.test(ext) || /spreadsheetml|ms-excel/.test(mime)) return 'sheet';
+    if (/^(docx|docm|dotx|dotm|doc|rtf|odt)$/.test(ext) || /wordprocessingml|msword/.test(mime)) return 'doc';
+    if (/^(pptx|pptm|potx|potm|ppt|odp)$/.test(ext) || /presentationml|ms-powerpoint/.test(mime)) return 'slide';
+    if (/^(txt|log|json|xml|yaml|yml|ini|cfg|conf|properties)$/.test(ext)) return 'text';
+    if (/^(c|h|cpp|hpp|cc|py|js|ts|jsx|tsx|v|sv|vhd|vhdl|ino|rs|go|java|m|mm|sh|bat|ps1|css|html|htm|sql)$/.test(ext)) return 'code';
+    if (/^(zip|7z|rar|tar|gz|bz2|xz)$/.test(ext)) return 'archive';
     return 'other';
   }
-  var KIND_LABEL = { pdf:'PDF', video:'视频', audio:'音频', image:'图片', text:'文本', code:'代码', archive:'压缩包', other:'文件' };
+  var KIND_LABEL = { pdf:'PDF', video:'视频', audio:'音频', image:'图片', text:'文本', code:'代码', markdown:'Markdown', doc:'Word 文档', sheet:'表格', slide:'演示文稿', archive:'压缩包', other:'文件' };
 
   /* ---------- ZIP ---------- */
   var crcTable = (function(){
@@ -8336,7 +8404,7 @@ var GUIDES = {
   var HELP = {
     usage: {
       t: '使用说明',
-      h: '<h3>像用资源管理器一样</h3><ol><li>左侧目录树：我的电脑 → EE-INDEX (C:) → 资源库 / 电子元器件数据手册 / 岗位路径 / 项目雷达 / 收藏 / 我的文件。</li><li>中间文件列表：单击选中并在右侧看详情，双击打开；Ctrl / Shift 可多选，右键有快捷菜单。</li><li>顶部工具栏：后退、前进、向上、搜索、文件夹、视图；地址栏显示当前路径。</li><li>搜索框描述你的情况，按 Enter 让 AI 解读。</li></ol><div class="tip">视图支持大图标 / 小图标 / 列表 / 详细资料，并可按名称、类型、大小、修改时间排序；选择会记在本机。</div><div class="tip">“我的文件”支持拖拽上传、最多 5 级分类、批量移动/标签/删除、回收站、ZIP 导入导出与 AI 自动归档；删除文件会先进入回收站。</div>'
+      h: '<h3>像用资源管理器一样</h3><ol><li>左侧目录树：我的电脑 → EE-INDEX (C:) → 资源库 / 电子元器件数据手册 / 岗位路径 / 项目雷达 / 收藏 / 我的文件。</li><li>中间文件列表：单击选中并在右侧看详情，双击打开；Ctrl / Shift 可多选，右键有快捷菜单。</li><li>顶部工具栏：后退、前进、向上、搜索、文件夹、视图；地址栏显示当前路径。</li><li>搜索框描述你的情况，按 Enter 让 AI 解读。</li></ol><div class="tip">视图支持大图标 / 小图标 / 列表 / 详细资料，并可按名称、类型、大小、修改时间排序；选择会记在本机。</div><div class="tip">“我的文件”支持拖拽上传、最多 5 级分类、批量移动/标签/删除、回收站、ZIP 导入导出与 AI 自动归档；PDF / Word / Excel / Markdown / CSV / 图片 / 视频 / ZIP 在详情栏和弹窗内直接预览；删除文件会先进入回收站。</div>'
     },
     search: {
       t: '搜索与 AI',
@@ -11112,6 +11180,631 @@ var GUIDES = {
 })();
 
 ;
+/* 个人文件内置预览：图片 / 音视频 / PDF / Markdown / Word / Excel / PPT / CSV / ZIP
+   依赖：window.EEPL（pl-core.js） */
+(function(){
+  'use strict';
+  var PL = window.EEPL;
+  if (!PL) return;
+
+  var MAX_OFFICE = 25 * 1024 * 1024;
+  var MAX_TEXT = 400000;
+  var MAX_ROWS = 240;
+  var MAX_COLS = 40;
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+  function pad2(n){ return n < 10 ? '0' + n : String(n); }
+  function decodeText(buf){
+    var bytes = new Uint8Array(buf);
+    if (bytes[0] === 0xEF && bytes[1] === 0xBB && bytes[2] === 0xBF) bytes = bytes.subarray(3);
+    try { return new TextDecoder('utf-8', { fatal:true }).decode(bytes); }
+    catch(e){
+      try { return new TextDecoder('gb18030').decode(bytes); } catch(e2){ return new TextDecoder('utf-8').decode(bytes); }
+    }
+  }
+  function readText(blob, limit){
+    return blob.slice(0, limit).arrayBuffer().then(decodeText);
+  }
+  function localName(n){ return (n && (n.localName || String(n.nodeName || '').split(':').pop())) || ''; }
+  function elementChildren(node){
+    var out = [];
+    if (!node) return out;
+    for (var c = node.firstChild; c; c = c.nextSibling) if (c.nodeType === 1) out.push(c);
+    return out;
+  }
+  function children(node, name){
+    return elementChildren(node).filter(function(n){ return localName(n) === name; });
+  }
+  function all(node, name){
+    var out = [];
+    if (!node) return out;
+    var list = node.getElementsByTagName('*');
+    for (var i = 0; i < list.length; i++) if (localName(list[i]) === name) out.push(list[i]);
+    return out;
+  }
+  function first(node, name){ return all(node, name)[0] || null; }
+  function attr(node, name){
+    if (!node) return '';
+    var v = node.getAttribute(name);
+    if (v != null) return v;
+    v = node.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships', String(name).split(':').pop());
+    return v == null ? '' : v;
+  }
+  function parseXml(data){
+    var text = new TextDecoder('utf-8').decode(data);
+    var doc = new DOMParser().parseFromString(text, 'application/xml');
+    if (doc.getElementsByTagName('parsererror').length) throw new Error('XML 解析失败');
+    return doc;
+  }
+  function findEntry(zip, name){
+    var target = String(name || '').toLowerCase();
+    for (var i = 0; i < zip.length; i++) if (zip[i].name === name) return zip[i];
+    for (var j = 0; j < zip.length; j++) if (zip[j].name.toLowerCase() === target) return zip[j];
+    return null;
+  }
+  function previewKind(f){
+    var ext = String(f.ext || PL.extOf(f.name) || '').toLowerCase();
+    var mime = String(f.mime || '').toLowerCase();
+    if (mime.indexOf('video/') === 0 || /^(mp4|webm|ogv|mov|m4v|mkv|avi)$/.test(ext)) return 'video';
+    if (mime.indexOf('audio/') === 0 || /^(mp3|wav|ogg|oga|m4a|aac|flac|opus)$/.test(ext)) return 'audio';
+    if (mime.indexOf('image/') === 0 || /^(png|jpe?g|gif|webp|svg|bmp|avif|ico)$/.test(ext)) return 'image';
+    if (ext === 'pdf' || mime === 'application/pdf') return 'pdf';
+    if (/^(md|markdown|mdown|mkd)$/.test(ext)) return 'markdown';
+    if (/^(csv|tsv)$/.test(ext)) return 'csv';
+    if (/^(xlsx|xlsm|xltx|xltm)$/.test(ext) || /spreadsheetml/.test(mime)) return 'xlsx';
+    if (/^(xls|ods)$/.test(ext) || /ms-excel/.test(mime)) return 'legacy-sheet';
+    if (/^(docx|docm|dotx|dotm)$/.test(ext) || /wordprocessingml/.test(mime)) return 'docx';
+    if (/^(doc|rtf|odt)$/.test(ext) || /msword/.test(mime)) return 'legacy-doc';
+    if (/^(pptx|pptm|potx|potm)$/.test(ext) || /presentationml/.test(mime)) return 'pptx';
+    if (/^(ppt|odp)$/.test(ext) || /ms-powerpoint/.test(mime)) return 'legacy-slide';
+    if (/^(zip)$/.test(ext)) return 'zip';
+    if (/^(7z|rar|tar|gz|bz2|xz)$/.test(ext)) return 'archive';
+    if (/^(txt|log|json|xml|yaml|yml|ini|cfg|conf|properties)$/.test(ext)) return 'text';
+    if (/^(c|h|cpp|hpp|cc|py|js|ts|jsx|tsx|v|sv|vhd|vhdl|ino|rs|go|java|m|mm|sh|bat|ps1|css|html|htm|sql)$/.test(ext)) return 'text';
+    return 'other';
+  }
+  function clearStage(stage){
+    (stage._plUrls || []).forEach(function(u){ try { URL.revokeObjectURL(u); } catch(e){} });
+    stage._plUrls = [];
+  }
+  function track(stage, blob, opts){
+    var url = URL.createObjectURL(blob);
+    if (opts && opts.urls) opts.urls.push(url);
+    else (stage._plUrls = stage._plUrls || []).push(url);
+    return url;
+  }
+  var MIME_BY_EXT = {
+    png:'image/png', jpg:'image/jpeg', jpeg:'image/jpeg', gif:'image/gif', webp:'image/webp',
+    svg:'image/svg+xml', bmp:'image/bmp', avif:'image/avif', ico:'image/x-icon',
+    mp4:'video/mp4', webm:'video/webm', ogv:'video/ogg', mov:'video/quicktime', m4v:'video/mp4',
+    mkv:'video/x-matroska', avi:'video/x-msvideo',
+    mp3:'audio/mpeg', wav:'audio/wav', ogg:'audio/ogg', oga:'audio/ogg', m4a:'audio/mp4',
+    aac:'audio/aac', flac:'audio/flac', opus:'audio/ogg',
+    pdf:'application/pdf'
+  };
+  function typedBlob(blob, f){
+    var ext = String(f.ext || PL.extOf(f.name) || '').toLowerCase();
+    var target = MIME_BY_EXT[ext];
+    if (!target || String(blob.type || '').toLowerCase() === target) return blob;
+    return new Blob([blob], { type:target });
+  }
+  function note(text){ return '<p class="pl-preview-note">' + esc(text) + '</p>'; }
+  function fallback(stage, f, blob, opts, title, text){
+    var url = track(stage, blob, opts);
+    stage.innerHTML =
+      '<div class="pl-preview-fallback">' +
+        '<b>' + esc(title) + '</b><p>' + esc(text) + '</p>' +
+        '<a class="btn small" download="' + esc(f.name) + '" href="' + url + '">下载文件</a>' +
+      '</div>';
+  }
+  function tooLarge(stage, f, blob, opts, label, limit){
+    fallback(stage, f, blob, opts, label + '体积较大',
+      '文件超过 ' + Math.round(limit / 1048576) + ' MB，为避免浏览器卡顿未在站内解析。可下载后用 Office / WPS 打开。');
+  }
+
+  /* ---------- Markdown ---------- */
+  function inlineMd(s){
+    var codes = [];
+    s = esc(s).replace(/`([^`]+)`/g, function(_, code){
+      codes.push(code);
+      return '\u0000' + (codes.length - 1) + '\u0000';
+    });
+    s = s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img alt="$1" src="$2">');
+    s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    s = s.replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>');
+    s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+    s = s.replace(/\u0000(\d+)\u0000/g, function(_, i){ return '<code>' + codes[+i] + '</code>'; });
+    return s;
+  }
+  function splitMdRow(line){
+    return String(line).replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(function(x){ return x.trim(); });
+  }
+  function isMdTableSep(line){
+    return /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$/.test(line);
+  }
+  function renderMarkdown(text){
+    var lines = String(text || '').replace(/\r\n?/g, '\n').split('\n');
+    var out = [], i = 0, inCode = false, code = [];
+    while (i < lines.length){
+      var line = lines[i];
+      var fence = /^```([\w-]*)\s*$/.exec(line);
+      if (fence){
+        if (inCode){
+          out.push('<pre class="md-code"><code>' + esc(code.join('\n')) + '</code></pre>');
+          inCode = false; code = [];
+        } else inCode = true;
+        i++; continue;
+      }
+      if (inCode){ code.push(line); i++; continue; }
+      if (/^\s*$/.test(line)){ i++; continue; }
+      var h = /^(#{1,6})\s+(.*)$/.exec(line);
+      if (h){
+        var lv = h[1].length;
+        out.push('<h' + lv + '>' + inlineMd(h[2]) + '</h' + lv + '>');
+        i++; continue;
+      }
+      if (/^\s*(---+|\*\*\*+|___+)\s*$/.test(line)){ out.push('<hr>'); i++; continue; }
+      if (/^>\s?/.test(line)){
+        var quote = [];
+        while (i < lines.length && /^>\s?/.test(lines[i])){ quote.push(lines[i].replace(/^>\s?/, '')); i++; }
+        out.push('<blockquote>' + quote.map(inlineMd).join('<br>') + '</blockquote>');
+        continue;
+      }
+      if (/\|/.test(line) && i + 1 < lines.length && isMdTableSep(lines[i + 1])){
+        var head = splitMdRow(line);
+        i += 2;
+        var body = [];
+        while (i < lines.length && /\|/.test(lines[i]) && !/^\s*$/.test(lines[i])){ body.push(splitMdRow(lines[i])); i++; }
+        out.push('<table class="pl-md-table"><thead><tr>' + head.map(function(x){ return '<th>' + inlineMd(x) + '</th>'; }).join('') +
+          '</tr></thead><tbody>' + body.map(function(row){ return '<tr>' + row.map(function(x){ return '<td>' + inlineMd(x) + '</td>'; }).join('') + '</tr>'; }).join('') +
+          '</tbody></table>');
+        continue;
+      }
+      var listMatch = /^\s*([-*+]|\d+\.)\s+/.exec(line);
+      if (listMatch){
+        var ordered = /^\s*\d+\./.test(line), items = [];
+        while (i < lines.length && /^\s*([-*+]|\d+\.)\s+/.test(lines[i])){
+          items.push(lines[i].replace(/^\s*([-*+]|\d+\.)\s+/, ''));
+          i++;
+        }
+        var tag = ordered ? 'ol' : 'ul';
+        out.push('<' + tag + '>' + items.map(function(x){ return '<li>' + inlineMd(x) + '</li>'; }).join('') + '</' + tag + '>');
+        continue;
+      }
+      var para = [line];
+      i++;
+      while (i < lines.length && !/^\s*$/.test(lines[i]) && !/^(#{1,6})\s+/.test(lines[i]) && !/^```/.test(lines[i]) && !/^>\s?/.test(lines[i]) && !/^\s*([-*+]|\d+\.)\s+/.test(lines[i])){
+        para.push(lines[i]); i++;
+      }
+      out.push('<p>' + para.map(inlineMd).join('<br>') + '</p>');
+    }
+    if (inCode) out.push('<pre class="md-code"><code>' + esc(code.join('\n')) + '</code></pre>');
+    return out.join('');
+  }
+
+  /* ---------- Word ---------- */
+  function hasOn(node, name){
+    var el = first(node, name);
+    if (!el) return false;
+    var v = attr(el, 'val').toLowerCase();
+    return v !== '0' && v !== 'false' && v !== 'off' && v !== 'none';
+  }
+  function wordRunHtml(run){
+    var bold = hasOn(run, 'b');
+    var italic = hasOn(run, 'i');
+    var underline = hasOn(run, 'u');
+    var strike = hasOn(run, 'strike') || hasOn(run, 'dstrike');
+    var text = '';
+    elementChildren(run).forEach(function(n){
+      var ln = localName(n);
+      if (ln === 't') text += n.textContent || '';
+      else if (ln === 'tab') text += '\t';
+      else if (ln === 'br' || ln === 'cr') text += '\n';
+      else if (ln === 'noBreakHyphen') text += '-';
+    });
+    var html = esc(text).replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+    if (underline) html = '<u>' + html + '</u>';
+    if (strike) html = '<s>' + html + '</s>';
+    if (italic) html = '<em>' + html + '</em>';
+    if (bold) html = '<strong>' + html + '</strong>';
+    return html;
+  }
+  function renderWordParagraph(p){
+    var styleEl = first(p, 'pStyle');
+    var style = styleEl ? attr(styleEl, 'val') : '';
+    var heading = /^Heading\s*([1-6])$/i.exec(style) || /^([1-6])$/.exec(style);
+    var title = /^(Title|Subtitle)$/i.test(style);
+    var tag = heading ? 'h' + heading[1] : title ? 'h1' : 'p';
+    var body = all(p, 'r').map(wordRunHtml).join('');
+    if (!body) return '<p class="pl-word-empty">&nbsp;</p>';
+    if (all(p, 'numPr').length) return '<p class="pl-word-li">• ' + body + '</p>';
+    return '<' + tag + '>' + body + '</' + tag + '>';
+  }
+  function renderWordTable(tbl){
+    var rows = children(tbl, 'tr').slice(0, 80);
+    var html = '<table class="pl-office-table"><tbody>';
+    rows.forEach(function(tr, ri){
+      var cells = children(tr, 'tc').slice(0, 20);
+      html += '<tr>' + cells.map(function(tc){
+        var text = all(tc, 't').map(function(t){ return t.textContent || ''; }).join(' ');
+        var tag = ri === 0 ? 'th' : 'td';
+        return '<' + tag + '>' + esc(text) + '</' + tag + '>';
+      }).join('') + '</tr>';
+    });
+    return html + '</tbody></table>';
+  }
+  function renderDocx(zip){
+    var entry = findEntry(zip, 'word/document.xml');
+    if (!entry) throw new Error('缺少 word/document.xml');
+    var doc = parseXml(entry.data);
+    var body = first(doc.documentElement, 'body') || doc.documentElement;
+    var out = [], count = 0;
+    elementChildren(body).forEach(function(node){
+      if (count > 600) return;
+      var ln = localName(node);
+      if (ln === 'p'){ out.push(renderWordParagraph(node)); count++; }
+      else if (ln === 'tbl'){ out.push(renderWordTable(node)); count++; }
+    });
+    if (!out.length) out.push('<p class="pl-empty">文档没有可显示的文本。</p>');
+    return '<div class="pl-doc-preview pl-word">' + out.join('') + '</div>';
+  }
+
+  /* ---------- Excel ---------- */
+  function colIndex(ref){
+    var m = /^([A-Z]+)/i.exec(String(ref || ''));
+    if (!m) return 0;
+    var n = 0;
+    for (var i = 0; i < m[1].length; i++) n = n * 26 + (m[1].charCodeAt(i) - 64);
+    return Math.max(0, n - 1);
+  }
+  function readSharedStrings(zip){
+    var e = findEntry(zip, 'xl/sharedStrings.xml');
+    if (!e) return [];
+    var doc = parseXml(e.data);
+    return all(doc.documentElement, 'si').map(function(si){
+      return all(si, 't').map(function(t){ return t.textContent || ''; }).join('');
+    });
+  }
+  function styleFormats(zip){
+    var e = findEntry(zip, 'xl/styles.xml');
+    if (!e) return function(){ return ''; };
+    var doc;
+    try { doc = parseXml(e.data); } catch(err){ return function(){ return ''; }; }
+    var custom = {};
+    all(doc.documentElement, 'numFmt').forEach(function(n){ custom[attr(n, 'numFmtId')] = attr(n, 'formatCode'); });
+    var xfs = [];
+    var cellXfs = first(doc.documentElement, 'cellXfs');
+    if (cellXfs) all(cellXfs, 'xf').forEach(function(x){ xfs.push(attr(x, 'numFmtId')); });
+    function typeOf(id){
+      var code = custom[id];
+      var type = '';
+      if (code){
+        var c = code.toLowerCase();
+        if (c.indexOf('%') >= 0) type = 'percent';
+        else {
+          var hasDate = /[ymd]/.test(c) && !/^[#0.,]+$/.test(c);
+          var hasTime = /[hs]/.test(c);
+          if (hasDate && hasTime) type = 'datetime';
+          else if (hasDate) type = 'date';
+          else if (hasTime) type = 'time';
+        }
+      }
+      if (type) return type;
+      var n = +id;
+      if (n === 9 || n === 10) return 'percent';
+      if (n >= 14 && n <= 17) return 'date';
+      if (n >= 18 && n <= 21) return 'time';
+      if (n === 22) return 'datetime';
+      if (n >= 27 && n <= 36) return 'date';
+      if (n >= 45 && n <= 47) return 'time';
+      return '';
+    }
+    return function(styleIndex){
+      var id = xfs[+styleIndex];
+      return id == null ? '' : typeOf(id);
+    };
+  }
+  function serialDate(n, type){
+    if (!isFinite(n)) return String(n);
+    var day = Math.floor(n), frac = n - day;
+    var ms = Date.UTC(1899, 11, 30) + day * 86400000;
+    var d = new Date(ms);
+    if (isNaN(d.getTime())) return String(n);
+    var time = pad2(d.getUTCHours()) + ':' + pad2(d.getUTCMinutes());
+    if (type === 'time') return time;
+    var date = d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1) + '-' + pad2(d.getUTCDate());
+    if (type === 'datetime' && frac > 0.00001) return date + ' ' + time;
+    return date;
+  }
+  function cellText(c, shared, fmt){
+    var t = attr(c, 't');
+    var vEl = first(c, 'v');
+    var v = vEl ? vEl.textContent : '';
+    if (t === 's') return shared[+v] || '';
+    if (t === 'inlineStr'){
+      var is = first(c, 'is');
+      return is ? all(is, 't').map(function(x){ return x.textContent || ''; }).join('') : '';
+    }
+    if (t === 'b') return v === '1' ? 'TRUE' : 'FALSE';
+    if (t === 'str' || t === 'e') return v;
+    if (v === '') return '';
+    var n = Number(v);
+    if (!isFinite(n)) return v;
+    var type = fmt(attr(c, 's'));
+    if (type === 'percent') return (n * 100).toFixed(2).replace(/\.?0+$/, '') + '%';
+    if (type === 'date' || type === 'time' || type === 'datetime') return serialDate(n, type);
+    return String(n);
+  }
+  function tableHtml(rows, truncated){
+    if (!rows.length) return '<p class="pl-empty">工作表没有内容。</p>';
+    var maxCols = 0;
+    rows.forEach(function(r){ if (r.cells.length > maxCols) maxCols = r.cells.length; });
+    var clipped = maxCols > MAX_COLS;
+    var cols = Math.min(maxCols, MAX_COLS);
+    var html = '<table class="pl-office-table"><thead><tr><th class="pl-rownum"></th>';
+    for (var c = 0; c < cols; c++) html += '<th>' + esc(rows[0].cells[c] || '') + '</th>';
+    html += '</tr></thead><tbody>';
+    rows.slice(1).forEach(function(row){
+      html += '<tr><th class="pl-rownum">' + esc(row.num) + '</th>';
+      for (var i = 0; i < cols; i++) html += '<td>' + esc(row.cells[i] || '') + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    if (truncated || clipped) html += note('仅显示前 ' + Math.min(rows.length, MAX_ROWS) + ' 行、前 ' + cols + ' 列。');
+    return html;
+  }
+  function worksheetRows(data, shared, fmt){
+    var doc = parseXml(data);
+    var rows = all(doc.documentElement, 'row');
+    var truncated = rows.length > MAX_ROWS;
+    var out = [];
+    rows.slice(0, MAX_ROWS).forEach(function(r, idx){
+      var num = attr(r, 'r') || String(idx + 1);
+      var map = {}, max = -1;
+      children(r, 'c').forEach(function(c){
+        var ci = attr(c, 'r') ? colIndex(attr(c, 'r')) : max + 1;
+        map[ci] = cellText(c, shared, fmt);
+        if (ci > max) max = ci;
+      });
+      var cells = [];
+      for (var i = 0; i <= max; i++) cells.push(map[i] || '');
+      if (cells.some(function(x){ return x !== ''; })) out.push({ num:num, cells:cells });
+    });
+    return { rows:out, truncated:truncated };
+  }
+  function resolveTarget(target){
+    target = String(target || '').replace(/\\/g, '/').replace(/^\/+/, '');
+    if (!target || target.indexOf('../') === 0) return '';
+    if (target.indexOf('xl/') === 0) return target;
+    return 'xl/' + target;
+  }
+  function sheetList(zip){
+    var list = [], wb = findEntry(zip, 'xl/workbook.xml');
+    var relMap = {};
+    var rels = findEntry(zip, 'xl/_rels/workbook.xml.rels');
+    if (rels){
+      try {
+        all(parseXml(rels.data).documentElement, 'Relationship').forEach(function(r){
+          relMap[attr(r, 'Id')] = attr(r, 'Target');
+        });
+      } catch(e){}
+    }
+    if (wb){
+      try {
+        all(parseXml(wb.data).documentElement, 'sheet').forEach(function(s, i){
+          var path = resolveTarget(relMap[attr(s, 'r:id')]);
+          if (!path) path = 'xl/worksheets/sheet' + (i + 1) + '.xml';
+          list.push({ name:attr(s, 'name') || ('Sheet' + (i + 1)), path:path });
+        });
+      } catch(e){}
+    }
+    if (!list.length){
+      zip.filter(function(e){ return /^xl\/worksheets\/sheet\d+\.xml$/.test(e.name); })
+        .sort(function(a, b){ return (+a.name.match(/(\d+)/)[1]) - (+b.name.match(/(\d+)/)[1]); })
+        .forEach(function(e, i){ list.push({ name:'Sheet' + (i + 1), path:e.name }); });
+    }
+    return list;
+  }
+  function mountXlsx(zip, stage){
+    var sheets = sheetList(zip);
+    if (!sheets.length) throw new Error('未找到工作表');
+    var shared = readSharedStrings(zip), fmt = styleFormats(zip);
+    var rendered = sheets.slice(0, 8).map(function(s){
+      var e = findEntry(zip, s.path);
+      if (!e) return { name:s.name, html:'<p class="pl-empty">工作表文件缺失。</p>' };
+      try {
+        var parsed = worksheetRows(e.data, shared, fmt);
+        return { name:s.name, html:tableHtml(parsed.rows, parsed.truncated) };
+      } catch(err){
+        return { name:s.name, html:'<p class="pl-empty">该工作表解析失败。</p>' };
+      }
+    });
+    if (rendered.length === 1){
+      stage.innerHTML = '<div class="pl-xlsx-body">' + rendered[0].html + '</div>';
+      return;
+    }
+    stage.innerHTML = '<div class="pl-xlsx"><div class="pl-xlsx-tabs">' +
+      rendered.map(function(s, i){ return '<button type="button" class="' + (i === 0 ? 'on' : '') + '" data-xl-sheet="' + i + '">' + esc(s.name) + '</button>'; }).join('') +
+      '</div><div class="pl-xlsx-body"></div></div>' +
+      (sheets.length > 8 ? note('工作簿共 ' + sheets.length + ' 个工作表，仅显示前 8 个。') : '');
+    var body = stage.querySelector('.pl-xlsx-body');
+    var tabs = Array.prototype.slice.call(stage.querySelectorAll('[data-xl-sheet]'));
+    function show(i){
+      body.innerHTML = rendered[i].html;
+      tabs.forEach(function(t){ t.classList.toggle('on', +t.dataset.xlSheet === i); });
+    }
+    tabs.forEach(function(t){ t.addEventListener('click', function(){ show(+t.dataset.xlSheet); }); });
+    show(0);
+  }
+
+  /* ---------- CSV ---------- */
+  function parseDelimited(text){
+    var firstLine = String(text).split(/\r?\n/)[0] || '';
+    var delimiter = (firstLine.split('\t').length > firstLine.split(',').length) ? '\t' : ',';
+    var rows = [], row = [], field = '', quoted = false;
+    for (var i = 0; i < text.length; i++){
+      var ch = text[i];
+      if (quoted){
+        if (ch === '"'){
+          if (text[i + 1] === '"'){ field += '"'; i++; }
+          else quoted = false;
+        } else field += ch;
+      } else if (ch === '"') quoted = true;
+      else if (ch === delimiter){ row.push(field); field = ''; }
+      else if (ch === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+      else if (ch !== '\r') field += ch;
+    }
+    if (field !== '' || row.length){ row.push(field); rows.push(row); }
+    return rows;
+  }
+  function csvTable(text){
+    var rows = parseDelimited(text);
+    var truncated = rows.length > MAX_ROWS;
+    var out = [];
+    rows.slice(0, MAX_ROWS).forEach(function(r, i){
+      var cells = r.slice(0, MAX_COLS);
+      if (cells.some(function(x){ return String(x).trim() !== ''; })) out.push({ num:i + 1, cells:cells });
+    });
+    return tableHtml(out, truncated);
+  }
+
+  /* ---------- PowerPoint ---------- */
+  function renderPptx(zip){
+    var slides = zip.filter(function(e){ return /^ppt\/slides\/slide\d+\.xml$/.test(e.name); })
+      .sort(function(a, b){ return (+a.name.match(/(\d+)\.xml$/)[1]) - (+b.name.match(/(\d+)\.xml$/)[1]); });
+    if (!slides.length) throw new Error('未找到幻灯片');
+    var out = slides.slice(0, 40).map(function(e, i){
+      var doc = parseXml(e.data);
+      var paras = all(doc.documentElement, 'p').map(function(p){
+        return all(p, 't').map(function(t){ return t.textContent || ''; }).join('');
+      }).filter(function(x){ return String(x).trim() !== ''; });
+      return '<section class="pl-slide-card"><h4>Slide ' + (i + 1) + '</h4>' +
+        (paras.length ? paras.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('') : '<p class="pl-empty">（无文本）</p>') +
+        '</section>';
+    }).join('');
+    return '<div class="pl-slide-deck">' + out + '</div>' +
+      (slides.length > 40 ? note('演示文稿共 ' + slides.length + ' 页，仅显示前 40 页。') : '');
+  }
+
+  /* ---------- ZIP ---------- */
+  function mountZip(blob, stage, f, opts){
+    if (blob.size > 30 * 1024 * 1024) return tooLarge(stage, f, blob, opts, '压缩包', 30);
+    PL.parseZip(blob).then(function(entries){
+      var rows = entries.slice(0, 200).map(function(e){
+        return '<tr><td>' + esc(e.name) + '</td><td>' + esc(PL.humanSize(e.data.length)) + '</td></tr>';
+      }).join('');
+      stage.innerHTML = '<div class="pl-doc-preview">' +
+        '<p class="pl-preview-note">压缩包内共 ' + entries.length + ' 个文件' + (entries.length > 200 ? '，仅列出前 200 个' : '') + '。</p>' +
+        '<table class="pl-office-table"><thead><tr><th>文件</th><th>解压后大小</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    }).catch(function(){
+      fallback(stage, f, blob, opts, '无法读取压缩包', '文件可能已损坏，或使用了不支持的压缩算法。');
+    });
+  }
+
+  /* ---------- 入口 ---------- */
+  function mount(f, stage, opts){
+    opts = opts || {};
+    clearStage(stage);
+    var kind = previewKind(f);
+    var ext = String(f.ext || PL.extOf(f.name) || '').toLowerCase();
+    stage.innerHTML = '<span class="pl-big-ico">读取中…</span>';
+    return PL.readBlob(f).then(function(blob){
+      if (!blob){
+        stage.innerHTML = '<span class="pl-big-ico">文件内容不在本机，请先云端同步</span>';
+        return;
+      }
+      if (kind === 'image'){
+        var imgUrl = track(stage, typedBlob(blob, f), opts);
+        stage.innerHTML = '<a class="pl-media-link" href="' + imgUrl + '" target="_blank" rel="noopener">' +
+          '<img class="pl-img" src="' + imgUrl + '" alt="' + esc(f.name) + '"></a>';
+        return;
+      }
+      if (kind === 'video'){
+        var videoUrl = track(stage, typedBlob(blob, f), opts);
+        stage.innerHTML = '<video class="pl-video" src="' + videoUrl + '" controls playsinline preload="metadata"></video>';
+        return;
+      }
+      if (kind === 'audio'){
+        var audioUrl = track(stage, typedBlob(blob, f), opts);
+        stage.innerHTML = '<div class="pl-audio"><audio src="' + audioUrl + '" controls preload="metadata"></audio><span>' + esc(f.name) + '</span></div>';
+        return;
+      }
+      if (kind === 'pdf'){
+        var pdfUrl = track(stage, typedBlob(blob, f), opts);
+        stage.innerHTML = '<div class="pl-pdf-wrap"><embed class="pl-pdf" src="' + pdfUrl + '" type="application/pdf">' +
+          '<a class="pl-preview-link" href="' + pdfUrl + '" target="_blank" rel="noopener">在新窗口打开 PDF</a></div>';
+        return;
+      }
+      if (kind === 'markdown'){
+        return readText(blob, MAX_TEXT).then(function(text){
+          var cut = blob.size > MAX_TEXT;
+          stage.innerHTML = '<div class="pl-doc-preview pl-md">' + renderMarkdown(text.slice(0, MAX_TEXT)) + '</div>' +
+            (cut ? note('文档较长，仅显示前 ' + Math.round(MAX_TEXT / 1000) + ' 千字符。') : '');
+        });
+      }
+      if (kind === 'text'){
+        return readText(blob, MAX_TEXT).then(function(text){
+          var out = text;
+          if (ext === 'json'){
+            try { out = JSON.stringify(JSON.parse(text), null, 2); } catch(e){}
+          }
+          stage.innerHTML = '<pre class="pl-text-preview">' + esc(out) + '</pre>' +
+            (blob.size > MAX_TEXT ? note('文件较大，仅显示前 ' + Math.round(MAX_TEXT / 1000) + ' 千字符。') : '');
+        });
+      }
+      if (kind === 'csv'){
+        return readText(blob, 5 * 1024 * 1024).then(function(text){
+          stage.innerHTML = '<div class="pl-xlsx-body">' + csvTable(text) + '</div>' +
+            (blob.size > 5 * 1024 * 1024 ? note('文件较大，仅解析前 5 MB。') : '');
+        });
+      }
+      if (kind === 'docx' || kind === 'xlsx' || kind === 'pptx' || kind === 'zip'){
+        if (blob.size > MAX_OFFICE && kind !== 'zip') return tooLarge(stage, f, blob, opts, kind === 'docx' ? 'Word 文档' : kind === 'xlsx' ? 'Excel 表格' : '演示文稿', MAX_OFFICE);
+        if (kind === 'zip') return mountZip(blob, stage, f, opts);
+        return PL.parseZip(blob).then(function(zip){
+          if (kind === 'docx') stage.innerHTML = renderDocx(zip);
+          else if (kind === 'xlsx') mountXlsx(zip, stage);
+          else stage.innerHTML = renderPptx(zip);
+        }).catch(function(){
+          fallback(stage, f, blob, opts, '无法解析 Office 文件',
+            '文件可能已损坏，或实际格式与扩展名不一致。可下载后用 Office / WPS 打开。');
+        });
+      }
+      if (kind === 'legacy-doc'){
+        return fallback(stage, f, blob, opts, '旧版 Word 格式',
+          '旧版 .doc / .rtf / .odt 是二进制或开放文档格式，浏览器无法可靠解析。建议另存为 .docx 后重新上传。');
+      }
+      if (kind === 'legacy-sheet'){
+        return fallback(stage, f, blob, opts, '旧版 Excel 格式',
+          '旧版 .xls / .ods 暂不支持站内解析。建议另存为 .xlsx 后重新上传。');
+      }
+      if (kind === 'legacy-slide'){
+        return fallback(stage, f, blob, opts, '旧版演示文稿格式',
+          '旧版 .ppt / .odp 暂不支持站内解析。建议另存为 .pptx 后重新上传。');
+      }
+      if (kind === 'archive'){
+        return fallback(stage, f, blob, opts, '压缩包格式', '该压缩格式暂不支持站内预览，可下载后解压。');
+      }
+      return fallback(stage, f, blob, opts, '暂不支持预览', '该文件格式还没有内置预览器，可下载后用本机应用打开。');
+    }).catch(function(err){
+      stage.innerHTML = '<div class="pl-preview-fallback"><b>读取失败</b><p>' + esc(err && err.message || '文件读取失败') + '</p></div>';
+    });
+  }
+
+  window.EEPLPreview = {
+    mount: mount,
+    kind: previewKind,
+    canPreview: function(f){ return previewKind(f) !== 'other'; }
+  };
+})();
+
+;
 /* 个人文件库 UI：分类树 / 文件管理 / 批量操作 / ZIP / 复古上传 / AI 分类
    依赖：window.EEPL（pl-core.js）、window.EESound / window.EEFX（sound.js）、window.EE（主程序） */
 (function(){
@@ -11152,7 +11845,6 @@ var GUIDES = {
     selected: new Set(),
     lastIndex: -1,
     currentFileId: null,
-    previewUrl: null,
     busy: false,
     quota: { usage:0, quota:0, files:0, bytes:0 }
   };
@@ -11460,7 +12152,7 @@ var GUIDES = {
         '<div class="pl-file-preview">' +
           '<p class="pl-preview-kicker">EE-DISK / PERSONAL</p>' +
           '<h2 class="pl-preview-title">我的文件</h2>' +
-          '<p class="pl-preview-sub">本地优先的个人资料库，支持多级分类、批量管理、ZIP 备份与 AI 归档。</p>' +
+          '<p class="pl-preview-sub">本地优先的个人资料库，支持多级分类、批量管理、ZIP 备份与 AI 归档；PDF / Word / Excel / Markdown / 图片 / 视频可在详情栏直接预览。</p>' +
           '<div class="pv-note"><b>存储位置</b>文件内容保存在浏览器本地（OPFS / IndexedDB），元数据在 IndexedDB。清理浏览器数据会一并清除，重要资料请定期导出 ZIP。</div>' +
           '<div class="pv-section"><h3>快速操作 / QUICK</h3><div class="actions">' +
             '<button type="button" class="btn primary small" data-pl-action="upload">上传文件</button>' +
@@ -11514,30 +12206,8 @@ var GUIDES = {
   function mountStagePreview(f){
     var stage = document.getElementById('plPreviewStage');
     if (!stage) return;
-    if (state.previewUrl){ URL.revokeObjectURL(state.previewUrl); state.previewUrl = null; }
-    var kind = PL.kindOf(f);
-    if (['image', 'video', 'audio', 'text', 'code', 'pdf'].indexOf(kind) === -1){
-      stage.innerHTML = '<span class="pl-big-ico">' + esc(PL.kindLabel(kind).toUpperCase()) + ' · 无内置预览</span>';
-      return;
-    }
-    stage.innerHTML = '<span class="pl-big-ico">读取中…</span>';
-    PL.readBlob(f).then(function(blob){
-      if (!blob){ stage.innerHTML = '<span class="pl-big-ico">文件内容不在本机，请先云端同步</span>'; return; }
-      if (state.previewUrl){ URL.revokeObjectURL(state.previewUrl); }
-      var url = URL.createObjectURL(blob);
-      state.previewUrl = url;
-      if (kind === 'image') stage.innerHTML = '<img src="' + url + '" alt="' + esc(f.name) + '">';
-      else if (kind === 'video') stage.innerHTML = '<video src="' + url + '" controls preload="metadata"></video>';
-      else if (kind === 'audio') stage.innerHTML = '<audio src="' + url + '" controls preload="metadata"></audio>';
-      else if (kind === 'pdf') stage.innerHTML = '<embed src="' + url + '" type="application/pdf" style="width:100%;height:250px">';
-      else {
-        blob.text().then(function(txt){
-          stage.innerHTML = '<pre>' + esc(txt.slice(0, 20000)) + '</pre>';
-        });
-      }
-    }).catch(function(){
-      stage.innerHTML = '<span class="pl-big-ico">读取失败</span>';
-    });
+    if (window.EEPLPreview) window.EEPLPreview.mount(f, stage, {});
+    else stage.innerHTML = '<span class="pl-big-ico">预览模块未加载，请刷新页面</span>';
   }
 
   /* ---------------- 视图事件 ---------------- */
@@ -11773,8 +12443,6 @@ var GUIDES = {
   function doOpen(id){
     var f = findFile(id);
     if (!f) return;
-    var kind = PL.kindOf(f);
-    var stage = document.getElementById('plPreviewStage');
     if (state.currentFileId !== id){
       state.currentFileId = id;
       state.selected.clear();
@@ -11783,37 +12451,34 @@ var GUIDES = {
       EE.renderPreview();
       EE.openPreviewPane();
     }
-    if (!stage) return;
-    if (kind === 'pdf' || kind === 'video' || kind === 'audio' || kind === 'image' || kind === 'text' || kind === 'code'){
-      var media = document.getElementById('mediaModal');
-      if (media && EE.openMediaItem){ /* 不走资源库媒体窗，个人文件用内嵌预览 */ }
-    }
-    PL.readBlob(f).then(function(blob){
-      if (!blob) return;
-      var url = URL.createObjectURL(blob);
-      if (kind === 'pdf' || kind === 'video' || kind === 'audio' || kind === 'image' || kind === 'text' || kind === 'code'){
-        var dlg = openDialog(
-          '<div class="dlg-titlebar"><span>' + esc(f.name) + '</span><button type="button" class="dlg-close" data-x>×</button></div>' +
-          '<div class="dlg-body" style="padding:6px;background:var(--screen-2)"><div id="plOpenStage" style="min-height:120px;display:flex;align-items:center;justify-content:center"></div></div>' +
-          '<div class="dlg-foot"><span style="font-family:var(--mono);font-size:.6rem">' + esc(PL.humanSize(f.size)) + ' · ' + esc(catPath(f.categoryId)) + '</span><span class="spacer"></span><button type="button" class="btn" data-x2>关闭</button></div>',
-          'wide'
-        );
-        var st = document.getElementById('plOpenStage');
-        if (kind === 'image') st.innerHTML = '<img src="' + url + '" alt="" style="max-width:100%;max-height:70vh">';
-        else if (kind === 'video') st.innerHTML = '<video src="' + url + '" controls autoplay style="max-width:100%;max-height:70vh"></video>';
-        else if (kind === 'audio') st.innerHTML = '<audio src="' + url + '" controls autoplay style="width:100%"></audio>';
-        else if (kind === 'pdf') st.innerHTML = '<embed src="' + url + '" type="application/pdf" style="width:100%;height:70vh">';
-        else {
-          blob.text().then(function(txt){ st.innerHTML = '<pre style="width:100%;max-height:70vh;overflow:auto;margin:0;padding:8px;background:var(--paper);font-family:var(--mono);font-size:.65rem;white-space:pre-wrap">' + esc(txt.slice(0, 200000)) + '</pre>'; });
-        }
-        $$('[data-x],[data-x2]', dlg).forEach(function(b){ b.addEventListener('click', function(){ dlg.close(); setTimeout(function(){ URL.revokeObjectURL(url); }, 200); }); });
-      } else {
+    var urls = [];
+    var dlg = openDialog(
+      '<div class="dlg-titlebar"><span>' + esc(f.name) + '</span><button type="button" class="dlg-close" data-x>×</button></div>' +
+      '<div class="dlg-body" style="padding:6px;background:var(--screen-2)"><div id="plOpenStage" class="pl-preview-stage modal"></div></div>' +
+      '<div class="dlg-foot"><span style="font-family:var(--mono);font-size:.6rem">' + esc(PL.humanSize(f.size)) + ' · ' + esc(catPath(f.categoryId)) + '</span><span class="spacer"></span>' +
+        '<button type="button" class="btn small" data-dl>下载</button><button type="button" class="btn" data-x2>关闭</button></div>',
+      'wide'
+    );
+    var st = document.getElementById('plOpenStage');
+    if (window.EEPLPreview) window.EEPLPreview.mount(f, st, { modal:true, urls:urls });
+    else st.innerHTML = '<span class="pl-big-ico">预览模块未加载，请刷新页面</span>';
+    var dl = $('[data-dl]', dlg);
+    if (dl) dl.addEventListener('click', function(){
+      PL.readBlob(f).then(function(blob){
+        if (!blob){ toast('文件内容不在本机'); return; }
+        var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
         a.href = url; a.download = f.name;
         document.body.appendChild(a); a.click(); a.remove();
         setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-        toast('已开始下载');
-      }
+      });
+    });
+    function closeDlg(){ dlg.close(); }
+    $$('[data-x],[data-x2]', dlg).forEach(function(b){ b.addEventListener('click', closeDlg); });
+    dlg.addEventListener('cancel', function(e){ e.preventDefault(); closeDlg(); });
+    dlg.addEventListener('close', function(){
+      urls.forEach(function(u){ try { URL.revokeObjectURL(u); } catch(e){} });
+      urls.length = 0;
     });
   }
 

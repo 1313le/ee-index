@@ -8,6 +8,8 @@
 
 前端内置“我的文件”：拖拽上传、最多 5 级分类、批量操作、回收站、ZIP 导入导出、AI 自动归档与复古音效/动效。文件默认只保存在浏览器本地。
 
+详情栏与“打开”弹窗内置预览器：PDF 用浏览器原生 PDF 查看器；Word（.docx）、Excel（.xlsx，含多工作表、百分比与日期格式）、PowerPoint（.pptx）、Markdown、CSV/TSV、TXT/JSON/代码、ZIP 目录均在站内渲染；图片（PNG / JPEG / GIF / WebP / SVG / BMP / AVIF）、音频（MP3 / WAV / OGG / M4A / FLAC）与视频（MP4 / WebM / OGG）直接播放。文本按 UTF-8（含 BOM）与 GB18030 自动识别，Excel 导出的中文 CSV 不会乱码。旧版 .doc / .xls / .ppt / .rtf / .odt / .ods、7z / RAR 等格式给出下载入口；超过 25 MB 的 Office 文件与超过 30 MB 的 ZIP 只提供下载，避免浏览器卡顿。预览是简化渲染，不包含图表、分页、批注与复杂排版，正式交付仍请用 Office / WPS / Acrobat 打开。
+
 ## 目录
 
 ```text
@@ -149,6 +151,8 @@ npx wrangler deploy
 - [ ] 前端 AI 能返回推荐资源
 - [ ] 语音转写可用（如果配置了 `STT_MODEL`）
 - [ ] “我的文件”可上传、分类、回收站还原、ZIP 导入导出
+- [ ] 个人文件详情栏可预览 PDF / Word / Excel / PPT / Markdown / CSV / 图片 / 音频 / 视频 / ZIP；“打开”弹窗正常关闭
+- [ ] 中文 CSV（GBK）与带 BOM 的 UTF-8 文本预览不乱码
 - [ ] 音效开关可用；`prefers-reduced-motion` 时出现恢复动效提示
 - [ ] 如部署同步服务：`/api/health` 返回 `ok`，连接测试与推送成功
 - [ ] `ALLOWED_ORIGINS` 包含 GitHub Pages 域名
