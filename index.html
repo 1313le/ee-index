@@ -1153,7 +1153,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
   white-space:nowrap;overflow:hidden;
 }
 .list-head > span:first-child{border-left:0;}
-.list-head > span:last-child{border-right:0;border-left:0;}
+.list-head > span:last-child{border-right:0;}
 .list-head .sort-h{cursor:pointer;user-select:none;justify-content:space-between;gap:4px;}
 .list-head .sort-h:hover{background:#e8e8e8;}
 .list-head .sort-h .arrow{font-family:var(--mono);font-size:.54rem;color:#404040;}
@@ -6498,7 +6498,7 @@ var GUIDES = {
     if (state.viewMode === 'details'){
       listHead.className = 'list-head';
       listHead.hidden = false;
-      listHead.innerHTML = sortHeadHtml('name', '名称') + sortHeadHtml('size', '大小') + sortHeadHtml('type', '类型') + sortHeadHtml('time', '修改时间') + '<span></span>';
+      listHead.innerHTML = sortHeadHtml('name', '名称') + sortHeadHtml('size', '大小') + sortHeadHtml('type', '类型') + sortHeadHtml('time', '修改时间');
     } else {
       listHead.hidden = true;
     }
@@ -6575,7 +6575,7 @@ var GUIDES = {
     var slice = list.slice((state.projPage - 1) * state.projPageSize, state.projPage * state.projPageSize);
     listHead.className = 'list-head proj-head';
     listHead.hidden = false;
-    listHead.innerHTML = '<span>项目 / PROJECT</span><span class="col-type">难度</span><span class="col-role">岗位</span><span class="col-time">周期</span><span></span>';
+    listHead.innerHTML = '<span>项目 / PROJECT</span><span class="col-type">难度</span><span class="col-role">岗位</span><span class="col-time">周期</span>';
     filterBar.hidden = false;
     var levels = [['all','全部'],['starter','练手'],['advanced','进阶'],['flagship','旗舰']].map(function(x){
       var n = x[0] === 'all' ? PROJECTS.length : PROJECTS.filter(function(p){ return p.level === x[0]; }).length;
