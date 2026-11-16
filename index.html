@@ -10,7 +10,7 @@
 <title>EE-INDEX 98 · 硬件工程资源管理器</title>
 <link rel="privacy-policy" href="privacy.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='3' fill='%23d7cdb7'/%3E%3Crect x='3' y='5' width='18' height='14' rx='2' fill='%2320486f'/%3E%3Crect x='5' y='8' width='14' height='8' fill='%23f8f3e5'/%3E%3Cpath d='M6 10h12M6 12h8M6 14h10' stroke='%2320486f' stroke-width='1'/%3E%3C/svg%3E">
-<meta name="description" content="EE-INDEX 98：一台复古 CRT 里的硬件工程资源管理器。330 条资源（网站 / 免费教材 / 讲义 / 视频课程 / 官方软件下载 / 36 份自托管元器件数据手册）、8 个岗位路径、30 个真实项目，内置 AI 搜索、PDF 与视频预览，以及带复古上传动效的个人文件库（本地 + 云端同步、AI 自动归类）。">
+<meta name="description" content="EE-INDEX 98：一台复古 CRT 里的硬件工程资源管理器。359 条资源（网站 / 免费教材 / 讲义 / 视频课程 / 官方软件下载 / 36 份自托管元器件数据手册）、8 个岗位路径、30 个真实项目，内置 AI 搜索、PDF 与视频预览，以及带复古上传动效的个人文件库（本地 + 云端同步、AI 自动归类）。">
 <style>
 :root{
   --room:#24211d;
@@ -1318,6 +1318,153 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
   .file-row .star-btn{margin-left:auto;}
   .ds-facts{grid-template-columns:auto minmax(0,1fr);}
 }
+/* ============ 98 desktop shell ============ */
+body{
+  background-color:#008080;
+  background-image:
+    linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.035) 75%),
+    linear-gradient(45deg,rgba(0,0,0,.035) 25%,transparent 25%,transparent 75%,rgba(0,0,0,.035) 75%);
+  background-size:4px 4px;
+  background-position:0 0,2px 2px;
+  padding:0;
+  display:block;
+  overflow:hidden;
+}
+.room{
+  position:fixed;inset:14px 18px 52px 112px;z-index:10;
+  display:flex;justify-content:center;align-items:stretch;
+  width:auto;
+}
+.monitor{
+  width:100%;height:100%;max-width:none;max-height:none;
+  padding:0;background:transparent;border:0;border-radius:0;
+  box-shadow:5px 6px 0 rgba(0,0,0,.3);
+}
+.monitor:fullscreen,.monitor:-webkit-full-screen{
+  padding:0;border:0;border-radius:0;background:var(--w98-face);box-shadow:none;
+}
+.bezel-top,.bezel-bottom{display:none;}
+.screen{
+  background:transparent;border:0;border-radius:0;box-shadow:none;padding:0;
+}
+.screen::before,.screen::after,.screen-glare{display:none;}
+.app{box-shadow:inset 1px 1px 0 #dfdfdf;}
+body.app-minimized .room{display:none;}
+body.app-dragging{cursor:default;}
+
+.desktop-icons{
+  position:fixed;left:5px;top:9px;bottom:50px;width:102px;z-index:6;
+  display:flex;flex-direction:column;align-items:stretch;gap:1px;
+  overflow:auto;scrollbar-width:none;padding:2px 3px;
+}
+.desktop-icons::-webkit-scrollbar{display:none;}
+.desk-icon{
+  appearance:none;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:5px 3px 4px;border:1px solid transparent;background:none;
+  color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.75);cursor:default;user-select:none;
+}
+.desk-icon svg{width:32px;height:32px;display:block;filter:drop-shadow(1px 1px 0 rgba(0,0,0,.35));}
+.desk-icon span{
+  max-width:96px;padding:1px 3px;font-size:.66rem;line-height:1.22;text-align:center;
+  text-shadow:1px 1px 0 rgba(0,0,0,.8);
+}
+.desk-icon:hover span{background:rgba(0,0,128,.42);}
+.desk-icon.sel span{background:var(--w98-navy);outline:1px dotted #ffff80;outline-offset:-1px;}
+.desk-icon:focus-visible{outline:1px dotted #fff;outline-offset:-2px;}
+.desk-icon:active svg{transform:translate(1px,1px);}
+
+.desktop-brand{
+  position:fixed;right:24px;bottom:58px;z-index:1;pointer-events:none;
+  color:rgba(255,255,255,.14);font-weight:700;font-size:2.1rem;line-height:1;
+  letter-spacing:.03em;text-align:right;text-shadow:1px 1px 0 rgba(0,0,0,.16);
+}
+.desktop-brand small{
+  display:block;margin-top:7px;font-family:var(--mono);font-size:.5rem;
+  letter-spacing:.2em;font-weight:400;color:rgba(255,255,255,.2);
+}
+
+.desktop-taskbar{
+  position:fixed;left:0;right:0;bottom:0;height:38px;z-index:110;
+  display:flex;align-items:center;gap:2px;padding:3px 3px 2px;
+  background:var(--w98-face);border-top:1px solid #fff;
+  box-shadow:inset 0 1px 0 #dfdfdf;font-size:.72rem;
+}
+.task-start{
+  height:32px;padding:0 9px 0 6px;display:inline-flex;align-items:center;gap:5px;
+  border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);
+  box-shadow:inset 1px 1px 0 #dfdfdf;font-weight:700;font-size:.78rem;cursor:pointer;flex:none;
+}
+.task-start svg{width:17px;height:17px;display:block;}
+.task-start:hover{background:var(--w98-hi);}
+.task-start:active,.task-start.on{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;padding:1px 8px 0 7px;}
+.task-sep{width:2px;height:27px;border-left:1px solid #808080;border-right:1px solid #fff;margin:0 2px;flex:none;}
+.task-quick{
+  width:29px;height:30px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid transparent;background:none;cursor:pointer;flex:none;
+}
+.task-quick svg{width:19px;height:19px;display:block;}
+.task-quick:hover{border-color:#fff #808080 #808080 #fff;}
+.task-quick:active{border-color:#808080 #fff #fff #808080;}
+.task-app{
+  height:30px;min-width:0;max-width:300px;padding:0 8px;display:inline-flex;align-items:center;gap:6px;
+  border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);
+  font-size:.72rem;cursor:pointer;
+}
+.task-app svg{width:16px;height:16px;display:block;flex:none;}
+.task-app span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.task-app:hover{background:var(--w98-hi);}
+.task-app.on{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;background:var(--w98-face-2);font-weight:700;}
+.desk-icon:focus-visible{outline:1px dotted #fff;outline-offset:-3px;}
+.task-tray{
+  margin-left:auto;height:30px;display:flex;align-items:center;gap:6px;padding:0 7px;
+  border:1px solid;border-color:#808080 #fff #fff #808080;flex:none;
+}
+.tray-btn{width:22px;height:21px;display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;background:none;cursor:pointer;padding:0;}
+.tray-btn:hover{border-color:#fff #808080 #808080 #fff;}
+.tray-btn svg{width:14px;height:14px;display:block;}
+.tray-clock{font-family:var(--ui);font-size:.68rem;color:#000;min-width:42px;text-align:center;letter-spacing:.01em;}
+
+.start-menu{position:fixed;left:3px;bottom:41px;z-index:120;width:286px;}
+.statusbar .start-btn.on{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;}
+
+.desk-menu{
+  position:fixed;z-index:125;min-width:184px;padding:2px;
+  background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:3px 3px 0 rgba(0,0,0,.28);font-size:.72rem;
+}
+.desk-menu button{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;
+  padding:5px 12px 5px 24px;border:0;background:none;text-align:left;font-size:.72rem;cursor:pointer;
+}
+.desk-menu button:hover{background:var(--w98-navy);color:#fff;}
+.desk-menu hr{border:0;border-top:1px solid #808080;border-bottom:1px solid #fff;margin:3px 2px;}
+#toast{bottom:50px;}
+
+@media (min-width:1101px){
+  .statusbar .start-btn{display:none;}
+  .statusbar .start-btn + .status-sep{display:none;}
+  body:not(.is-fullscreen) .menubar .clock{display:none;}
+}
+
+@media (max-width:1100px){
+  body{padding:8px;display:flex;align-items:center;justify-content:center;}
+  .room{position:static;inset:auto;width:100%;height:calc(100dvh - 16px);z-index:auto;}
+  .monitor{height:100%;max-width:1480px;box-shadow:0 18px 40px rgba(0,0,0,.35);}
+  .desktop-icons,.desktop-taskbar,.desktop-brand,.desk-menu{display:none!important;}
+  .win-btn[data-win=min],.sys-menu [data-win=min]{display:none;}
+  .start-menu{left:7px;bottom:30px;}
+  #toast{bottom:22px;}
+}
+@media (max-width:980px){
+  body{padding:8px;}
+  .room{height:calc(100dvh - 16px);}
+}
+@media (max-width:700px){
+  body{padding:0;}
+  .room{height:100dvh;}
+  .monitor{height:100dvh;padding:0;border:0;border-radius:0;box-shadow:none;}
+  .screen{padding:0;border:0;border-radius:0;}
+}
 /* ================= 个人文件库 / PERSONAL LIBRARY ================= */
 .pl-view{display:flex;flex-direction:column;min-height:100%;background:var(--screen);}
 .pl-drive{
@@ -1659,6 +1806,41 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 </head>
 
 <body>
+<nav class="desktop-icons" aria-label="桌面快捷方式">
+  <button type="button" class="desk-icon" data-desk="app" title="EE-INDEX 资源管理器">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="4" width="26" height="22" fill="#d4d0c8" stroke="#000"/><rect x="5" y="7" width="22" height="5" fill="#000080"/><rect x="6" y="8" width="5" height="3" fill="#f0c040"/><rect x="7" y="14" width="18" height="9" fill="#fff" stroke="#808080"/><path d="M8 16h9M8 18h12M8 20h7" stroke="#20486f"/></svg>
+    <span>EE-INDEX</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="library" title="我的电脑 — 打开资源库">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="4" width="26" height="18" fill="#c0c0c0" stroke="#000"/><rect x="5" y="6" width="22" height="14" fill="#008080"/><rect x="6" y="7" width="20" height="12" fill="#0a8a8a"/><rect x="9" y="25" width="14" height="2" fill="#c0c0c0" stroke="#000"/><path d="M12 23h8v3h-8z" fill="#c0c0c0" stroke="#000"/></svg>
+    <span>我的电脑</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="datasheets" title="打开电子元器件数据手册">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#000"/><path d="M20 2v6h6" fill="#e8e8e8" stroke="#000"/><rect x="4" y="8" width="10" height="14" fill="#b02020" stroke="#6d1111"/><text x="9" y="18" text-anchor="middle" font-size="6" font-family="Arial" font-weight="700" fill="#fff">PDF</text><path d="M17 14h7M17 17h7M17 20h5" stroke="#555"/></svg>
+    <span>数据手册</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="paths" title="打开岗位路径">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="5" width="24" height="22" fill="#fff" stroke="#000"/><path d="M8 24l5-6 4 3 7-9" fill="none" stroke="#2f6b4f" stroke-width="2"/><circle cx="8" cy="24" r="2" fill="#b02020"/><circle cx="24" cy="12" r="2" fill="#b02020"/></svg>
+    <span>岗位路径</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="projects" title="打开项目雷达">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="8" y="8" width="16" height="16" fill="#404040" stroke="#000"/><rect x="11" y="11" width="10" height="10" fill="#8a5a00"/><rect x="14" y="14" width="4" height="4" fill="#e8dcc0"/><path d="M4 12h4M4 16h4M4 20h4M24 12h4M24 16h4M24 20h4M12 4v4M16 4v4M20 4v4M12 24v4M16 24v4M20 24v4" stroke="#c0c0c0" stroke-width="2"/></svg>
+    <span>项目雷达</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="favorites" title="打开收藏夹">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M2 8h11l3 4h14v16H2z" fill="#f0c040" stroke="#6f5524"/><path d="M2 12h28" stroke="#6f5524"/><path d="M16 14l1.7 3.5 3.8.5-2.8 2.6.7 3.8-3.4-1.9-3.4 1.9.7-3.8-2.8-2.6 3.8-.5z" fill="#fff" stroke="#8a5a00"/></svg>
+    <span>收藏夹</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="personal" title="打开我的文件">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M2 8h11l3 4h14v16H2z" fill="#d9c79a" stroke="#6f5524"/><path d="M2 12h28" stroke="#6f5524"/><circle cx="16" cy="19" r="4" fill="#20486f"/><path d="M9 28c1-4 4-6 7-6s6 2 7 6z" fill="#20486f"/></svg>
+    <span>我的文件</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="help" title="打开使用说明">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M4 5h9c2 0 3 1 3 3v19c0-2-1-3-3-3H4z" fill="#fff" stroke="#000"/><path d="M28 5h-9c-2 0-3 1-3 3v19c0-2 1-3 3-3h9z" fill="#e8e8e8" stroke="#000"/><text x="16" y="23" text-anchor="middle" font-size="13" font-weight="700" font-family="Tahoma" fill="#20486f">?</text></svg>
+    <span>使用说明</span>
+  </button>
+</nav>
+<div class="desktop-brand" aria-hidden="true">EE-INDEX 98<small>PERSONAL HARDWARE INDEX</small></div>
 <div class="room">
   <div class="monitor">
     <div class="bezel-top">
@@ -1688,7 +1870,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
             <span class="win-title" id="winTitle">EE-INDEX 资源管理器</span>
           </div>
           <div class="win-actions">
-            <button type="button" class="win-btn" data-win="min" title="收起目录树" aria-label="收起目录树"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.2h7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></button>
+            <button type="button" class="win-btn" data-win="min" title="最小化到任务栏" aria-label="最小化到任务栏"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.2h7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></button>
             <button type="button" class="win-btn" id="winMax" data-win="max" title="进入全屏" aria-label="进入全屏">
               <svg class="ico-max" viewBox="0 0 12 12" aria-hidden="true"><rect x="2.3" y="2.3" width="7.4" height="7.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
               <svg class="ico-restore" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="3.8" width="6.2" height="6.2" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M4 3.8V2.2h5.8v5.8H8.4" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
@@ -1699,7 +1881,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 
         <div class="sys-menu" id="sysMenu" hidden>
           <button type="button" data-win="restore">还原(<u>R</u>)</button>
-          <button type="button" data-win="min">目录树(<u>N</u>)</button>
+          <button type="button" data-win="min">最小化(<u>N</u>)</button>
           <button type="button" data-win="max">全屏(<u>M</u>)</button>
           <hr>
           <button type="button" data-win="close">关闭(<u>C</u>)</button>
@@ -1902,7 +2084,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
             <span>开始</span>
           </button>
           <span class="status-sep"></span>
-          <span id="statusText">330 个对象</span>
+          <span id="statusText">359 个对象</span>
           <span class="status-sep"></span>
           <span id="statusSel">未选择</span>
           <span class="status-spacer"></span>
@@ -1923,7 +2105,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
               <span class="logo-chip">EE</span>
               <div><b>EE-INDEX 98</b></div>
             </div>
-            <button type="button" data-cmd="nav:library"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d8a33f" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/></svg>资源库</span><span class="start-count">330</span></button>
+            <button type="button" data-cmd="nav:library"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d8a33f" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/></svg>资源库</span><span class="start-count">359</span></button>
             <button type="button" data-cmd="nav:paths"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#8faec6" stroke="#3d5d78"/><path d="M1 6h14" stroke="#3d5d78"/></svg>岗位路径</span><span class="start-count">8</span></button>
             <button type="button" data-cmd="nav:projects"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="4" width="8" height="8" fill="#e8dcc0" stroke="#8a5a00"/><rect x="6" y="6" width="4" height="4" fill="#a5622b"/><path d="M6 4V1.5M8 4V1.5M10 4V1.5M6 12v2.5M8 12v2.5M10 12v2.5M4 6H1.5M4 8H1.5M4 10H1.5M12 6h2.5M12 8h2.5M12 10h2.5" stroke="#8a5a00"/></svg>项目雷达</span><span class="start-count">30</span></button>
             <button type="button" data-cmd="nav:favorites"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2l1.9 4 4.4.5-3.3 3 .9 4.4L8 10.9l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="#d8a33f" stroke="#8a5a00"/></svg>收藏</span><span class="start-count" id="startFavCount">0</span></button>
@@ -1948,6 +2130,40 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
       <button type="button" class="turbo-btn" id="turboBtn" title="TURBO：把字号切到 125%">TURBO</button>
     </div>
   </div>
+</div>
+
+<div class="desktop-taskbar" role="toolbar" aria-label="任务栏">
+  <button type="button" class="task-start" id="taskStartBtn" title="开始菜单" aria-haspopup="true" aria-expanded="false">
+    <svg viewBox="0 0 12 12" aria-hidden="true"><rect width="5" height="5" fill="#b83b32"/><rect x="7" width="5" height="5" fill="#2f8750"/><rect y="7" width="5" height="5" fill="#2f68b0"/><rect x="7" y="7" width="5" height="5" fill="#d1a02f"/></svg>
+    <span>开始</span>
+  </button>
+  <span class="task-sep" aria-hidden="true"></span>
+  <button type="button" class="task-quick" data-desk="library" title="资源管理器" aria-label="打开资源管理器">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path d="M1 4h5l1.3 2H15v8H1z" fill="#f0c040" stroke="#6f5524"/><path d="M1 6.5h14" stroke="#6f5524"/></svg>
+  </button>
+  <button type="button" class="task-quick" data-desk="datasheets" title="电子元器件数据手册" aria-label="打开数据手册">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path d="M3 1h7l3 3v11H3z" fill="#fff" stroke="#000"/><path d="M10 1v3h3" fill="#e8e8e8" stroke="#000"/><rect x="2" y="5" width="6" height="7" fill="#b02020" stroke="#6d1111"/><text x="5" y="10" text-anchor="middle" font-size="3.4" font-family="Arial" font-weight="700" fill="#fff">PDF</text></svg>
+  </button>
+  <span class="task-sep" aria-hidden="true"></span>
+  <button type="button" class="task-app on" id="taskAppBtn" title="EE-INDEX 资源管理器" aria-pressed="true">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2" width="14" height="12" fill="#d4d0c8" stroke="#000"/><rect x="2" y="4" width="12" height="2" fill="#000080"/><rect x="3" y="7" width="10" height="5" fill="#fff" stroke="#808080"/><path d="M4 8.5h5M4 10h6" stroke="#20486f"/></svg>
+    <span>EE-INDEX 资源管理器</span>
+  </button>
+  <div class="task-tray">
+    <button type="button" class="tray-btn" id="taskSoundBtn" title="复古音效开关" aria-label="复古音效开关">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l3-2.5v9L5 10H2z" fill="#404040"/><path d="M10.2 5.2a3.4 3.4 0 0 1 0 5.6M11.8 3.4a5.6 5.6 0 0 1 0 9.2" fill="none" stroke="#404040" stroke-width="1.2"/></svg>
+    </button>
+    <span class="tray-clock" id="taskClock" title="系统时间">--:--</span>
+  </div>
+</div>
+
+<div class="desk-menu" id="deskMenu" hidden>
+  <button type="button" data-deskmenu="refresh">刷新(<u>E</u>)</button>
+  <button type="button" data-deskmenu="arrange">按名称排列图标</button>
+  <button type="button" data-deskmenu="library">打开资源库</button>
+  <button type="button" data-deskmenu="datasheets">打开数据手册</button>
+  <hr>
+  <button type="button" data-deskmenu="help">使用说明</button>
 </div>
 
 <div class="drawer-backdrop" id="treeBackdrop"></div>
@@ -2257,6 +2473,127 @@ window.EE_EXTRA_RESOURCES = [
    proof:'Microsoft Learn 官方文档；WSL 是 Windows 上运行 Linux 的官方方案。',
    first:'先执行 wsl --install 装 Ubuntu；在 WSL 里装 gcc-arm-none-eabi，编译一个 Cortex-M 点灯工程。'}
 ];
+
+/* ================= 学习资源补充（2026-11 核验） ================= */
+window.EE_EXTRA_LEARNING = [
+  {id:'mit-6012',name:'MIT 6.012 Microelectronic Devices and Circuits',alt:'MIT 微电子器件与电路',url:'https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-spring-2009/',kind:'site',cat:'learn',sub:'大学课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['MIT','微电子','MOSFET','放大器','公开课'],alias:'mit 6012 microelectronic devices circuits',
+   desc:'从半导体物理、PN 结、MOSFET 到单级放大器与数字电路，讲义、习题与实验完整开放。',
+   proof:'MIT OpenCourseWare 官方课程页，2009 春季课程资料完整；是微电子入门最系统的公开课之一。',
+   first:'先读 Lecture 1–6 建立器件模型，再做 Problem Set 1–3；重点弄清阈值电压与沟道长度调制。'},
+  {id:'mit-6302',name:'MIT 6.302 Feedback Systems',alt:'MIT 反馈系统',url:'https://ocw.mit.edu/courses/6-302-feedback-systems-spring-2007/',kind:'site',cat:'learn',sub:'大学课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['MIT','控制','反馈','稳定性','公开课'],alias:'mit 6302 feedback systems',
+   desc:'面向工程应用的反馈控制课程，覆盖动态系统建模、根轨迹、频率响应、稳定性与控制器设计。',
+   proof:'MIT OpenCourseWare 官方课程页，与 Åström 和 Murray 的 Feedback Systems 教材配套。',
+   first:'先复习拉普拉斯变换，再按讲义做一阶/二阶系统响应与根轨迹练习。'},
+  {id:'mit-6622',name:'MIT 6.622 Power Electronics',alt:'MIT 电力电子',url:'https://ocw.mit.edu/courses/6-622-power-electronics-spring-2023/',kind:'site',cat:'learn',sub:'大学课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['MIT','电力电子','变换器','控制','公开课'],alias:'mit 6622 power electronics',
+   desc:'系统讲解开关变换器、稳态分析、小信号建模、控制环路与磁件设计，配套讲义和作业。',
+   proof:'MIT OpenCourseWare 官方课程页，2023 春季版本公开；电力电子研究生级课程。',
+   first:'先看 Buck/Boost 稳态分析，再推导小信号模型并对照讲义检查控制环路。'},
+  {id:'nand2tetris',name:'Nand2Tetris',alt:'从与非门到俄罗斯方块',url:'https://www.nand2tetris.org/',kind:'site',cat:'learn',sub:'在线课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['计算机组成','数字逻辑','HDL','项目式','公开课'],alias:'nand2tetris cong yu fei men dao e luo si fang kuai',
+   desc:'从单个 NAND 门开始，逐层搭出 ALU、CPU、汇编器、虚拟机和编译器，最后运行俄罗斯方块。',
+   proof:'Nand2Tetris 官方站点；课程与教材被多所高校采用，项目式学习计算机系统。',
+   first:'按 Project 1–5 顺序做，先完成 HDL 门电路与 ALU，再进入 CPU 和汇编。'},
+  {id:'hdlbits',name:'HDLBits',alt:'Verilog 在线练习',url:'https://hdlbits.01xz.net/wiki/Main_Page',kind:'site',cat:'learn',sub:'在线练习',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Verilog','数字逻辑','FPGA','在线练习','题库'],alias:'hdlbits verilog lian xi',
+   desc:'在线 Verilog 题库，从基础门电路、组合/时序逻辑到状态机、计数器与验证，提交后即时判题。',
+   proof:'HDLBits 官方站点；数字逻辑与 Verilog 入门常用练习平台。',
+   first:'先完成 Getting Started 与 Combinational Logic 两组题，再挑战 Sequential Logic 的状态机。'},
+  {id:'learnabout-electronics',name:'Learn About Electronics',alt:'电子学基础教程',url:'https://learnabout-electronics.org/',kind:'site',cat:'learn',sub:'技术教程',lang:'en',license:'free',access:'free',source:'community',region:'global',verifiedAt:'2026-11',tags:['电子学','基础','教程','模拟','数字'],alias:'learn about electronics ji chu jiao cheng',
+   desc:'模块化电子学教程，覆盖直流电路、交流电路、半导体、放大器、数字逻辑与电源。',
+   proof:'英国电子教学网站长期维护，内容按课程模块组织，适合自学查漏补缺。',
+   first:'先做 DC Circuits 模块的自测，再按半导体 → 放大器 → 数字逻辑顺序推进。'},
+  {id:'adi-education',name:'Analog Devices Education',alt:'ADI 教育中心',url:'https://www.analog.com/en/education.html',kind:'site',cat:'learn',sub:'在线课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['ADI','模拟','信号链','课程','官方'],alias:'adi education analog devices jiao yu',
+   desc:'ADI 官方教育入口，汇集模拟信号链、电源、转换器、射频与嵌入式课程及实验资料。',
+   proof:'Analog Devices 官方教育页面；课程与 ADI 器件和应用笔记直接对应。',
+   first:'先选 Analog Fundamentals 或 Power 方向，挑一个带实验的课程跟做。'},
+  {id:'microchip-university',name:'Microchip University',alt:'Microchip 大学',url:'https://mu.microchip.com/',kind:'site',cat:'learn',sub:'在线课程',lang:'en',license:'free',access:'login',source:'official',region:'global',verifiedAt:'2026-11',tags:['Microchip','MCU','PIC','AVR','课程'],alias:'microchip university mcU ke cheng',
+   desc:'Microchip 官方在线课程平台，覆盖 8/16/32 位 MCU、模拟、电源、无线与安全。',
+   proof:'Microchip 官方培训平台；课程由原厂工程师录制，部分课程免费注册学习。',
+   first:'先选 PIC 或 AVR 入门课，跟着做一次外设配置与中断实验。'},
+  {id:'st-learning',name:'STMicroelectronics Learning',alt:'ST 学习中心',url:'https://www.st.com/content/st_com/en/support/learning.html',kind:'site',cat:'learn',sub:'在线课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['ST','STM32','MCU','课程','官方'],alias:'st learning stm32 ke cheng',
+   desc:'ST 官方学习入口，汇集 STM32、电源、模拟、传感器与电机控制培训资料。',
+   proof:'ST 官方学习页面；与 STM32Cube、开发板和 ST 应用笔记配套。',
+   first:'先看 STM32 入门与 CubeMX 课程，再挑一个电机控制或电源专题。'},
+  {id:'arm-education',name:'Arm Education',alt:'Arm 教育计划',url:'https://www.arm.com/resources/education',kind:'site',cat:'learn',sub:'大学课程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Arm','嵌入式','体系结构','教材','教育'],alias:'arm education jiao yu ji hua',
+   desc:'Arm 官方教育资料入口，提供体系结构、嵌入式系统、SoC 与物联网教学套件和教材。',
+   proof:'Arm 官方教育页面；面向高校与自学者的 Arm 体系结构教学资源。',
+   first:'先下载 Introduction to Arm 教学资料，配合 Cortex-M 开发板做一次异常与中断实验。'},
+  {id:'arduino-docs',name:'Arduino Documentation',alt:'Arduino 官方文档',url:'https://docs.arduino.cc/',kind:'site',cat:'learn',sub:'在线文档',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Arduino','开源硬件','MCU','文档','入门'],alias:'arduino docs guan fang wen dang',
+   desc:'Arduino 官方文档中心，包含语言参考、库、开发板、教程与项目示例。',
+   proof:'Arduino 官方文档站点；语言参考与示例是 Arduino 入门的一手资料。',
+   first:'先读 Language Reference 的 digitalWrite/analogRead，再完成 Built-in Examples 的前三个。'},
+  {id:'espressif-docs',name:'Espressif Documentation',alt:'乐鑫官方文档中心',url:'https://docs.espressif.com/',kind:'site',cat:'learn',sub:'在线文档',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['ESP32','ESP-IDF','WiFi','BLE','文档'],alias:'espressif docs esp32 wen dang',
+   desc:'乐鑫官方文档总入口，覆盖 ESP32 系列、ESP-IDF、WiFi/BLE、蓝牙 Mesh 与量产工具。',
+   proof:'Espressif 官方文档站点；ESP32 开发的一手资料。',
+   first:'先读 ESP32-DevKitC 入门与 ESP-IDF Get Started，再跑通 WiFi 扫描示例。'},
+  {id:'esp-idf-zh',name:'ESP-IDF 中文文档',alt:'ESP32 开发框架中文文档',url:'https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/',kind:'site',cat:'learn',sub:'中文教程',lang:'zh',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['ESP-IDF','ESP32','中文','RTOS','文档'],alias:'esp idf zhong wen wen dang esp32',
+   desc:'ESP-IDF 官方中文文档，覆盖环境搭建、FreeRTOS、外设驱动、WiFi/BLE、低功耗与量产。',
+   proof:'Espressif 官方中文文档；与英文版同步更新，适合中文开发者。',
+   first:'先按 Get Started 装好工具链，再跑通 GPIO 与 FreeRTOS 任务示例。'},
+  {id:'zephyr-docs',name:'Zephyr Project Documentation',alt:'Zephyr RTOS 文档',url:'https://docs.zephyrproject.org/',kind:'site',cat:'learn',sub:'在线文档',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Zephyr','RTOS','嵌入式','开源','文档'],alias:'zephyr rtos wen dang',
+   desc:'Zephyr 官方文档，覆盖内核、设备树、驱动模型、网络、蓝牙与多板支持。',
+   proof:'Zephyr Project 官方文档；Linux 基金会托管的开源 RTOS。',
+   first:'先按 Getting Started 在一条支持的开发板上跑通 blinky，再读 Device Driver Model。'},
+  {id:'platformio-docs',name:'PlatformIO Documentation',alt:'PlatformIO 官方文档',url:'https://docs.platformio.org/',kind:'site',cat:'learn',sub:'在线文档',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['PlatformIO','嵌入式','工具链','VS Code','文档'],alias:'platformio wen dang',
+   desc:'PlatformIO 官方文档，覆盖项目管理、平台/框架、库管理、调试与 CI。',
+   proof:'PlatformIO 官方文档；跨平台嵌入式开发与 CI 常用工具。',
+   first:'先在 VS Code 装 PlatformIO，新建一个 STM32 或 ESP32 工程并跑通编译下载。'},
+  {id:'micropython-docs',name:'MicroPython Documentation',alt:'MicroPython 官方文档',url:'https://docs.micropython.org/',kind:'site',cat:'learn',sub:'在线文档',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['MicroPython','Python','MCU','ESP32','文档'],alias:'micropython wen dang',
+   desc:'MicroPython 官方文档，覆盖语言差异、硬件外设、网络与各移植版说明。',
+   proof:'MicroPython 官方文档；在 ESP32、RP2040 等平台上快速验证想法的常用方案。',
+   first:'先在 ESP32 或 Pico 上刷固件，用 REPL 点亮 LED，再试 machine.Pin 与定时器。'},
+  {id:'embedded-artistry',name:'Embedded Artistry',alt:'嵌入式工程与测试博客',url:'https://embeddedartistry.com/',kind:'site',cat:'learn',sub:'技术博客',lang:'en',license:'free',access:'free',source:'community',region:'global',verifiedAt:'2026-11',tags:['嵌入式','C++','测试','构建系统','博客'],alias:'embedded artistry qian ru shi bo ke',
+   desc:'面向嵌入式工程的长期博客，覆盖 C/C++、单元测试、构建系统、RTOS 与固件架构。',
+   proof:'Embedded Artistry 官方站点；作者长期从事嵌入式咨询与开源工具维护。',
+   first:'先读 Embedded C++ 与单元测试系列，再挑一篇构建系统或 RTOS 文章。'},
+  {id:'kicad-docs',name:'KiCad Documentation',alt:'KiCad 官方文档',url:'https://docs.kicad.org/',kind:'site',cat:'learn',sub:'在线文档',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['KiCad','PCB','EDA','开源','文档'],alias:'kicad guan fang wen dang',
+   desc:'KiCad 官方文档，覆盖原理图、PCB 编辑器、封装、3D、仿真与命令行工具。',
+   proof:'KiCad 官方文档站点；开源 EDA 的一手手册，与各版本对应。',
+   first:'先读 Getting Started 与 PCB Editor 章节，再完成一个两层板并从 3D 查看器检查。'},
+  {id:'interrupt-memfault',name:'Interrupt — Memfault',alt:'嵌入式工程博客',url:'https://interrupt.memfault.com/',kind:'site',cat:'learn',sub:'技术博客',lang:'en',license:'free',access:'free',source:'community',region:'global',verifiedAt:'2026-11',tags:['嵌入式','固件','调试','RTOS','博客'],alias:'interrupt memfault qian ru shi bo ke',
+   desc:'Memfault 维护的嵌入式工程博客，深入讲解固件架构、调试、RTOS、功耗与量产问题。',
+   proof:'Interrupt 官方站点；由 Memfault 工程团队与 guest author 长期撰写，工程实践性强。',
+   first:'先读 “A Practical Guide to ARM Cortex-M Exception Handling”，再挑一篇调试或 RTOS 文章。'},
+  {id:'beningo-blog',name:'Beningo Embedded Group Blog',alt:'嵌入式工程博客',url:'https://www.beningo.com/blog/',kind:'site',cat:'learn',sub:'技术博客',lang:'en',license:'free',access:'free',source:'community',region:'global',verifiedAt:'2026-11',tags:['嵌入式','固件','架构','RTOS','博客'],alias:'beningo qian ru shi bo ke',
+   desc:'Jacob Beningo 的嵌入式工程博客，覆盖固件架构、RTOS、低功耗、测试与开发流程。',
+   proof:'Beningo Embedded Group 官方博客；作者长期从事嵌入式咨询与培训。',
+   first:'先读 Embedded Software Architecture 与 RTOS 相关文章，选一个主题对照自己的工程。'},
+  {id:'altium-pcb-resources',name:'Altium PCB Design Resources',alt:'Altium PCB 设计资源',url:'https://resources.altium.com/pcb-design',kind:'site',cat:'learn',sub:'技术教程',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['PCB','布局','布线','信号完整性','教程'],alias:'altium pcb she ji zi yuan',
+   desc:'Altium 官方 PCB 设计资源库，覆盖布局布线、叠层、阻抗、EMC、DFM 与高速设计。',
+   proof:'Altium 官方资源站；文章与指南由 PCB 工程师撰写，工具无关的通用设计知识也可用。',
+   first:'先读 PCB Layout 与 Stackup 基础文章，再挑一篇高速或 EMC 专题。'},
+  {id:'adi-technical-articles',name:'Analog Devices Technical Articles',alt:'ADI 技术文章库',url:'https://www.analog.com/en/resources/technical-articles.html',kind:'site',cat:'learn',sub:'技术文章',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['ADI','模拟','信号链','电源','技术文章'],alias:'adi ji shu wen zhang',
+   desc:'ADI 官方技术文章库，覆盖放大器、转换器、电源、传感器、射频与接口设计。',
+   proof:'Analog Devices 官方技术文章页面；文章通常与具体器件和应用笔记互相引用。',
+   first:'按信号链主题挑一篇应用文章，对照其中的器件手册与测试条件阅读。'},
+  {id:'ti-e2e',name:'TI E2E Support Forums',alt:'TI 官方技术论坛',url:'https://e2e.ti.com/',kind:'site',cat:'community',sub:'论坛',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['TI','论坛','模拟','电源','嵌入式'],alias:'ti e2e lun tan',
+   desc:'TI 官方技术支持论坛，按器件与主题分区，可搜索电源、放大器、MCU 与工具问题。',
+   proof:'Texas Instruments 官方社区；TI 工程师参与答疑，历史问答可检索。',
+   first:'提问前先用器件型号搜索历史帖；提问时附原理图、波形与测试条件。'},
+  {id:'st-community',name:'ST Community',alt:'ST 官方社区',url:'https://community.st.com/',kind:'site',cat:'community',sub:'论坛',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['ST','STM32','论坛','社区','嵌入式'],alias:'st community she qu',
+   desc:'ST 官方社区，覆盖 STM32、电源、模拟、传感器与电机控制，ST 工程师参与答疑。',
+   proof:'STMicroelectronics 官方社区；STM32 问题与官方回复可检索。',
+   first:'先用具体型号搜索；提问时附 CubeMX 配置、时钟树与故障波形。'},
+  {id:'lceda-docs',name:'嘉立创EDA 官方文档',alt:'立创EDA 帮助中心',url:'https://prodocs.lceda.cn/cn/',kind:'site',cat:'learn',sub:'中文教程',lang:'zh',license:'free',access:'free',source:'official',region:'cn',verifiedAt:'2026-11',tags:['嘉立创EDA','立创EDA','PCB','中文','文档'],alias:'jia li chuang eda guan fang wen dang',
+   desc:'嘉立创EDA 专业版官方中文文档，覆盖工程、原理图、封装、PCB、Gerber 与团队协作。',
+   proof:'嘉立创EDA 官方文档站；与立创商城器件库和嘉立创打样流程配套。',
+   first:'先完成快速入门工程，再读封装与 DRC 章节，最后导出一版 Gerber 检查。'},
+  {id:'armbbs',name:'硬汉嵌入式论坛',alt:'安富莱/硬汉嵌入式社区',url:'https://www.armbbs.cn/',kind:'site',cat:'community',sub:'论坛',lang:'zh',license:'free',access:'free',source:'community',region:'cn',verifiedAt:'2026-11',tags:['嵌入式','STM32','RTOS','论坛','中文'],alias:'ying han qian ru shi lun tan armbbs',
+   desc:'国内老牌嵌入式论坛，STM32、RTOS、GUI、文件系统与调试经验帖丰富。',
+   proof:'硬汉嵌入式论坛（armbbs.cn）长期运营；安富莱开发板资料与例程在社区发布。',
+   first:'先按芯片型号搜索例程与踩坑帖；下载例程后先对照时钟与外设初始化。'},
+  {id:'oshwa',name:'Open Source Hardware Association',alt:'开源硬件协会',url:'https://www.oshwa.org/',kind:'site',cat:'community',sub:'开源硬件',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['开源硬件','OSHWA','认证','社区','规范'],alias:'oshwa kai yuan ying jian xie hui',
+   desc:'开源硬件协会官网，提供开源硬件定义、认证流程、社区活动与资源。',
+   proof:'Open Source Hardware Association 官方站点；开源硬件定义与 OSHW 认证的权威来源。',
+   first:'先读 Open Source Hardware Definition，再了解 OSHW 认证的文档与许可要求。'},
+  {id:'openhw-group',name:'OpenHW Group',alt:'开源 RISC-V 核心与生态',url:'https://www.openhwgroup.org/',kind:'site',cat:'community',sub:'开源硬件',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['RISC-V','开源硬件','处理器','生态','社区'],alias:'openhw group risc v kai yuan',
+   desc:'OpenHW Group 官方站点，围绕开源 RISC-V 核心、验证与软件生态提供项目与资料。',
+   proof:'OpenHW Group 官方站点；CORE-V 系列开源 RISC-V 核心的托管组织。',
+   first:'先看 CORE-V 项目与工具链，再挑一个开发板或 FPGA 移植示例。'},
+  {id:'fedevel-academy',name:'Fedevel Academy',alt:'高速 PCB 设计课程',url:'https://fedevel.com/courses',kind:'site',cat:'learn',sub:'在线课程',lang:'en',license:'paid',access:'login',source:'official',region:'global',verifiedAt:'2026-11',tags:['PCB','高速设计','Altium','课程','付费'],alias:'fedevel academy gao su pcb ke cheng',
+   desc:'Robert Feranec 团队的高速 PCB 设计课程，覆盖叠层、阻抗、DDR、电源完整性与实战项目。',
+   proof:'Fedevel 官方课程页；Robert Feranec 长期发布 PCB 设计教学与访谈。',
+   first:'先看课程大纲与免费预览，确认工具链后从叠层和阻抗章节开始。'}
+];
+window.EE_EXTRA_RESOURCES = (window.EE_EXTRA_RESOURCES || []).concat(window.EE_EXTRA_LEARNING);
 
 ;
 /* 电子元器件数据手册：PDF 为厂商公开资料，自托管以便站内预览。 */
@@ -5963,6 +6300,55 @@ var GUIDES = {
   var titleBar = $('.titlebar');
   var hddLed = $('#hddLed');
   var hddTimer = null;
+  var taskStartBtn = $('#taskStartBtn');
+  var taskAppBtn = $('#taskAppBtn');
+  var taskClock = $('#taskClock');
+  var taskSoundBtn = $('#taskSoundBtn');
+  var deskMenu = $('#deskMenu');
+  var deskIcons = Array.prototype.slice.call(document.querySelectorAll('.desk-icon'));
+
+  if (startMenu && startMenu.parentNode !== document.body) document.body.appendChild(startMenu);
+
+  function updateTaskClock(){
+    if (!taskClock) return;
+    var d = new Date();
+    var hh = ('0' + d.getHours()).slice(-2);
+    var mm = ('0' + d.getMinutes()).slice(-2);
+    taskClock.textContent = hh + ':' + mm;
+    taskClock.title = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 星期' + '日一二三四五六'.charAt(d.getDay());
+  }
+  function syncStartUi(){
+    var open = !!(startMenu && !startMenu.hidden);
+    if (startBtn) startBtn.classList.toggle('on', open);
+    if (taskStartBtn){
+      taskStartBtn.classList.toggle('on', open);
+      taskStartBtn.setAttribute('aria-expanded', String(open));
+    }
+  }
+  function setAppMinimized(min){
+    var on = !!min && window.matchMedia('(min-width: 1101px)').matches;
+    document.body.classList.toggle('app-minimized', on);
+    if (taskAppBtn){
+      taskAppBtn.classList.toggle('on', !on);
+      taskAppBtn.setAttribute('aria-pressed', String(!on));
+    }
+    if (on) toggleStart(false);
+    else screenEl.classList.remove('focus');
+  }
+  function restoreApp(){
+    if (document.body.classList.contains('app-minimized')) setAppMinimized(false);
+  }
+  function openDesktopAction(act){
+    restoreApp();
+    if (act === 'app') return;
+    if (act === 'library'){ executeCmd('nav:library'); return; }
+    if (act === 'datasheets'){ executeCmd('nav:datasheets'); return; }
+    if (act === 'paths'){ executeCmd('nav:paths'); return; }
+    if (act === 'projects'){ executeCmd('nav:projects'); return; }
+    if (act === 'favorites'){ executeCmd('nav:favorites'); return; }
+    if (act === 'personal'){ executeCmd('nav:personal'); return; }
+    if (act === 'help'){ executeCmd('help:usage'); return; }
+  }
 
   function blinkHdd(){
     if (!hddLed) return;
@@ -5979,6 +6365,7 @@ var GUIDES = {
       toggleFontPanel(false);
       toggleSysMenu(false);
     }
+    syncStartUi();
   }
   function toggleSysMenu(force){
     if (!sysMenu) return;
@@ -8497,6 +8884,7 @@ var GUIDES = {
   function executeCmd(cmd){
     if (!cmd) return;
     toggleStart(false);
+    restoreApp();
     if (cmd.indexOf('nav:') === 0){
       var v = cmd.slice(4);
       if (v === 'library'){ state.q = ''; qInput.value = ''; state.lang = 'all'; goLibrary('all'); }
@@ -8804,9 +9192,12 @@ var GUIDES = {
           screenEl.classList.remove('tree-hide');
           document.body.classList.remove('tree-open');
           if (document.fullscreenElement || document.webkitFullscreenElement) toggleFullscreen();
+          setAppMinimized(false);
           showToast('窗口已还原');
         } else if (act === 'min'){
-          toggleTree();
+          if (!window.matchMedia('(min-width: 1101px)').matches){ showToast('当前窗口较窄，任务栏已收起，无法最小化'); return; }
+          if (document.fullscreenElement || document.webkitFullscreenElement) toggleFullscreen();
+          setAppMinimized(true);
         } else if (act === 'max'){ toggleFullscreen(); }
         else if (act === 'close'){ state.q = ''; qInput.value = ''; goLibrary('all'); showToast('已回到首页'); }
         return;
@@ -8894,7 +9285,7 @@ var GUIDES = {
       }
       if (!e.target.closest('.menu')) closeMenus();
       if (!e.target.closest('#fontPanel') && !e.target.closest('#fontBtn') && !e.target.closest('#fontStatus')) toggleFontPanel(false);
-      if (!e.target.closest('#startMenu') && !e.target.closest('#startBtn')) toggleStart(false);
+      if (!e.target.closest('#startMenu') && !e.target.closest('#startBtn') && !e.target.closest('#taskStartBtn')) toggleStart(false);
       if (!e.target.closest('#sysMenu') && !e.target.closest('#sysMenuBtn')) toggleSysMenu(false);
     });
 
@@ -8905,6 +9296,7 @@ var GUIDES = {
       if (e.key === 'F1'){ e.preventDefault(); openHelp('usage'); return; }
       if (e.key === 'Escape'){
         hideCtxMenu();
+        if (deskMenu) deskMenu.hidden = true;
         closeMenus();
         toggleFontPanel(false);
         toggleStart(false);
@@ -8951,6 +9343,72 @@ var GUIDES = {
       toggleFullscreen();
     });
     startBtn.addEventListener('click', function(){ toggleStart(); });
+    if (taskStartBtn) taskStartBtn.addEventListener('click', function(){ toggleStart(); });
+    if (taskAppBtn) taskAppBtn.addEventListener('click', function(){
+      if (document.body.classList.contains('app-minimized')) setAppMinimized(false);
+      else setAppMinimized(true);
+    });
+    if (taskSoundBtn){
+      taskSoundBtn.addEventListener('click', function(){
+        var soundBtn = $('#plSoundBtn');
+        if (soundBtn) soundBtn.click();
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.task-quick'), function(btn){
+      btn.addEventListener('click', function(){ openDesktopAction(btn.dataset.desk); });
+    });
+    deskIcons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        deskIcons.forEach(function(b){ b.classList.toggle('sel', b === btn); });
+      });
+      btn.addEventListener('dblclick', function(){ openDesktopAction(btn.dataset.desk); });
+      btn.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openDesktopAction(btn.dataset.desk); }
+      });
+    });
+    document.addEventListener('click', function(e){
+      if (!e.target.closest('.desk-icon')) deskIcons.forEach(function(b){ b.classList.remove('sel'); });
+      if (deskMenu && !e.target.closest('#deskMenu')) deskMenu.hidden = true;
+    });
+    document.addEventListener('contextmenu', function(e){
+      if (!deskMenu || e.target.closest('.room,.desktop-taskbar,.start-menu,dialog,.desk-menu')) return;
+      e.preventDefault();
+      deskMenu.hidden = false;
+      deskMenu.style.left = Math.max(2, Math.min(e.clientX, window.innerWidth - 200)) + 'px';
+      deskMenu.style.top = Math.max(2, Math.min(e.clientY, window.innerHeight - 174)) + 'px';
+    });
+    if (deskMenu){
+      deskMenu.addEventListener('click', function(e){
+        var btn = e.target.closest('[data-deskmenu]');
+        if (!btn) return;
+        deskMenu.hidden = true;
+        var act = btn.dataset.deskmenu;
+        if (act === 'refresh'){ renderAll(); showToast('桌面已刷新'); return; }
+        if (act === 'arrange'){
+          var rail = document.querySelector('.desktop-icons');
+          if (rail){
+            deskIcons.slice().sort(function(a, b){
+              var an = (a.querySelector('span').textContent || '');
+              var bn = (b.querySelector('span').textContent || '');
+              var aAscii = /^[\x00-\x7F]/.test(an);
+              var bAscii = /^[\x00-\x7F]/.test(bn);
+              if (aAscii !== bAscii) return aAscii ? -1 : 1;
+              return an.localeCompare(bn, 'zh-Hans-CN');
+            }).forEach(function(n){ rail.appendChild(n); });
+          }
+          showToast('桌面图标已按名称排列');
+          return;
+        }
+        openDesktopAction(act);
+      });
+    }
+    updateTaskClock();
+    setInterval(updateTaskClock, 20000);
+    document.addEventListener('visibilitychange', updateTaskClock);
+    window.addEventListener('resize', function(){
+      if (!window.matchMedia('(min-width: 1101px)').matches && document.body.classList.contains('app-minimized')) setAppMinimized(false);
+    });
+    syncStartUi();
     $('#fontClose').addEventListener('click', function(){ toggleFontPanel(false); });
     $('#fontRange').addEventListener('input', function(e){ applyFontPct(e.target.value, false); });
     $('#fontRange').addEventListener('change', function(e){ applyFontPct(e.target.value, true); });
