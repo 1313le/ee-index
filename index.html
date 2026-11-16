@@ -10,7 +10,7 @@
 <title>EE-INDEX 98 · 硬件工程资源管理器</title>
 <link rel="privacy-policy" href="privacy.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='3' fill='%23d7cdb7'/%3E%3Crect x='3' y='5' width='18' height='14' rx='2' fill='%2320486f'/%3E%3Crect x='5' y='8' width='14' height='8' fill='%23f8f3e5'/%3E%3Cpath d='M6 10h12M6 12h8M6 14h10' stroke='%2320486f' stroke-width='1'/%3E%3C/svg%3E">
-<meta name="description" content="EE-INDEX 98：一台复古 CRT 里的硬件工程资源管理器。359 条资源（网站 / 免费教材 / 讲义 / 视频课程 / 官方软件下载 / 36 份自托管元器件数据手册）、8 个岗位路径、30 个真实项目，内置 AI 搜索、PDF 与视频预览，以及带复古上传动效的个人文件库（本地 + 云端同步、AI 自动归类）。">
+<meta name="description" content="EE-INDEX 98：一台复古 CRT 里的硬件工程资源管理器。375 条资源（网站 / 免费教材 / 讲义 / 视频课程 / 官方软件下载 / 16 个在线工程工具 / 36 份自托管元器件数据手册）、8 个岗位路径、30 个真实项目，内置 6 个硬件工程计算器（阻抗/线宽、载流、过孔、电源、BOM 核对、单位换算）、AI 搜索、PDF 与视频预览，以及带复古上传动效的个人文件库（本地 + 云端同步、AI 自动归类）。">
 <style>
 :root{
   --room:#24211d;
@@ -407,7 +407,7 @@ body.is-fullscreen #winMax .ico-restore{display:block;}
 /* list pane */
 .list-pane{min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--screen);}
 .list-head{
-  flex:none;display:grid;grid-template-columns:minmax(0,1fr) 128px 54px 30px;gap:8px;
+  flex:none;display:grid;grid-template-columns:minmax(0,1fr) 104px 66px 50px 30px;gap:8px;
   padding:4px 9px;background:var(--bezel-hi);border-bottom:1px solid var(--line-2);
   font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;color:var(--muted);
 }
@@ -433,7 +433,7 @@ body.is-fullscreen #winMax .ico-restore{display:block;}
 }
 .list{flex:1;min-height:0;overflow:auto;padding:0;outline:0;}
 .file-row{
-  display:grid;grid-template-columns:minmax(0,1fr) 128px 54px 30px;gap:8px;align-items:center;
+  display:grid;grid-template-columns:minmax(0,1fr) 104px 66px 50px 30px;gap:8px;align-items:center;
   padding:6px 9px;border-bottom:1px solid #e8e0cd;cursor:pointer;font-size:.84rem;
 }
 .file-row:hover{background:var(--paper);}
@@ -952,7 +952,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
   .list-head{display:none;}
   .file-row,.proj-file-row{grid-template-columns:minmax(0,1fr) 27px;gap:4px;padding:7px 8px;}
   .file-row .meta,.proj-file-row .meta,.proj-file-row .difficulty,
-  .file-row .col-type,.file-row .col-lang,.proj-file-row .col-role,.proj-file-row .col-time{display:none;}
+  .proj-file-row .col-role,.proj-file-row .col-time{display:none;}
   .inline-meta{display:block;}
   .sub{font-size:.72rem;}
   .statusbar{font-size:.56rem;gap:5px;padding:0 5px;}
@@ -1143,7 +1143,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 
 .list-pane{background:var(--w98-field);}
 .list-head{
-  grid-template-columns:minmax(0,1fr) 78px 96px 88px 28px;gap:0;
+  grid-template-columns:minmax(0,1fr) 104px 66px 50px 28px;gap:0;
   padding:0 2px;background:var(--w98-face);border-bottom:1px solid var(--w98-shadow);
   font-family:var(--ui);font-size:.68rem;letter-spacing:0;color:#000;height:23px;align-items:stretch;
   box-shadow:inset 0 1px 0 #fff;
@@ -1165,7 +1165,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 .mini-select{height:21px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:.7rem;}
 .list{background:var(--w98-field);padding:2px 0 10px;}
 .file-row{
-  grid-template-columns:minmax(0,1fr) 78px 96px 88px 28px;gap:0;align-items:center;
+  grid-template-columns:minmax(0,1fr) 104px 66px 50px 28px;gap:0;align-items:center;
   padding:2px 3px;border-bottom:0;font-size:.78rem;min-height:24px;color:#000;
   outline:1px dotted transparent;outline-offset:-2px;
 }
@@ -1177,7 +1177,7 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 .nm{font-weight:400;font-size:.78rem;}
 .sub{font-size:.66rem;color:#555;}
 .meta{font-family:var(--ui);font-size:.68rem;color:#333;padding:0 5px;}
-.file-row .col-size,.file-row .col-time{padding:0 5px;}
+.file-row .col-source,.file-row .col-license,.file-row .col-lang{padding:0 5px;}
 .kind-tag{display:none;}
 .doc{width:16px;height:19px;}
 .file-row .site-ico{width:17px;height:19px;}
@@ -1215,14 +1215,13 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
 .list.view-small .nm{font-size:.74rem;}
 .list.view-small .sub,.list.view-small .meta,.list.view-small .star-btn{display:none;}
 .list.view-list .file-row{grid-template-columns:minmax(0,1fr) 22px;padding:1px 5px;min-height:21px;}
-.list.view-list .meta,.list.view-list .col-size,.list.view-list .col-time{display:none;}
+.list.view-list .meta{display:none;}
 .list.view-list .nm{font-size:.76rem;}
 
-/* explorer date/time + size column helpers */
-.col-size,.col-time{font-size:.66rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.file-row.on .col-size,.file-row.on .col-time{color:#d8e4f4;}
-.file-row .col-type{color:#333;}
-.file-row.on .col-type{color:#d8e4f4;}
+/* explorer source/license/language column helpers */
+.col-source,.col-license,.col-lang{font-size:.66rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.file-row.on .col-source,.file-row.on .col-license,.file-row.on .col-lang{color:#d8e4f4;}
+.file-row .col-license{color:#3d5a2f;}
 
 /* preview pane */
 .preview{background:#fff;border-left:1px solid var(--w98-shadow);}
@@ -1312,7 +1311,6 @@ dialog::backdrop{background:rgba(15,12,8,.62);}
   .list-head{display:none;}
   .file-row,.proj-file-row{display:flex;padding:7px 7px;gap:5px;min-height:34px;}
   .file-row .meta,.proj-file-row .meta,.proj-file-row .difficulty,
-  .file-row .col-type,.file-row .col-lang,.file-row .col-size,.file-row .col-time,
   .proj-file-row .col-role,.proj-file-row .col-time{display:none;}
   .file-row .file-name{flex:1;min-width:0;}
   .file-row .star-btn{margin-left:auto;}
@@ -1405,6 +1403,7 @@ body.app-dragging{cursor:default;}
 .task-quick svg{width:19px;height:19px;display:block;}
 .task-quick:hover{border-color:#fff #808080 #808080 #fff;}
 .task-quick:active{border-color:#808080 #fff #fff #808080;}
+.task-quick.on{border-color:#808080 #fff #fff #808080;box-shadow:inset 1px 1px 0 #808080;}
 .task-app{
   height:30px;min-width:0;max-width:300px;padding:0 8px;display:inline-flex;align-items:center;gap:6px;
   border:1px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);
@@ -1440,6 +1439,152 @@ body.app-dragging{cursor:default;}
 .desk-menu hr{border:0;border-top:1px solid #808080;border-bottom:1px solid #fff;margin:3px 2px;}
 #toast{bottom:50px;}
 
+/* ============ 桌面概览 / DESKTOP DASHBOARD ============ */
+.desktop-stage{
+  position:fixed;left:112px;right:18px;top:14px;bottom:52px;z-index:3;
+  display:grid;grid-template-columns:minmax(0,1fr) 238px;
+  align-items:start;gap:0 16px;padding:16px 22px;pointer-events:none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 260'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.15' stroke-width='1.6'%3E%3Cpath d='M18 32h78v44h58M18 72h48v58h74v32h120M18 210h96v-46h64M442 36h-72v52h-48M442 96h-44v58h-96M442 186h-88v-42h-54'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.12'%3E%3Crect x='188' y='76' width='72' height='72' rx='4'/%3E%3Crect x='205' y='93' width='38' height='38' rx='2'/%3E%3C/g%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.1' stroke-width='1.2'%3E%3Cpath d='M188 92h-26M188 112h-26M188 132h-26M260 92h26M260 112h26M260 132h26M204 76V56M220 76V56M236 76V56M204 148v20M220 148v20M236 148v20'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.2'%3E%3Ccircle cx='18' cy='32' r='2.6'/%3E%3Ccircle cx='18' cy='72' r='2.6'/%3E%3Ccircle cx='18' cy='210' r='2.6'/%3E%3Ccircle cx='442' cy='36' r='2.6'/%3E%3Ccircle cx='442' cy='96' r='2.6'/%3E%3Ccircle cx='442' cy='186' r='2.6'/%3E%3C/g%3E%3C/svg%3E") no-repeat right 24px bottom 82px / 420px 238px,
+    radial-gradient(circle at 72% 12%,rgba(255,255,255,.08),transparent 46%),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.055) 0 1px,transparent 1px 76px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 76px);
+}
+.desktop-stage > *{pointer-events:auto;}
+.desk-col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.desk-col-main{align-items:flex-start;}
+.desk-col-rail{align-items:stretch;}
+.desk-plaque{
+  width:min(600px,100%);margin-top:5vh;
+  background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:5px 5px 0 rgba(0,0,0,.3);
+}
+.plaque-bar{
+  height:22px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 4px;
+  background:linear-gradient(90deg,#000080,#1084d0);color:#fff;
+  font-family:var(--ui);font-size:.68rem;font-weight:700;letter-spacing:.02em;
+}
+.plaque-bar-btns{display:flex;gap:2px;flex:none;}
+.plaque-bar-btns i{
+  display:block;width:14px;height:13px;background:var(--w98-face);
+  border:1px solid;border-color:#fff #404040 #404040 #fff;
+}
+.plaque-body{padding:14px 18px 13px;}
+.plaque-kicker{
+  margin:0 0 3px;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:#555;
+}
+.desk-plaque h1{
+  margin:0 0 7px;font-family:var(--ui);font-size:1.5rem;line-height:1.2;font-weight:700;
+  letter-spacing:-.01em;color:#000;
+}
+.plaque-lead{margin:0 0 11px;font-size:.76rem;line-height:1.55;color:#333;}
+.plaque-lead b{font-family:var(--mono);font-size:.86rem;color:var(--w98-navy);}
+.desk-search label{
+  display:block;margin:0 0 3px;font-family:var(--mono);font-size:.56rem;
+  letter-spacing:.08em;color:#555;
+}
+.desk-search > div{display:flex;gap:3px;}
+.desk-search input{
+  flex:1;min-width:0;height:26px;padding:0 6px;background:#fff;
+  border:2px solid;border-color:#808080 #fff #fff #808080;font-size:.74rem;outline:0;
+}
+.desk-search input:focus{outline:1px dotted #000;outline-offset:-4px;}
+.desk-search button{
+  flex:none;height:26px;padding:0 12px;background:var(--w98-face);
+  border:1px solid;border-color:#fff #404040 #404040 #fff;font-size:.72rem;font-weight:700;cursor:pointer;
+}
+.desk-search button:active{border-color:#404040 #fff #fff #404040;}
+.desk-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.desk-btn{
+  height:27px;padding:0 10px;background:var(--w98-face);color:#000;
+  border:1px solid;border-color:#fff #404040 #404040 #fff;font-size:.72rem;cursor:pointer;
+}
+.desk-btn:active{border-color:#404040 #fff #fff #404040;padding:1px 9px 0 11px;}
+.desk-btn.primary{font-weight:700;box-shadow:inset 0 0 0 1px #dfdfdf;}
+.desk-btn.primary::before{content:"▸ ";font-family:var(--mono);}
+.desk-tip{
+  margin-top:10px;padding-top:7px;border-top:1px solid #aca899;
+  font-size:.64rem;line-height:1.5;color:#555;
+}
+.desk-tip b{
+  display:inline-block;margin-right:4px;padding:0 3px;background:var(--w98-navy);color:#fff;
+  font-family:var(--mono);font-size:.54rem;letter-spacing:.06em;
+}
+.desk-clock{
+  padding:7px 10px 8px;
+  background:#101010;color:#8dff9f;font-family:var(--mono);
+  border:2px solid;border-color:#404040 #fff #fff #404040;
+  box-shadow:inset 0 0 0 1px #000,4px 4px 0 rgba(0,0,0,.25);
+}
+.desk-clock .widget-kicker{color:#79b884;}
+.desk-clock b{
+  display:block;margin:1px 0 0;font-size:1.72rem;line-height:1.05;letter-spacing:.05em;
+  text-shadow:0 0 7px rgba(125,255,155,.5);
+}
+.desk-clock span{display:block;font-size:.56rem;color:#a8d8b2;letter-spacing:.03em;}
+.desk-widget{
+  padding:8px 10px 9px;background:var(--w98-face);
+  border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:4px 4px 0 rgba(0,0,0,.22);
+}
+.widget-kicker{
+  display:block;font-family:var(--mono);font-size:.54rem;letter-spacing:.12em;color:#555;
+}
+.desk-stats dl{
+  display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin:5px 0 0;
+}
+.desk-stats dl div{
+  display:flex;align-items:baseline;justify-content:space-between;gap:4px;
+  border-bottom:1px dotted #808080;padding-bottom:1px;
+}
+.desk-stats dt{font-size:.64rem;color:#333;}
+.desk-stats dd{margin:0;font-family:var(--mono);font-size:.8rem;font-weight:700;}
+.desk-quick button{
+  display:block;width:100%;height:23px;margin-top:3px;padding:0 7px;text-align:left;
+  background:var(--w98-face);border:1px solid;border-color:#fff #404040 #404040 #fff;
+  font-size:.68rem;cursor:pointer;
+}
+.desk-quick button::before{content:"› ";font-family:var(--mono);color:#555;}
+.desk-quick button:hover{background:var(--w98-hi);}
+.desk-quick button:active{border-color:#404040 #fff #fff #404040;}
+.desk-quick .more{border-top:1px solid #aca899;margin-top:6px;padding-top:3px;color:var(--w98-navy);font-weight:700;}
+.desk-quick .more::before{content:"";}
+.desk-paths{width:min(600px,100%);}
+.desk-projects{width:min(600px,100%);}
+.desk-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-top:6px;}
+.desk-chips button{
+  display:flex;flex-direction:column;gap:1px;min-width:0;padding:4px 7px 5px;text-align:left;
+  background:var(--w98-face);border:1px solid;border-color:#fff #404040 #404040 #fff;cursor:pointer;
+}
+.desk-chips button:hover{background:var(--w98-hi);}
+.desk-chips button:active{border-color:#404040 #fff #fff #404040;}
+.desk-chips b{max-width:100%;font-size:.68rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.desk-chips span{max-width:100%;font-family:var(--mono);font-size:.46rem;letter-spacing:.06em;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.desk-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:6px;}
+.desk-levels button{
+  min-width:0;padding:5px 8px 6px;text-align:left;background:var(--w98-face);
+  border:1px solid;border-color:#fff #404040 #404040 #fff;cursor:pointer;
+}
+.desk-levels button:hover{background:var(--w98-hi);}
+.desk-levels button:active{border-color:#404040 #fff #fff #404040;}
+.desk-levels b{display:flex;align-items:baseline;justify-content:space-between;gap:6px;font-size:.7rem;}
+.desk-levels em{font-style:normal;font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--w98-navy);}
+.desk-levels span{display:block;margin-top:1px;font-size:.6rem;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.desk-ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:5px;}
+.desk-ds-grid button{
+  height:22px;padding:0 6px;text-align:left;background:var(--w98-face);
+  border:1px solid;border-color:#fff #404040 #404040 #fff;font-size:.64rem;cursor:pointer;
+}
+.desk-ds-grid button::before{content:"› ";font-family:var(--mono);color:#666;}
+.desk-ds-grid button:hover{background:var(--w98-hi);}
+.desk-ds-grid button:active{border-color:#404040 #fff #fff #404040;}
+.task-showdesk svg{width:17px;height:17px;}
+
+@media (max-width:1100px){
+  .desktop-stage{display:none!important;}
+}
+
+
 @media (min-width:1101px){
   .statusbar .start-btn{display:none;}
   .statusbar .start-btn + .status-sep{display:none;}
@@ -1465,102 +1610,111 @@ body.app-dragging{cursor:default;}
   .monitor{height:100dvh;padding:0;border:0;border-radius:0;box-shadow:none;}
   .screen{padding:0;border:0;border-radius:0;}
 }
-/* ================= 个人文件库 / PERSONAL LIBRARY ================= */
-.pl-view{display:flex;flex-direction:column;min-height:100%;background:var(--screen);}
+/* ================= 个人文件库 / PERSONAL LIBRARY — 98 skin ================= */
+.pl-view{display:flex;flex-direction:column;min-height:100%;background:var(--w98-face);color:#000;}
 .pl-drive{
-  flex:none;display:flex;align-items:center;gap:10px;padding:8px 10px;
-  background:linear-gradient(180deg,var(--bezel-hi),var(--bezel));
-  border-bottom:1px solid var(--bezel-lo);
+  flex:none;display:flex;align-items:center;gap:8px;padding:3px 5px;
+  background:var(--w98-face);border-bottom:1px solid var(--w98-shadow);
+  box-shadow:inset 0 1px 0 #fff;
 }
 .pl-drive-ico{
-  width:34px;height:26px;flex:none;position:relative;
-  background:#b9b2a0;border:1px solid #5f5748;box-shadow:inset 1px 1px 0 #f4ecd9;
+  width:32px;height:25px;flex:none;position:relative;
+  background:#c0c0c0;border:1px solid;
+  border-color:#fff #404040 #404040 #fff;
 }
-.pl-drive-ico::before{content:"";position:absolute;left:3px;right:3px;top:4px;height:8px;background:var(--navy-soft);border:1px solid #4a6478;}
-.pl-drive-ico::after{content:"";position:absolute;right:4px;bottom:4px;width:5px;height:4px;background:var(--green);border:1px solid #244f3a;}
-.pl-drive-info{min-width:0;line-height:1.25;}
-.pl-drive-info b{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;}
-.pl-drive-info span{display:block;font-size:.64rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pl-quota{width:110px;height:9px;flex:none;background:var(--screen-2);border:1px solid var(--line-2);box-shadow:var(--shadow-inset);padding:1px;}
-.pl-quota i{display:block;height:100%;background:var(--navy);transition:width .25s steps(6,end);}
-.pl-quota i.hot{background:var(--red);}
-.pl-drive-actions{margin-left:auto;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;}
-.pl-drive-actions .btn{min-height:25px;font-size:.68rem;}
+.pl-drive-ico::before{content:"";position:absolute;left:3px;right:3px;top:4px;height:7px;background:#000080;border:1px solid #000040;}
+.pl-drive-ico::after{content:"";position:absolute;right:4px;bottom:3px;width:4px;height:3px;background:#00a000;border:1px solid #005000;}
+.pl-drive-info{min-width:0;line-height:1.2;}
+.pl-drive-info b{display:block;font-family:var(--ui);font-size:.72rem;letter-spacing:.02em;}
+.pl-drive-info span{display:block;font-size:.62rem;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pl-quota{width:104px;height:11px;flex:none;background:#fff;border:1px solid;border-color:#808080 #fff #fff #808080;padding:1px;}
+.pl-quota i{display:block;height:100%;background:#000080;transition:width .25s steps(6,end);}
+.pl-quota i.hot{background:#a00000;}
+.pl-drive-actions{margin-left:auto;display:flex;flex-wrap:wrap;gap:3px;justify-content:flex-end;}
+.pl-drive-actions .btn{min-height:22px;font-size:.66rem;}
 
 .pl-pathbar{
-  flex:none;display:flex;align-items:center;gap:5px;padding:5px 8px;flex-wrap:wrap;
-  background:var(--screen-2);border-bottom:1px solid var(--line-2);font-size:.74rem;
+  flex:none;display:flex;align-items:center;gap:3px;padding:3px 5px;flex-wrap:wrap;
+  background:var(--w98-face);border-bottom:1px solid #aca899;font-size:.7rem;
 }
 .pl-crumb{
-  border:1px solid transparent;background:none;padding:2px 5px;font-size:.72rem;cursor:pointer;
-  font-family:var(--mono);letter-spacing:.02em;
+  border:1px solid transparent;background:none;padding:1px 5px;font-size:.68rem;cursor:pointer;
+  font-family:var(--ui);letter-spacing:0;color:#000;
 }
-.pl-crumb:hover{border-color:var(--line);background:var(--paper);}
-.pl-crumb.here{font-weight:700;color:var(--navy);}
-.pl-crumb-sep{font-family:var(--mono);color:var(--faint);font-size:.64rem;}
+.pl-crumb:hover{border-color:#fff #808080 #808080 #fff;background:var(--w98-hi);}
+.pl-crumb:active{border-color:#808080 #fff #fff #808080;}
+.pl-crumb.here{font-weight:700;}
+.pl-crumb-sep{font-family:var(--mono);color:#555;font-size:.6rem;}
 .pl-pathbar .pl-search{
-  margin-left:auto;display:flex;align-items:center;gap:4px;
+  margin-left:auto;display:flex;align-items:center;gap:3px;
 }
 .pl-pathbar input[type=search]{
-  height:24px;width:150px;border:1px solid var(--line-2);background:var(--paper);
-  padding:0 6px;font-size:.72rem;font-family:var(--ui);box-shadow:var(--shadow-inset);
+  height:22px;width:160px;border:1px solid;
+  border-color:#808080 #fff #fff #808080;background:#fff;color:#000;
+  padding:0 5px;font-size:.68rem;font-family:var(--ui);outline:0;
 }
-.pl-pathbar select{height:24px;border:1px solid var(--line-2);background:var(--paper);font-size:.7rem;}
+.pl-pathbar input[type=search]:focus{outline:1px dotted #000;outline-offset:-3px;}
+.pl-pathbar select{height:22px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:.66rem;}
 
-.pl-scroll{flex:1;min-height:0;overflow:auto;padding:8px;}
+.pl-scroll{flex:1;min-height:0;overflow:auto;padding:5px;}
 .pl-section-label{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--muted);
-  margin:2px 0 6px;display:flex;align-items:center;gap:6px;
+  font-family:var(--ui);font-size:.64rem;letter-spacing:.03em;color:#000;
+  margin:2px 0 4px;display:flex;align-items:center;gap:5px;font-weight:700;
 }
-.pl-section-label::after{content:"";flex:1;height:1px;background:var(--line);}
-.pl-catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:5px;margin-bottom:10px;}
+.pl-section-label::after{content:"";flex:1;height:1px;background:#aca899;}
+.pl-section-label span{font-weight:400;color:#555;}
+.pl-catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:3px;margin-bottom:7px;}
 .pl-cat{
-  display:flex;align-items:center;gap:7px;padding:6px 7px;border:1px solid var(--line);
-  background:var(--paper);cursor:pointer;text-align:left;font-size:.74rem;box-shadow:var(--shadow-btn);
-  min-width:0;
+  display:flex;align-items:center;gap:6px;padding:3px 5px;border:1px solid;
+  border-color:#fff #808080 #808080 #fff;background:var(--w98-face);
+  cursor:pointer;text-align:left;font-size:.7rem;min-width:0;color:#000;
 }
-.pl-cat:hover{background:var(--screen-2);border-color:var(--line-2);}
-.pl-cat:active{box-shadow:var(--shadow-inset);}
+.pl-cat:hover{background:var(--w98-hi);}
+.pl-cat:active{border-color:#808080 #fff #fff #808080;padding:4px 4px 2px 6px;}
 .pl-cat .folder-ico{flex:none;}
 .pl-cat .pl-cat-name{min-width:0;display:flex;flex-direction:column;line-height:1.2;}
-.pl-cat b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pl-cat span{font-family:var(--mono);font-size:.58rem;color:var(--faint);}
+.pl-cat b{font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pl-cat span{font-family:var(--ui);font-size:.58rem;color:#555;}
 .pl-cat .pl-cat-del{
-  margin-left:auto;flex:none;width:18px;height:18px;line-height:16px;text-align:center;
-  border:1px solid transparent;background:none;font-family:var(--mono);font-size:.7rem;color:var(--faint);
+  margin-left:auto;flex:none;width:17px;height:17px;line-height:15px;text-align:center;
+  border:1px solid transparent;background:none;font-family:var(--mono);font-size:.66rem;color:#555;
 }
-.pl-cat:hover .pl-cat-del{border-color:var(--line-2);background:var(--bezel-hi);color:var(--red);}
+.pl-cat:hover .pl-cat-del{border-color:#fff #808080 #808080 #fff;background:var(--w98-face);color:#a00000;}
 
-.pl-list{border:1px solid var(--line);background:var(--paper);}
+.pl-list{border:2px solid;border-color:#808080 #fff #fff #808080;background:#fff;}
 .pl-head{
-  display:grid;grid-template-columns:26px minmax(0,1fr) 150px 76px 132px 96px;gap:6px;
-  padding:3px 7px;background:var(--bezel-hi);border-bottom:1px solid var(--line-2);
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;color:var(--muted);
+  display:grid;grid-template-columns:22px minmax(0,1fr) 126px 62px 118px 92px;gap:0;
+  padding:0;background:var(--w98-face);border-bottom:1px solid #aca899;
+  font-family:var(--ui);font-size:.64rem;letter-spacing:0;color:#000;height:21px;align-items:stretch;
 }
+.pl-head span{display:flex;align-items:center;padding:0 5px;border-right:1px solid #aca899;border-left:1px solid #fff;white-space:nowrap;overflow:hidden;}
+.pl-head span:first-child{border-left:0;}
+.pl-head span:last-child{border-right:0;}
 .pl-row{
-  display:grid;grid-template-columns:26px minmax(0,1fr) 150px 76px 132px 96px;gap:6px;align-items:center;
-  padding:4px 7px;border-bottom:1px solid #ece5d4;font-size:.78rem;cursor:default;
+  display:grid;grid-template-columns:22px minmax(0,1fr) 126px 62px 118px 92px;gap:0;align-items:center;
+  padding:1px 2px;border-bottom:1px solid #f0f0f0;font-size:.72rem;cursor:default;min-height:22px;color:#000;
+  outline:1px dotted transparent;outline-offset:-2px;
 }
 .pl-row:last-child{border-bottom:0;}
-.pl-row:hover{background:var(--screen-2);}
-.pl-row.on{background:var(--navy);color:#fff;}
-.pl-row.on .pl-sub,.pl-row.on .pl-meta,.pl-row.on .pl-cat-path{color:#cfe0ef;}
-.pl-row .pl-check{width:14px;height:14px;margin:0;accent-color:var(--navy);}
-.pl-row .pl-name{display:flex;align-items:center;gap:7px;min-width:0;}
-.pl-name-wrap{min-width:0;display:flex;flex-direction:column;line-height:1.25;}
-.pl-name-wrap b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.8rem;}
-.pl-name-wrap span{font-size:.64rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pl-row:hover{background:#e8f0fb;}
+.pl-row.on{background:var(--w98-navy);color:#fff;outline:1px dotted #ffff80;}
+.pl-row.on .pl-name-wrap span,.pl-row.on .pl-meta,.pl-row.on .pl-cat-path{color:#d8e4f4;}
+.pl-row .pl-check{width:13px;height:13px;margin:0;accent-color:#000080;}
+.pl-row .pl-name{display:flex;align-items:center;gap:5px;min-width:0;padding-left:2px;}
+.pl-name-wrap{min-width:0;display:flex;flex-direction:column;line-height:1.2;}
+.pl-name-wrap b{font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.72rem;}
+.pl-name-wrap span{font-size:.6rem;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .pl-ico{
-  flex:none;width:22px;height:25px;position:relative;display:flex;align-items:flex-end;justify-content:center;
-  border:1px solid var(--ink-2);background:var(--paper);box-shadow:inset 0 0 0 1px #fff;
-  font-family:var(--mono);font-size:.42rem;font-weight:700;letter-spacing:-.02em;
-  color:#fff;padding-bottom:2px;background:var(--k-color,var(--muted));
+  flex:none;width:17px;height:20px;position:relative;display:flex;align-items:flex-end;justify-content:center;
+  border:1px solid #000;background:var(--paper);box-shadow:inset 0 0 0 1px #fff;
+  font-family:var(--mono);font-size:.38rem;font-weight:700;letter-spacing:-.02em;
+  color:#fff;padding-bottom:1px;background:var(--k-color,#6d6455);
 }
 .pl-ico::before{
-  content:"";position:absolute;right:-1px;top:-1px;width:8px;height:8px;
-  background:var(--paper);border-left:1px solid var(--ink-2);border-bottom:1px solid var(--ink-2);
+  content:"";position:absolute;right:-1px;top:-1px;width:6px;height:6px;
+  background:#fff;border-left:1px solid #000;border-bottom:1px solid #000;
 }
-.pl-ico span{position:relative;z-index:1;background:rgba(0,0,0,.18);padding:0 1px;}
+.pl-ico span{position:relative;z-index:1;background:rgba(0,0,0,.25);padding:0 1px;}
 .pl-ico.k-pdf{--k-color:#b23b2e;}
 .pl-ico.k-video{--k-color:#3a6b8f;}
 .pl-ico.k-audio{--k-color:#7a5b94;}
@@ -1569,96 +1723,97 @@ body.app-dragging{cursor:default;}
 .pl-ico.k-code{--k-color:#5b6f3a;}
 .pl-ico.k-archive{--k-color:#a06a24;}
 .pl-ico.k-other{--k-color:#6d6455;}
-.pl-meta{font-family:var(--mono);font-size:.6rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pl-cat-path{font-size:.65rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pl-row-actions{display:flex;gap:2px;justify-content:flex-end;opacity:.35;transition:opacity .12s;}
+.pl-meta{font-family:var(--ui);font-size:.64rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 5px;}
+.pl-cat-path{font-size:.62rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 5px;}
+.pl-row-actions{display:flex;gap:1px;justify-content:flex-end;padding-right:2px;opacity:.42;transition:opacity .12s;}
 .pl-row:hover .pl-row-actions,.pl-row.on .pl-row-actions,.pl-row:focus-within .pl-row-actions{opacity:1;}
 .pl-row-actions button{
-  width:22px;height:21px;border:1px solid var(--line-2);background:var(--bezel-hi);
-  font-family:var(--mono);font-size:.62rem;line-height:1;cursor:pointer;padding:0;
-  box-shadow:var(--shadow-btn);
+  width:19px;height:18px;border:1px solid;border-color:#fff #808080 #808080 #fff;background:var(--w98-face);
+  font-family:var(--ui);font-size:.58rem;line-height:1;cursor:pointer;padding:0;color:#000;
 }
-.pl-row-actions button:active{box-shadow:var(--shadow-inset);}
-.pl-row.on .pl-row-actions button{background:var(--bezel-hi);color:var(--ink);}
-.pl-empty{padding:30px 14px;text-align:center;}
-.pl-empty-kicker{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--amber);}
-.pl-empty b{display:block;font-size:1rem;margin:5px 0 4px;}
-.pl-empty p{font-size:.76rem;color:var(--muted);margin:0 0 10px;}
+.pl-row-actions button:hover{background:var(--w98-hi);}
+.pl-row-actions button:active{border-color:#808080 #fff #fff #808080;}
+.pl-row.on .pl-row-actions button{border-color:#fff #808080 #808080 #fff;color:#000;}
+.pl-empty{padding:28px 14px;text-align:center;}
+.pl-empty-kicker{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:#a04000;}
+.pl-empty b{display:block;font-size:.94rem;margin:5px 0 4px;}
+.pl-empty p{font-size:.72rem;color:#444;margin:0 0 10px;}
 .pl-empty .btn{margin:0 2px;}
 
 .pl-batch{
-  position:sticky;bottom:0;display:flex;align-items:center;gap:5px;flex-wrap:wrap;
-  padding:5px 8px;background:var(--bezel);border-top:1px solid var(--bezel-lo);
-  font-size:.72rem;z-index:2;
+  position:sticky;bottom:0;display:flex;align-items:center;gap:3px;flex-wrap:wrap;
+  padding:3px 5px;background:var(--w98-face);border-top:1px solid #aca899;
+  box-shadow:inset 0 1px 0 #fff;font-size:.68rem;z-index:2;
 }
-.pl-batch b{font-family:var(--mono);font-size:.66rem;color:var(--navy);}
-.pl-batch .btn{min-height:23px;font-size:.66rem;}
+.pl-batch b{font-family:var(--ui);font-size:.66rem;color:#000080;}
+.pl-batch .btn{min-height:21px;font-size:.64rem;}
 
 .pl-drop{
   position:absolute;inset:0;z-index:40;display:none;align-items:center;justify-content:center;
-  background:rgba(32,72,111,.16);border:3px dashed var(--navy);pointer-events:none;
+  background:rgba(0,0,128,.12);border:3px dashed #000080;pointer-events:none;
 }
 .list-pane.pl-dragover .pl-drop{display:flex;}
 .pl-drop-box{
-  background:var(--bezel-hi);border:1px solid var(--navy-2);box-shadow:6px 6px 0 rgba(0,0,0,.25);
-  padding:18px 26px;text-align:center;font-size:.86rem;
+  background:var(--w98-face);border:2px solid;border-color:#fff #404040 #404040 #fff;
+  box-shadow:4px 4px 0 rgba(0,0,0,.28);padding:16px 24px;text-align:center;font-size:.8rem;
 }
-.pl-drop-box b{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--navy);margin-bottom:4px;}
+.pl-drop-box b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:#000080;margin-bottom:4px;}
 
 .pl-storage-note{
-  display:flex;align-items:center;gap:6px;padding:4px 0 7px;flex-wrap:wrap;
-  font-family:var(--mono);font-size:.58rem;color:var(--faint);
+  display:flex;align-items:center;gap:5px;padding:3px 0 5px;flex-wrap:wrap;
+  font-family:var(--ui);font-size:.6rem;color:#555;
 }
-.pl-storage-note .dot{width:6px;height:6px;background:var(--green);border:1px solid #244f3a;flex:none;}
+.pl-storage-note .dot{width:6px;height:6px;background:#00a000;border:1px solid #005000;flex:none;}
 
 /* 选中文件预览 */
 .pl-file-preview{padding:2px 0;}
-.pl-preview-kicker{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--amber);margin:0 0 3px;}
-.pl-preview-title{font-size:1.05rem;line-height:1.25;font-weight:700;margin:0 0 4px;word-break:break-all;}
-.pl-preview-sub{font-size:.72rem;color:var(--muted);margin:0 0 10px;word-break:break-all;}
+.pl-preview-kicker{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;color:#a04000;margin:0 0 3px;}
+.pl-preview-title{font-size:1rem;line-height:1.25;font-weight:700;margin:0 0 4px;word-break:break-all;}
+.pl-preview-sub{font-size:.68rem;color:#444;margin:0 0 8px;word-break:break-all;}
 .pl-preview-stage{
-  border:1px solid var(--line-2);background:var(--screen-2);padding:5px;margin:0 0 10px;
+  border:2px solid;border-color:#808080 #fff #fff #808080;background:#fff;padding:4px;margin:0 0 9px;
   min-height:70px;display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
-.pl-preview-stage img{max-width:100%;max-height:220px;object-fit:contain;border:1px solid var(--line);background:#fff;}
+.pl-preview-stage img{max-width:100%;max-height:220px;object-fit:contain;border:1px solid #aca899;background:#fff;}
 .pl-preview-stage video,.pl-preview-stage audio{max-width:100%;width:100%;}
 .pl-preview-stage pre{
-  width:100%;max-height:240px;overflow:auto;margin:0;padding:7px;background:var(--paper);
-  border:1px solid var(--line);font-family:var(--mono);font-size:.62rem;line-height:1.5;white-space:pre-wrap;
+  width:100%;max-height:240px;overflow:auto;margin:0;padding:6px;background:#fff;
+  border:1px solid #aca899;font-family:var(--mono);font-size:.6rem;line-height:1.5;white-space:pre-wrap;
   word-break:break-all;
 }
-.pl-preview-stage .pl-big-ico{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.08em;}
+.pl-preview-stage .pl-big-ico{font-family:var(--mono);font-size:.66rem;color:#555;letter-spacing:.08em;}
 
 /* ================= 复古上传窗口 ================= */
 .pl-dlg{
   width:min(560px,calc(100vw - 34px));max-height:calc(100vh - 60px);
-  padding:0;border:1px solid #0d2439;background:var(--bezel);box-shadow:8px 10px 0 rgba(0,0,0,.35);
+  padding:0;border:2px solid;border-color:#fff #404040 #404040 #fff;background:var(--w98-face);
+  box-shadow:4px 4px 0 rgba(0,0,0,.35);
 }
 .pl-dlg.wide{width:min(700px,calc(100vw - 34px));}
-.pl-dlg::backdrop{background:rgba(15,12,8,.62);}
-.pl-dlg .dlg-titlebar{height:29px;}
-.pl-dlg .dlg-body{background:var(--bezel);padding:10px 12px;}
-.pl-dlg .dlg-foot{background:var(--bezel);}
-.pl-up-body{font-size:.76rem;}
+.pl-dlg::backdrop{background:rgba(0,0,0,.55);}
+.pl-dlg .dlg-titlebar{height:26px;background:linear-gradient(90deg,#000080,#0a6fbf 72%,#1084d0);padding:0 3px 0 5px;}
+.pl-dlg .dlg-body{background:var(--w98-face);padding:8px;border:0;}
+.pl-dlg .dlg-foot{background:var(--w98-face);border-top:1px solid #aca899;box-shadow:inset 0 1px 0 #fff;padding:5px 7px;}
+.pl-up-body{font-size:.72rem;}
 .pl-up-stage{
-  display:flex;gap:12px;align-items:flex-start;padding:12px 12px 10px;
-  background:var(--screen);border:1px solid var(--bezel-lo);box-shadow:var(--shadow-inset);
+  display:flex;gap:10px;align-items:flex-start;padding:9px 9px 8px;
+  background:var(--w98-face);border:2px solid;border-color:#808080 #fff #fff #808080;
 }
 .pl-floppy{
-  position:relative;width:58px;height:58px;flex:none;background:#3a3a3a;border:2px solid #1b1b1b;
+  position:relative;width:54px;height:54px;flex:none;background:#3a3a3a;border:2px solid #1b1b1b;
   box-shadow:inset 2px 2px 0 #6f6f6f,inset -2px -2px 0 #111;
 }
 .pl-floppy::before{
-  content:"";position:absolute;left:12px;top:2px;width:30px;height:18px;
+  content:"";position:absolute;left:11px;top:2px;width:28px;height:17px;
   background:#c9c4b6;border:1px solid #141414;
 }
 .pl-floppy::after{
-  content:"";position:absolute;left:7px;bottom:5px;width:40px;height:22px;
+  content:"";position:absolute;left:6px;bottom:5px;width:38px;height:20px;
   background:#e6e0cf;border:1px solid #141414;
   background-image:linear-gradient(#8c8779 0 2px,transparent 2px 5px,#8c8779 5px 7px,transparent 7px);
 }
 .pl-floppy .pl-shutter{
-  position:absolute;left:17px;top:4px;width:19px;height:10px;background:#9d998c;border:1px solid #0d0d0d;
+  position:absolute;left:16px;top:4px;width:18px;height:9px;background:#9d998c;border:1px solid #0d0d0d;
   transform-origin:left center;
 }
 .pl-dlg.busy .pl-shutter{animation:pl-shutter .7s steps(2,end) infinite;}
@@ -1669,62 +1824,56 @@ body.app-dragging{cursor:default;}
 .pl-dlg.busy .pl-led{animation:pl-led .42s steps(1,end) infinite;}
 @keyframes pl-led{50%{background:#ff5a41;box-shadow:0 0 5px #ff5a41;}}
 .pl-up-info{min-width:0;flex:1;}
-.pl-up-kicker{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--amber);}
-.pl-up-title{font-size:.84rem;font-weight:700;line-height:1.3;margin:2px 0;word-break:break-all;}
-.pl-up-sub{font-size:.68rem;color:var(--muted);word-break:break-all;}
-.pl-up-count{font-family:var(--mono);font-size:.6rem;color:var(--navy);margin-left:auto;flex:none;}
+.pl-up-kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:#a04000;}
+.pl-up-title{font-size:.8rem;font-weight:700;line-height:1.3;margin:2px 0;word-break:break-all;}
+.pl-up-sub{font-size:.64rem;color:#444;word-break:break-all;}
+.pl-up-count{font-family:var(--mono);font-size:.58rem;color:#000080;margin-left:auto;flex:none;}
 .pl-progress{
-  margin-top:8px;height:18px;background:var(--screen-2);border:1px solid var(--bezel-lo);
-  box-shadow:var(--shadow-inset);padding:2px;position:relative;overflow:hidden;
+  margin-top:7px;height:18px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;
+  padding:2px;position:relative;overflow:hidden;
 }
 .pl-progress i{
   display:block;height:100%;width:0;
-  background:repeating-linear-gradient(90deg,var(--navy) 0 8px,var(--navy-2) 8px 10px);
+  background:repeating-linear-gradient(90deg,#000080 0 8px,#0000a8 8px 10px);
   transition:width .08s linear;
 }
-.pl-progress.scan i{
-  background:repeating-linear-gradient(90deg,var(--green) 0 6px,#24523c 6px 8px);
-}
+.pl-progress.scan i{background:repeating-linear-gradient(90deg,#008000 0 6px,#005a00 6px 8px);}
 .pl-progress .pl-progress-label{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:.56rem;color:var(--ink);text-shadow:0 1px 0 #fff;
+  font-family:var(--mono);font-size:.54rem;color:#000;text-shadow:0 1px 0 #fff;
 }
-.pl-stage-list{
-  display:flex;gap:3px;margin:7px 0 9px;flex-wrap:wrap;
-}
+.pl-stage-list{display:flex;gap:2px;margin:6px 0 8px;flex-wrap:wrap;}
 .pl-stage-chip{
-  font-family:var(--mono);font-size:.54rem;letter-spacing:.02em;padding:1px 5px;
-  border:1px solid var(--line-2);background:var(--screen-2);color:var(--faint);
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.02em;padding:1px 5px;
+  border:1px solid #808080;background:var(--w98-face);color:#555;
 }
-.pl-stage-chip.on{background:var(--navy);color:#fff;border-color:var(--navy-2);}
-.pl-stage-chip.done{background:var(--bezel-hi);color:var(--green);border-color:var(--green);}
+.pl-stage-chip.on{background:#000080;color:#fff;border-color:#000040;}
+.pl-stage-chip.done{background:var(--w98-face);color:#006000;border-color:#006000;}
 .pl-stage-chip.done::before{content:"✓ ";}
 
 .pl-up-log{
-  height:84px;overflow:auto;background:var(--paper);border:1px solid var(--bezel-lo);
-  box-shadow:var(--shadow-inset);padding:4px 6px;font-family:var(--mono);font-size:.58rem;
-  line-height:1.5;color:var(--ink-2);
+  height:84px;overflow:auto;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;
+  padding:3px 5px;font-family:var(--mono);font-size:.56rem;
+  line-height:1.5;color:#222;
 }
 .pl-up-log div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pl-up-log b{color:var(--navy);}
-.pl-up-log .ok{color:var(--green);}
-.pl-up-log .warn{color:var(--amber);}
-.pl-up-log .err{color:var(--red);}
+.pl-up-log b{color:#000080;}
+.pl-up-log .ok{color:#006000;}
+.pl-up-log .warn{color:#a04000;}
+.pl-up-log .err{color:#a00000;}
 
-.pl-review-list{margin-top:6px;border:1px solid var(--line-2);background:var(--paper);max-height:220px;overflow:auto;}
+.pl-review-list{margin-top:5px;border:2px solid;border-color:#808080 #fff #fff #808080;background:#fff;max-height:220px;overflow:auto;}
 .pl-review-row{
-  display:grid;grid-template-columns:minmax(0,1fr) 150px 46px;gap:5px;align-items:center;
-  padding:4px 6px;border-bottom:1px solid #ece5d4;font-size:.68rem;
+  display:grid;grid-template-columns:minmax(0,1fr) 150px 46px;gap:4px;align-items:center;
+  padding:3px 5px;border-bottom:1px solid #e0e0e0;font-size:.64rem;
 }
 .pl-review-row:last-child{border-bottom:0;}
 .pl-review-row .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pl-review-row select{height:23px;border:1px solid var(--line-2);background:var(--screen);font-size:.66rem;max-width:150px;}
-.pl-conf{
-  font-family:var(--mono);font-size:.54rem;text-align:center;padding:1px 0;border:1px solid;
-}
-.pl-conf.high{color:var(--green);border-color:var(--green);background:#eef4ec;}
-.pl-conf.mid{color:var(--amber);border-color:var(--amber);background:#f8f0e2;}
-.pl-conf.low{color:var(--red);border-color:var(--red);background:#f6eae6;}
+.pl-review-row select{height:21px;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;font-size:.62rem;max-width:150px;}
+.pl-conf{font-family:var(--mono);font-size:.52rem;text-align:center;padding:1px 0;border:1px solid;}
+.pl-conf.high{color:#006000;border-color:#006000;background:#eef7f0;}
+.pl-conf.mid{color:#a04000;border-color:#a04000;background:#fff4e8;}
+.pl-conf.low{color:#a00000;border-color:#a00000;background:#ffecec;}
 
 /* 飞行动画 */
 .fx-fly{
@@ -1736,62 +1885,62 @@ body.app-dragging{cursor:default;}
 .fx-shake{animation:fx-shake .4s steps(2,end) 1;}
 @keyframes fx-shake{25%{transform:translateX(-3px)}50%{transform:translateX(3px)}75%{transform:translateX(-2px)}}
 .status-sound{
-  border:0;background:none;font-family:var(--mono);font-size:.6rem;color:var(--ink-2);
+  border:0;background:none;font-family:var(--mono);font-size:.6rem;color:#222;
   padding:0 6px;cursor:pointer;
 }
-.status-sound.off{color:var(--faint);text-decoration:line-through;}
+.status-sound.off{color:#777;text-decoration:line-through;}
 .fx-notice{
   position:fixed;left:50%;bottom:82px;transform:translateX(-50%);z-index:12000;
-  display:flex;align-items:center;gap:6px;padding:7px 9px;background:var(--bezel-hi);
-  border:1px solid var(--bezel-lo);box-shadow:6px 6px 0 rgba(0,0,0,.3);font-size:.7rem;
+  display:flex;align-items:center;gap:6px;padding:5px 7px;background:var(--w98-face);
+  border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:4px 4px 0 rgba(0,0,0,.3);font-size:.68rem;
 }
-.fx-notice button{min-height:22px;font-size:.64rem;border:1px solid var(--bezel-lo);background:var(--bezel);cursor:pointer;box-shadow:var(--shadow-btn);}
-.fx-notice button:active{box-shadow:var(--shadow-inset);}
-.fx-notice .fx-notice-yes{background:var(--navy);color:#fff;border-color:var(--navy-2);font-weight:700;}
+.fx-notice button{min-height:21px;font-size:.62rem;border:1px solid;border-color:#fff #808080 #808080 #fff;background:var(--w98-face);cursor:pointer;}
+.fx-notice button:active{border-color:#808080 #fff #fff #808080;}
+.fx-notice .fx-notice-yes{background:#000080;color:#fff;border-color:#fff #000040 #000040 #fff;font-weight:700;}
 
 /* AI 任务面板 */
 .pl-ai-preset{
-  display:flex;gap:7px;align-items:flex-start;padding:7px 8px;border:1px solid var(--line);
-  background:var(--paper);cursor:pointer;text-align:left;width:100%;box-shadow:var(--shadow-btn);
-  margin-bottom:4px;
+  display:flex;gap:6px;align-items:flex-start;padding:5px 6px;border:1px solid;
+  border-color:#fff #808080 #808080 #fff;background:var(--w98-face);cursor:pointer;text-align:left;width:100%;
+  margin-bottom:3px;color:#000;
 }
-.pl-ai-preset:hover{background:var(--screen-2);}
-.pl-ai-preset.on{background:var(--navy);color:#fff;border-color:var(--navy-2);}
-.pl-ai-preset b{display:block;font-size:.74rem;}
-.pl-ai-preset span{display:block;font-size:.62rem;color:var(--muted);line-height:1.45;}
-.pl-ai-preset.on span{color:#cfe0ef;}
-.pl-ai-preset .num{font-family:var(--mono);font-size:.62rem;color:var(--amber);flex:none;}
-.pl-ai-preset.on .num{color:#f0d49b;}
+.pl-ai-preset:hover{background:var(--w98-hi);}
+.pl-ai-preset.on{background:#000080;color:#fff;border-color:#fff #000040 #000040 #fff;}
+.pl-ai-preset b{display:block;font-size:.7rem;font-weight:400;}
+.pl-ai-preset span{display:block;font-size:.6rem;color:#555;line-height:1.45;}
+.pl-ai-preset.on span{color:#d8e4f4;}
+.pl-ai-preset .num{font-family:var(--mono);font-size:.6rem;color:#a04000;flex:none;}
+.pl-ai-preset.on .num{color:#ffe080;}
 .pl-ai-rules{
-  margin-top:6px;padding:7px 9px;background:var(--screen-2);border-left:3px solid var(--amber);
-  font-size:.68rem;line-height:1.6;color:var(--ink-2);
+  margin-top:5px;padding:6px 7px;background:#ffffe1;border:1px solid #aca899;
+  font-size:.64rem;line-height:1.6;color:#222;
 }
-.pl-ai-rules b{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;color:var(--amber);display:block;margin-bottom:2px;}
-.pl-ai-status{margin-top:7px;font-family:var(--mono);font-size:.6rem;color:var(--muted);min-height:16px;}
+.pl-ai-rules b{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:#a04000;display:block;margin-bottom:2px;}
+.pl-ai-status{margin-top:6px;font-family:var(--mono);font-size:.58rem;color:#555;min-height:16px;}
 
 /* 云端同步 */
-.pl-sync-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.pl-sync-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
 .pl-sync-grid .field{margin:0;}
 .pl-sync-status{
-  margin-top:8px;padding:7px 9px;background:var(--screen-2);border:1px solid var(--line-2);
-  font-family:var(--mono);font-size:.6rem;color:var(--ink-2);line-height:1.6;white-space:pre-wrap;
+  margin-top:7px;padding:6px 7px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;
+  font-family:var(--mono);font-size:.58rem;color:#222;line-height:1.6;white-space:pre-wrap;
 }
 .pl-sync-badge{
-  display:inline-block;padding:1px 5px;border:1px solid var(--green);color:var(--green);
-  font-family:var(--mono);font-size:.56rem;background:#eef4ec;white-space:nowrap;
+  display:inline-block;padding:0 4px;border:1px solid #006000;color:#006000;
+  font-family:var(--mono);font-size:.54rem;background:#eef7f0;white-space:nowrap;
 }
-.pl-sync-badge.off{border-color:var(--faint);color:var(--faint);background:var(--screen-2);}
+.pl-sync-badge.off{border-color:#808080;color:#666;background:var(--w98-face);}
 
 /* 窄屏 */
 @media (max-width:900px){
-  .pl-head,.pl-row{grid-template-columns:24px minmax(0,1fr) 96px 70px 80px;}
+  .pl-head,.pl-row{grid-template-columns:20px minmax(0,1fr) 88px 58px 92px;}
   .pl-head span:nth-child(5),.pl-row .pl-cat-path{display:none;}
 }
 @media (max-width:640px){
   .pl-drive{flex-wrap:wrap;}
   .pl-quota{width:80px;}
   .pl-drive-actions{width:100%;justify-content:flex-start;}
-  .pl-head,.pl-row{grid-template-columns:22px minmax(0,1fr) 64px 62px;}
+  .pl-head,.pl-row{grid-template-columns:20px minmax(0,1fr) 66px 58px;}
   .pl-head span:nth-child(3),.pl-row .pl-cat-path,.pl-row .pl-meta:nth-of-type(2){display:none;}
   .pl-pathbar input[type=search]{width:110px;}
   .pl-dlg{width:calc(100vw - 20px);}
@@ -1799,6 +1948,170 @@ body.app-dragging{cursor:default;}
 @media (prefers-reduced-motion:reduce){
   html:not(.fx-force) .pl-dlg.busy .pl-shutter,
   html:not(.fx-force) .pl-dlg.busy .pl-led{animation:none;}
+}
+
+/* ================= EE-TOOLS 工程计算器 ================= */
+.calc-modal{
+  padding:0;border:0;background:transparent;color:#000;
+  width:min(1000px,calc(100vw - 28px));max-width:1000px;max-height:calc(100dvh - 30px);
+}
+.calc-modal::backdrop{background:rgba(0,0,0,.55);}
+.calc-shell{
+  display:flex;flex-direction:column;width:100%;max-height:calc(100dvh - 30px);
+  background:var(--w98-face);border:2px solid;
+  border-color:#fff var(--w98-dark) var(--w98-dark) #fff;
+  box-shadow:4px 4px 0 rgba(0,0,0,.35);
+  font-family:var(--ui);
+}
+.calc-titlebar{
+  flex:none;height:26px;display:flex;align-items:center;gap:5px;padding:0 3px 0 5px;
+  background:linear-gradient(90deg,#000080,#0a6fbf 72%,#1084d0);
+  color:#fff;font-size:.76rem;font-weight:700;
+}
+.calc-app-ico{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;background:#d4d0c8;color:#000080;border:1px solid #000;font-size:11px;line-height:1;flex:none;}
+.calc-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.calc-title-spacer{flex:1;}
+.calc-x{
+  width:20px;height:18px;border:1px solid;border-color:#fff #404040 #404040 #fff;
+  background:var(--w98-face);color:#000;font-family:var(--mono);font-size:.7rem;
+  line-height:1;cursor:pointer;padding:0;flex:none;
+}
+.calc-x:active{border-color:#404040 #fff #fff #404040;}
+.calc-menubar{
+  flex:none;display:flex;align-items:center;gap:2px;height:22px;padding:0 3px;
+  border-bottom:1px solid var(--w98-shadow);box-shadow:inset 0 1px 0 #fff;font-size:.7rem;
+}
+.calc-menubar > span{padding:1px 6px;}
+.calc-menubar-spacer{flex:1;}
+.calc-menubar > span:last-child{color:#555;font-family:var(--mono);font-size:.58rem;letter-spacing:.02em;}
+.calc-tabs{
+  flex:none;display:flex;align-items:flex-end;gap:2px;padding:5px 5px 0;
+  background:var(--w98-face);border-bottom:1px solid var(--w98-shadow);
+  overflow-x:auto;scrollbar-width:thin;
+}
+.calc-tabs button{
+  appearance:none;flex:none;height:26px;padding:0 10px;border:1px solid;
+  border-color:#fff var(--w98-dark) transparent #fff;background:var(--w98-face);
+  font-family:var(--ui);font-size:.7rem;cursor:pointer;position:relative;top:1px;
+  box-shadow:inset 1px 1px 0 #dfdfdf;
+}
+.calc-tabs button:hover{background:var(--w98-hi);}
+.calc-tabs button.on{
+  top:0;height:28px;font-weight:700;border-bottom-color:var(--w98-face);
+  background:var(--w98-face);z-index:1;
+}
+.calc-body{flex:1;min-height:0;overflow:auto;padding:8px;background:var(--w98-face);}
+.calc-panel[hidden]{display:none!important;}
+
+.calc-cols{display:grid;grid-template-columns:330px minmax(0,1fr);gap:8px;align-items:start;}
+.calc-group{
+  margin:0;padding:9px 9px 10px;border:1px solid;
+  border-color:var(--w98-shadow) #fff #fff var(--w98-shadow);
+  box-shadow:inset 0 1px 0 #fff;
+  min-width:0;
+}
+.calc-group > legend{padding:0 4px;font-size:.7rem;font-weight:700;}
+.calc-legend-2{display:block;margin:10px 0 4px;padding:3px 0 0;border-top:1px solid #aca899;font-size:.68rem;font-weight:700;}
+.calc-field{display:grid;grid-template-columns:104px minmax(0,1fr);align-items:center;gap:5px;margin-bottom:5px;}
+.calc-field > span{font-size:.68rem;text-align:right;color:#000;line-height:1.15;}
+.calc-field input[type=number],.calc-field select{
+  width:100%;height:22px;min-width:0;border:1px solid;
+  border-color:#808080 #fff #fff #808080;background:#fff;color:#000;
+  padding:0 4px;font-family:var(--mono);font-size:.68rem;outline:0;
+}
+.calc-field input[type=number]:focus,.calc-field select:focus{outline:1px dotted #000;outline-offset:-3px;}
+.calc-field input:disabled,.calc-field select:disabled{background:#d4d0c8;color:#666;}
+.calc-radios{display:flex;flex-direction:column;gap:3px;margin:7px 0 8px;font-size:.68rem;}
+.calc-radios label{display:flex;align-items:center;gap:4px;}
+.calc-radios input{accent-color:#000080;margin:0;}
+.calc-btn{
+  min-height:24px;padding:0 9px;border:1px solid;
+  border-color:#fff #404040 #404040 #fff;background:var(--w98-face);
+  font-family:var(--ui);font-size:.7rem;cursor:pointer;
+  box-shadow:inset 1px 1px 0 #dfdfdf;
+}
+.calc-btn:hover{background:var(--w98-hi);}
+.calc-btn:active{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;padding:1px 8px 0 10px;}
+.calc-btn.primary{font-weight:700;outline:1px solid #000;outline-offset:-3px;}
+.calc-group > .calc-btn.primary{width:100%;margin-top:2px;}
+.calc-hint{margin:7px 0 0;font-size:.62rem;line-height:1.5;color:#444;}
+.calc-subgrid{display:block;}
+
+.calc-result{
+  min-height:260px;padding:9px 10px;background:#fff;
+  border:2px solid;border-color:#808080 #fff #fff #808080;
+  font-size:.72rem;line-height:1.5;
+}
+.calc-out-head{display:flex;align-items:center;gap:6px;padding-bottom:4px;border-bottom:1px solid #aca899;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:#555;}
+.calc-badge{margin-left:auto;padding:1px 5px;border:1px solid #808080;background:var(--w98-face);font-family:var(--ui);font-size:.58rem;letter-spacing:0;color:#000;}
+.calc-badge.warn{border-color:#a04000;color:#a04000;background:#fff4e8;}
+.calc-big{
+  margin:10px 0 2px;font-family:var(--mono);font-size:2rem;font-weight:700;line-height:1.05;
+  color:#000080;letter-spacing:-.02em;word-break:break-word;
+}
+.calc-big small{font-family:var(--ui);font-size:.72rem;font-weight:400;color:#333;margin-left:5px;letter-spacing:0;}
+.calc-sub{font-size:.7rem;color:#444;margin-bottom:8px;word-break:break-word;}
+.calc-kv{width:100%;border-collapse:collapse;margin-top:4px;font-size:.7rem;}
+.calc-kv th,.calc-kv td{padding:3px 5px;border-bottom:1px dotted #c8c4bb;text-align:left;vertical-align:top;}
+.calc-kv th{width:46%;font-weight:400;color:#444;}
+.calc-kv td{font-family:var(--mono);font-size:.68rem;}
+.calc-note{
+  margin-top:9px;padding:6px 7px;border:1px solid #aca899;background:#ffffe1;
+  font-size:.64rem;line-height:1.55;color:#333;
+}
+.calc-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.64rem;}
+.calc-table th,.calc-table td{border:1px solid #aca899;padding:3px 4px;text-align:center;white-space:nowrap;}
+.calc-table th{background:var(--w98-face);font-weight:700;}
+.calc-table td.num{font-family:var(--mono);}
+
+/* BOM */
+.calc-bom-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:7px;}
+.calc-bom-hint{margin-left:auto;font-size:.62rem;color:#555;}
+.calc-bom-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:7px;align-items:stretch;}
+.calc-section-title{font-size:.68rem;font-weight:700;margin-bottom:3px;}
+.calc-bom-input{display:flex;flex-direction:column;min-width:0;}
+.calc-bom-input textarea{
+  flex:1;width:100%;min-height:330px;resize:vertical;border:2px solid;
+  border-color:#808080 #fff #fff #808080;background:#fff;padding:5px;
+  font-family:var(--mono);font-size:.64rem;line-height:1.55;outline:0;
+}
+.calc-bom-output{min-height:330px;max-height:430px;overflow:auto;padding:7px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;}
+.calc-bom-sum{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;margin-bottom:7px;}
+.calc-bom-sum > div{padding:4px 2px;border:1px solid #aca899;background:var(--w98-face);text-align:center;}
+.calc-bom-sum b{display:block;font-family:var(--mono);font-size:.9rem;color:#000080;}
+.calc-bom-sum span{display:block;font-size:.56rem;color:#444;}
+.calc-bom-sum .bad{border-color:#a04000;background:#fff0e6;}
+.calc-bom-sum .bad b{color:#a04000;}
+.calc-issues{margin:0 0 7px;padding:5px 6px;border:1px solid #a04000;background:#fff4e8;font-size:.62rem;line-height:1.55;}
+.calc-issues.ok{border-color:#3f7a5d;background:#eef7f0;}
+.calc-bom-tablewrap{max-height:290px;overflow:auto;border:1px solid #aca899;}
+.bom-table{margin:0;font-size:.6rem;}
+.bom-table th{position:sticky;top:0;z-index:1;}
+.bom-table td.refs{text-align:left;max-width:170px;white-space:normal;word-break:break-all;font-family:var(--mono);font-size:.58rem;}
+
+.calc-status{
+  flex:none;display:flex;align-items:center;gap:6px;height:22px;padding:0 4px;
+  border-top:1px solid #fff;box-shadow:inset 0 1px 0 #dfdfdf;font-size:.62rem;color:#000;
+}
+.calc-status > span:first-child{padding:0 5px;border:1px solid;border-color:#808080 #fff #fff #808080;min-width:150px;}
+.calc-status-right{margin-left:auto;font-family:var(--mono);font-size:.56rem;color:#555;}
+
+@media (max-width:860px){
+  .calc-cols{grid-template-columns:1fr;}
+  .calc-bom-grid{grid-template-columns:1fr;}
+  .calc-bom-input textarea{min-height:180px;}
+  .calc-bom-output{min-height:220px;max-height:320px;}
+  .calc-bom-sum{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .calc-result{min-height:0;}
+}
+@media (max-width:520px){
+  .calc-modal{width:calc(100vw - 10px);max-height:calc(100dvh - 10px);}
+  .calc-shell{max-height:calc(100dvh - 10px);}
+  .calc-field{grid-template-columns:88px minmax(0,1fr);}
+  .calc-field > span{font-size:.62rem;}
+  .calc-tabs button{padding:0 7px;font-size:.64rem;}
+  .calc-big{font-size:1.5rem;}
+  .calc-bom-hint{display:none;}
 }
 
 </style>
@@ -1835,11 +2148,115 @@ body.app-dragging{cursor:default;}
     <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M2 8h11l3 4h14v16H2z" fill="#d9c79a" stroke="#6f5524"/><path d="M2 12h28" stroke="#6f5524"/><circle cx="16" cy="19" r="4" fill="#20486f"/><path d="M9 28c1-4 4-6 7-6s6 2 7 6z" fill="#20486f"/></svg>
     <span>我的文件</span>
   </button>
+  <button type="button" class="desk-icon" data-desk="calc" title="打开工程计算器">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="2" width="22" height="28" fill="#d4d0c8" stroke="#000"/><rect x="8" y="5" width="16" height="6" fill="#29452f" stroke="#000"/><path d="M10 7h9" stroke="#8dff9f" stroke-width="1.4"/><g fill="#404040" stroke="#000" stroke-width=".5"><rect x="8" y="14" width="4" height="4"/><rect x="14" y="14" width="4" height="4"/><rect x="20" y="14" width="4" height="4"/><rect x="8" y="20" width="4" height="4"/><rect x="14" y="20" width="4" height="4"/><rect x="20" y="20" width="4" height="4"/><rect x="8" y="26" width="10" height="2"/><rect x="20" y="26" width="4" height="2"/></g><rect x="20" y="20" width="4" height="4" fill="#b0501e"/></svg>
+    <span>工程计算器</span>
+  </button>
+  <button type="button" class="desk-icon" data-desk="tools" title="打开在线工程工具">
+    <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="6" width="26" height="20" fill="#fff" stroke="#000"/><rect x="5" y="8" width="10" height="7" fill="#e8e8e8" stroke="#808080"/><path d="M6 10h8M6 12.5h5" stroke="#20486f"/><g fill="#c0c0c0" stroke="#000" stroke-width=".7"><rect x="18" y="8" width="9" height="3"/><rect x="18" y="12.5" width="9" height="3"/><rect x="18" y="17" width="9" height="3"/><rect x="5" y="19" width="10" height="4"/></g><path d="M8 27l5-8 4 3 6-8" fill="none" stroke="#2f6b4f" stroke-width="1.8"/><circle cx="8" cy="27" r="1.7" fill="#b02020"/><circle cx="23" cy="14" r="1.7" fill="#b02020"/></svg>
+    <span>在线工具</span>
+  </button>
   <button type="button" class="desk-icon" data-desk="help" title="打开使用说明">
     <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path d="M4 5h9c2 0 3 1 3 3v19c0-2-1-3-3-3H4z" fill="#fff" stroke="#000"/><path d="M28 5h-9c-2 0-3 1-3 3v19c0-2 1-3 3-3h9z" fill="#e8e8e8" stroke="#000"/><text x="16" y="23" text-anchor="middle" font-size="13" font-weight="700" font-family="Tahoma" fill="#20486f">?</text></svg>
     <span>使用说明</span>
   </button>
 </nav>
+
+<section class="desktop-stage" aria-label="桌面概览">
+  <div class="desk-col desk-col-main">
+  <div class="desk-plaque">
+    <div class="plaque-bar">
+      <span>EE-INDEX 98 — 桌面</span>
+      <span class="plaque-bar-btns" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+    <div class="plaque-body">
+      <p class="plaque-kicker">PERSONAL HARDWARE INDEX / DESKTOP</p>
+      <h1>把硬件工程资料<br>放回一张桌面</h1>
+      <p class="plaque-lead"><b id="dwRes">375</b> 条资源 · <b id="dwDs">36</b> 份自托管数据手册 · <b id="dwTools">16</b> 个在线工具 · 6 个站内计算器</p>
+      <form class="desk-search" id="deskSearchForm" role="search" autocomplete="off">
+        <label for="deskSearchInput">搜索资源，或直接描述你要解决的问题</label>
+        <div>
+          <input id="deskSearchInput" type="text" placeholder="例如：4 层板 50Ω 阻抗 / 反激电源 / STM32 入门" spellcheck="false">
+          <button type="submit">查找</button>
+        </div>
+      </form>
+      <div class="desk-actions">
+        <button type="button" class="desk-btn primary" data-desk="app">打开资源管理器</button>
+        <button type="button" class="desk-btn" data-desk="calc">工程计算器</button>
+        <button type="button" class="desk-btn" data-desk="tools">在线工具</button>
+        <button type="button" class="desk-btn" data-desk="personal">我的文件</button>
+      </div>
+      <div class="desk-tip"><b>TIP</b>双击图标打开；右键桌面可排列图标或刷新。</div>
+    </div>
+  </div>
+
+  <div class="desk-widget desk-paths" aria-label="岗位路径">
+    <span class="widget-kicker">CAREER PATHS / 岗位路径</span>
+    <div class="desk-chips">
+      <button type="button" data-desk-role="highspeed"><b>高速数字</b><span>HIGH-SPEED DIGITAL</span></button>
+      <button type="button" data-desk-role="power"><b>电源</b><span>POWER ELECTRONICS</span></button>
+      <button type="button" data-desk-role="layout"><b>PCB Layout</b><span>BOARD LAYOUT</span></button>
+      <button type="button" data-desk-role="analog"><b>模拟 / 混合</b><span>ANALOG &amp; MIXED</span></button>
+      <button type="button" data-desk-role="embedded"><b>嵌入式</b><span>EMBEDDED HW</span></button>
+      <button type="button" data-desk-role="rf"><b>射频 / 无线</b><span>RF &amp; WIRELESS</span></button>
+      <button type="button" data-desk-role="fpga"><b>FPGA / 数字</b><span>FPGA &amp; DIGITAL</span></button>
+      <button type="button" data-desk-role="test"><b>硬件测试</b><span>TEST &amp; VALIDATION</span></button>
+    </div>
+  </div>
+
+  <div class="desk-widget desk-projects" aria-label="项目雷达">
+    <span class="widget-kicker">PROJECT RADAR / 项目雷达</span>
+    <div class="desk-levels">
+      <button type="button" data-desk-level="starter"><b>练手项目<em id="dwLvStarter">--</em></b><span>一周内可完成 · 建立手感</span></button>
+      <button type="button" data-desk-level="advanced"><b>进阶项目<em id="dwLvAdvanced">--</em></b><span>完整链路 · 写进简历</span></button>
+      <button type="button" data-desk-level="flagship"><b>旗舰项目<em id="dwLvFlagship">--</em></b><span>系统级 · 面试主项目</span></button>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="desk-col desk-col-rail">
+  <aside class="desk-clock" aria-label="系统时间">
+    <span class="widget-kicker">SYSTEM TIME</span>
+    <b id="dwTime">--:--</b>
+    <span id="dwDate">----年--月--日</span>
+  </aside>
+
+  <div class="desk-widget desk-stats" aria-label="资源库状态">
+    <span class="widget-kicker">LIBRARY STATUS</span>
+    <dl>
+      <div><dt>资源总数</dt><dd id="dwStatRes">375</dd></div>
+      <div><dt>官方软件</dt><dd id="dwStatSoft">80</dd></div>
+      <div><dt>在线工具</dt><dd id="dwStatTools">16</dd></div>
+      <div><dt>数据手册</dt><dd id="dwStatDs">36</dd></div>
+      <div><dt>岗位路径</dt><dd id="dwStatPaths">8</dd></div>
+      <div><dt>实战项目</dt><dd id="dwStatProj">30</dd></div>
+    </dl>
+  </div>
+
+  <div class="desk-widget desk-quick" aria-label="快速计算">
+    <span class="widget-kicker">QUICK CALC</span>
+    <button type="button" data-calc-open="z0">阻抗计算 Z0 / 差分</button>
+    <button type="button" data-calc-open="current">载流与线宽</button>
+    <button type="button" data-calc-open="passive">分压 / RC / LED</button>
+    <button type="button" data-calc-open="bom">BOM 核对</button>
+    <button type="button" data-desk="tools" class="more">全部 16 个在线工具 ›</button>
+  </div>
+
+  <div class="desk-widget desk-ds" aria-label="数据手册速查">
+    <span class="widget-kicker">DATASHEET QUICK / 数据手册</span>
+    <div class="desk-ds-grid">
+      <button type="button" data-desk-ds="电阻">电阻</button>
+      <button type="button" data-desk-ds="电容">电容</button>
+      <button type="button" data-desk-ds="电源管理">电源管理</button>
+      <button type="button" data-desk-ds="二极管">二极管</button>
+      <button type="button" data-desk-ds="传感器">传感器</button>
+      <button type="button" data-desk-ds="MCU/逻辑">MCU / 逻辑</button>
+    </div>
+  </div>
+  </div>
+</section>
+
 <div class="desktop-brand" aria-hidden="true">EE-INDEX 98<small>PERSONAL HARDWARE INDEX</small></div>
 <div class="room">
   <div class="monitor">
@@ -1929,9 +2346,9 @@ body.app-dragging{cursor:default;}
               <button type="button" data-cmd="view:details" data-check-view="details">详细资料</button>
               <hr>
               <button type="button" data-cmd="sort:name" data-check-sort="name">按名称排序</button>
-              <button type="button" data-cmd="sort:type" data-check-sort="type">按类型排序</button>
-              <button type="button" data-cmd="sort:size" data-check-sort="size">按大小排序</button>
-              <button type="button" data-cmd="sort:time" data-check-sort="time">按修改时间排序</button>
+              <button type="button" data-cmd="sort:source" data-check-sort="source">按来源排序</button>
+              <button type="button" data-cmd="sort:license" data-check-sort="license">按许可排序</button>
+              <button type="button" data-cmd="sort:lang" data-check-sort="lang">按语言排序</button>
               <hr>
               <button type="button" data-cmd="font:100" data-check-font="100">字号 100%</button>
               <button type="button" data-cmd="font:112" data-check-font="112">字号 112%</button>
@@ -1969,6 +2386,19 @@ body.app-dragging{cursor:default;}
             </div>
           </div>
           <div class="menu" data-menu>
+            <button type="button" class="menu-btn">工具(<u>T</u>)</button>
+            <div class="menu-pop">
+              <button type="button" data-cmd="nav:tools">在线工程工具 <span class="menu-kbd">8</span></button>
+              <hr>
+              <button type="button" data-cmd="tools:z0">阻抗与线宽计算</button>
+              <button type="button" data-cmd="tools:current">载流与温升计算</button>
+              <button type="button" data-cmd="tools:via">过孔与电阻计算</button>
+              <button type="button" data-cmd="tools:passive">分压 / RC / LED</button>
+              <button type="button" data-cmd="tools:bom">BOM 核对</button>
+              <button type="button" data-cmd="tools:units">单位换算</button>
+            </div>
+          </div>
+          <div class="menu" data-menu>
             <button type="button" class="menu-btn">帮助(<u>H</u>)</button>
             <div class="menu-pop">
               <button type="button" data-cmd="help:usage">使用说明 <span class="menu-kbd">F1</span></button>
@@ -2000,8 +2430,9 @@ body.app-dragging{cursor:default;}
               <button type="button" data-cmd="view:details">详细资料</button>
               <hr>
               <button type="button" data-cmd="sort:name">按名称排序</button>
-              <button type="button" data-cmd="sort:size">按大小排序</button>
-              <button type="button" data-cmd="sort:time">按修改时间排序</button>
+              <button type="button" data-cmd="sort:source">按来源排序</button>
+              <button type="button" data-cmd="sort:license">按许可排序</button>
+              <button type="button" data-cmd="sort:lang">按语言排序</button>
             </div>
           </div>
           <span class="tb-sep" aria-hidden="true"></span>
@@ -2105,11 +2536,13 @@ body.app-dragging{cursor:default;}
               <span class="logo-chip">EE</span>
               <div><b>EE-INDEX 98</b></div>
             </div>
-            <button type="button" data-cmd="nav:library"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d8a33f" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/></svg>资源库</span><span class="start-count">359</span></button>
+            <button type="button" data-cmd="nav:library"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d8a33f" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/></svg>资源库</span><span class="start-count" id="startLibCount">375</span></button>
             <button type="button" data-cmd="nav:paths"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#8faec6" stroke="#3d5d78"/><path d="M1 6h14" stroke="#3d5d78"/></svg>岗位路径</span><span class="start-count">8</span></button>
             <button type="button" data-cmd="nav:projects"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="4" width="8" height="8" fill="#e8dcc0" stroke="#8a5a00"/><rect x="6" y="6" width="4" height="4" fill="#a5622b"/><path d="M6 4V1.5M8 4V1.5M10 4V1.5M6 12v2.5M8 12v2.5M10 12v2.5M4 6H1.5M4 8H1.5M4 10H1.5M12 6h2.5M12 8h2.5M12 10h2.5" stroke="#8a5a00"/></svg>项目雷达</span><span class="start-count">30</span></button>
             <button type="button" data-cmd="nav:favorites"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2l1.9 4 4.4.5-3.3 3 .9 4.4L8 10.9l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="#d8a33f" stroke="#8a5a00"/></svg>收藏</span><span class="start-count" id="startFavCount">0</span></button>
             <button type="button" data-cmd="nav:personal"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><path d="M1 3h5l1.3 2H15v7.5H1z" fill="#d9c79a" stroke="#6f5524"/><path d="M1 6h14" stroke="#6f5524"/><path d="M4 8.5h8M4 10.5h5" stroke="#8a5a00"/></svg>我的文件</span><span class="start-count" id="startPlCount">0</span></button>
+            <button type="button" data-cmd="nav:tools"><span class="start-label"><svg viewBox="0 0 16 14" aria-hidden="true"><rect x="1" y="2" width="14" height="10" fill="#fff" stroke="#20486f"/><path d="M3 4.5h5M3 6.5h3M9 4.5h4M9 7h4M3 9.5h10" stroke="#20486f"/></svg>在线工程工具</span><span class="start-count" id="startToolCount">16</span></button>
+            <button type="button" data-cmd="tools:calc"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="1" width="10" height="14" fill="#d4d0c8" stroke="#404040"/><rect x="4" y="2" width="8" height="3" fill="#29452f"/><path d="M5 3.5h5" stroke="#8dff9f"/><g fill="#404040"><rect x="4" y="6.5" width="2" height="2"/><rect x="7" y="6.5" width="2" height="2"/><rect x="10" y="6.5" width="2" height="2"/><rect x="4" y="9.5" width="2" height="2"/><rect x="7" y="9.5" width="2" height="2"/><rect x="10" y="9.5" width="2" height="2"/><rect x="4" y="12.5" width="5" height="1.2"/></g></svg>工程计算器</span><span class="start-count">6</span></button>
             <hr>
             <button type="button" data-cmd="ai-config"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l1.6 5.4L15 8l-5.4 1.6L8 15l-1.6-5.4L1 8l5.4-1.6z" fill="#b4761b" stroke="#6f4a12"/></svg>AI 与语音设置</span><span class="start-count">⚙</span></button>
             <button type="button" data-cmd="fullscreen"><span class="start-label"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="9" fill="#dbe6ef" stroke="#20486f"/><rect x="3" y="4" width="10" height="6" fill="#f8f3e5"/><path d="M6 14h4M8 11.5V14" stroke="#20486f"/></svg>全屏 / 退出全屏</span><span class="start-count">□</span></button>
@@ -2144,10 +2577,19 @@ body.app-dragging{cursor:default;}
   <button type="button" class="task-quick" data-desk="datasheets" title="电子元器件数据手册" aria-label="打开数据手册">
     <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path d="M3 1h7l3 3v11H3z" fill="#fff" stroke="#000"/><path d="M10 1v3h3" fill="#e8e8e8" stroke="#000"/><rect x="2" y="5" width="6" height="7" fill="#b02020" stroke="#6d1111"/><text x="5" y="10" text-anchor="middle" font-size="3.4" font-family="Arial" font-weight="700" fill="#fff">PDF</text></svg>
   </button>
+  <button type="button" class="task-quick" data-desk="calc" title="工程计算器" aria-label="打开工程计算器">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="1" width="10" height="14" fill="#c0c0c0" stroke="#000"/><rect x="4.5" y="2.5" width="7" height="3" fill="#29452f" stroke="#000"/><path d="M5.5 3.5h4" stroke="#8dff9f"/><g fill="#404040"><rect x="4.5" y="7" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="9.5" y="7" width="2" height="2"/><rect x="4.5" y="10" width="2" height="2"/><rect x="7" y="10" width="2" height="2"/><rect x="9.5" y="10" width="2" height="2"/><rect x="4.5" y="13" width="5" height="1.2"/></g></svg>
+  </button>
+  <button type="button" class="task-quick" data-desk="tools" title="在线工程工具" aria-label="打开在线工程工具">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2.5" width="14" height="11" fill="#fff" stroke="#000"/><rect x="2.5" y="4" width="5" height="3.5" fill="#d9e6f2" stroke="#808080"/><rect x="9" y="4" width="4.5" height="1.8" fill="#c0c0c0" stroke="#808080"/><rect x="9" y="7" width="4.5" height="1.8" fill="#c0c0c0" stroke="#808080"/><rect x="2.5" y="9.5" width="5" height="2.5" fill="#c0c0c0" stroke="#808080"/><path d="M4 14l3-4 2 1.5 3.5-4" fill="none" stroke="#2f6b4f" stroke-width="1.1"/></svg>
+  </button>
   <span class="task-sep" aria-hidden="true"></span>
   <button type="button" class="task-app on" id="taskAppBtn" title="EE-INDEX 资源管理器" aria-pressed="true">
     <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2" width="14" height="12" fill="#d4d0c8" stroke="#000"/><rect x="2" y="4" width="12" height="2" fill="#000080"/><rect x="3" y="7" width="10" height="5" fill="#fff" stroke="#808080"/><path d="M4 8.5h5M4 10h6" stroke="#20486f"/></svg>
     <span>EE-INDEX 资源管理器</span>
+  </button>
+  <button type="button" class="task-quick task-showdesk" id="showDesktopBtn" title="显示桌面 / 还原窗口" aria-label="显示桌面或还原窗口" aria-pressed="false">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2" width="10" height="8" fill="#dbe6ef" stroke="#404040"/><path d="M1.5 10h10v3.5h-10z" fill="#008080" stroke="#404040"/><path d="M12.5 8.5h2v5.5h-5v-2" fill="none" stroke="#20486f" stroke-width="1.2"/></svg>
   </button>
   <div class="task-tray">
     <button type="button" class="tray-btn" id="taskSoundBtn" title="复古音效开关" aria-label="复古音效开关">
@@ -2161,6 +2603,8 @@ body.app-dragging{cursor:default;}
   <button type="button" data-deskmenu="refresh">刷新(<u>E</u>)</button>
   <button type="button" data-deskmenu="arrange">按名称排列图标</button>
   <button type="button" data-deskmenu="library">打开资源库</button>
+  <button type="button" data-deskmenu="tools">在线工程工具</button>
+  <button type="button" data-deskmenu="calc">工程计算器</button>
   <button type="button" data-deskmenu="datasheets">打开数据手册</button>
   <hr>
   <button type="button" data-deskmenu="help">使用说明</button>
@@ -2258,7 +2702,8 @@ body.app-dragging{cursor:default;}
    范围：只收录 EDA / 仿真 / 嵌入式工具链 / 工程软件的官方产品页、官方试用页、官方教育页。
    规则：不链破解、不链激活工具、不链网盘转载；商业软件一律标 paid，并给出官方试用或教育版入口。 */
 window.EE_EXTRA_CATS = [
-  { id:'software', name:'软件获取', en:'SOFTWARE DOWNLOADS' }
+  { id:'software', name:'软件获取', en:'SOFTWARE DOWNLOADS' },
+  { id:'tools', name:'工程工具', en:'ENGINEERING TOOLS' }
 ];
 
 window.EE_EXTRA_RESOURCES = [
@@ -2594,6 +3039,85 @@ window.EE_EXTRA_LEARNING = [
    first:'先看课程大纲与免费预览，确认工具链后从叠层和阻抗章节开始。'}
 ];
 window.EE_EXTRA_RESOURCES = (window.EE_EXTRA_RESOURCES || []).concat(window.EE_EXTRA_LEARNING);
+
+/* EE-INDEX 98 — 硬件工程师在线工具
+   只收录官方或工具作者自己维护的公开计算器页面；不含破解、镜像与需登录才能看的内容。 */
+window.EE_EXTRA_TOOLS = [
+  /* ================= 阻抗与叠层 ================= */
+  {id:'tool-polar-si9000e',name:'Polar SI9000e',alt:'传输线阻抗场求解器',url:'https://www.polarinstruments.com/products/si/Si9000.html',kind:'site',cat:'tools',sub:'阻抗计算',lang:'en',license:'paid',access:'login',source:'official',region:'global',verifiedAt:'2026-11',tags:['SI9000','阻抗','传输线','场求解','PCB'],alias:'si9000 polar zu kang ji suan',
+   desc:'Polar Instruments 的传输线阻抗场求解器，按叠层与铜厚计算微带、带状线、差分与共面结构的阻抗。',
+   proof:'Polar Instruments 官方 SI9000 产品页；SI9000 是 PCB 阻抗设计与叠层签核中广泛使用的商业工具。',
+   first:'先看官方支持的传输线模型与叠层参数；没有授权时，用本站在线计算器做同等结构的快速估算。'},
+  {id:'tool-jlcpcb-impedance',name:'嘉立创阻抗计算器',alt:'JLCPCB Impedance Calculator',url:'https://jlcpcb.com/impedance',kind:'site',cat:'tools',sub:'阻抗计算',lang:'zh',license:'free',access:'free',source:'official',region:'cn',verifiedAt:'2026-11',tags:['嘉立创','阻抗','叠层','PCB','打样'],alias:'jlcpcb zu kang ji suan qi jia li chuang',
+   desc:'嘉立创官方阻抗计算器，按常用叠层查询线宽、间距与目标阻抗，可直接对接打样工艺。',
+   proof:'JLCPCB 官方阻抗页面；面向其自有板厂叠层与工艺参数。',
+   first:'先选实际下单的层数与叠层，再输入目标阻抗看推荐线宽；注意区分单端与差分。'},
+  {id:'tool-pcbway-impedance',name:'PCBWay 阻抗计算器',alt:'PCBWay Impedance Calculator',url:'https://www.pcbway.com/pcb_prototype/impedance_calculator.html',kind:'site',cat:'tools',sub:'阻抗计算',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['PCBWay','阻抗','叠层','PCB','打样'],alias:'pcbway impedance zu kang',
+   desc:'PCBWay 官方阻抗计算页面，按板厂叠层与工艺参数估算单端/差分线宽与间距。',
+   proof:'PCBWay 官方工具页面；与其打样叠层和阻抗控制服务配套。',
+   first:'先用板厂提供的叠层表核对介质厚度，再输入目标阻抗；下单时把计算结果写进阻抗说明。'},
+  {id:'tool-rogers-design',name:'Rogers Design Tools',alt:'罗杰斯高频材料设计工具',url:'https://www.rogerscorp.com/advanced-electronics-solutions/design-tools',kind:'site',cat:'tools',sub:'阻抗计算',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Rogers','高频材料','叠层','阻抗','射频'],alias:'rogers gao pin cai liao she ji gong ju',
+   desc:'Rogers 官方设计工具入口，围绕高频层压板的 Dk/Df、叠层与阻抗设计提供计算与资料。',
+   proof:'Rogers Corporation 官方设计工具页；高频板材参数的权威来源。',
+   first:'先查所用板材的 Dk/Df 随频率曲线，再带入叠层计算；不要直接用低频常数。'},
+  {id:'tool-sierra-tools',name:'Sierra Circuits PCB Tools',alt:'Sierra 制造成计工具集',url:'https://www.protoexpress.com/tools/',kind:'site',cat:'tools',sub:'制造与 DFM',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Sierra Circuits','PCB','计算器','DFM','阻抗'],alias:'sierra circuits pcb tools ji suan qi',
+   desc:'Sierra Circuits 官方在线工具集，覆盖阻抗、线宽、过孔载流、拼板与制造参数计算。',
+   proof:'Sierra Circuits / ProtoExpress 官方工具页；由其 PCB 制造工程团队维护。',
+   first:'先做一次线宽与载流计算，再对照自己的叠层和铜厚检查温升假设。'},
+
+  /* ================= 线宽与载流 ================= */
+  {id:'tool-4pcb-trace',name:'4PCB Trace Width Calculator',alt:'走线宽度与载流计算',url:'https://www.4pcb.com/trace-width-calculator.html',kind:'site',cat:'tools',sub:'线宽与载流',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['线宽','载流','温升','IPC-2221','PCB'],alias:'4pcb trace width xian kuan zai liu',
+   desc:'按 IPC-2221 曲线估算外层/内层走线宽度、载流与温升，输入铜厚与允许温升即可出结果。',
+   proof:'4PCB 官方计算页面；基于 IPC-2221 载流曲线，PCB 制造厂常用入口。',
+   first:'先按实际铜厚与允许温升算一遍，再把电源线的裕量至少放大 30% 后落板。'},
+  {id:'tool-tracewidth',name:'TraceWidthCalculator',alt:'走线宽度在线计算',url:'https://www.tracewidthcalculator.com/',kind:'site',cat:'tools',sub:'线宽与载流',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['线宽','载流','温升','IPC-2221','过孔'],alias:'trace width calculator xian kuan',
+   desc:'独立的走线宽度与过孔载流计算器，支持内层/外层、铜厚、温升与并联过孔估算。',
+   proof:'TraceWidthCalculator 官方站点；公式与 IPC-2221 载流曲线一致。',
+   first:'用同一组输入和 4PCB 的结果互相对照，确认温升与铜厚单位没有弄错。'},
+
+  /* ================= 模拟与电源 ================= */
+  {id:'tool-ti-analog-calc',name:"TI Analog Engineer's Calculator",alt:'TI 模拟工程师计算器',url:'https://www.ti.com/tool/ANALOG-ENGINEER-CALC',kind:'site',cat:'tools',sub:'模拟与信号链',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['TI','模拟','运放','ADC','计算器'],alias:'ti analog engineer calculator mo ni',
+   desc:'TI 官方模拟工程师计算器，覆盖运放、ADC/DAC、滤波、噪声、稳定性与传感器信号链。',
+   proof:'Texas Instruments 官方工具页；与 TI Precision Labs 课程配套。',
+   first:'先用运放增益/带宽与 ADC 有效位数两个模块，核对自己信号链的误差预算。'},
+  {id:'tool-ti-powerstage',name:'TI Power Stage Designer',alt:'电源功率级设计工具',url:'https://www.ti.com/tool/POWERSTAGE-DESIGNER',kind:'site',cat:'tools',sub:'电源设计',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['TI','电源','拓扑','功率级','计算器'],alias:'ti power stage designer dian yuan',
+   desc:'TI 官方电源功率级设计工具，按拓扑计算占空比、电感、电容、电流应力与环路参数。',
+   proof:'Texas Instruments 官方工具页；覆盖 Buck/Boost/Flyback 等常见拓扑。',
+   first:'选一个自己熟悉的 Buck 参数，先手算电感与纹波，再用工具对照。'},
+  {id:'tool-murata-simsurfing',name:'Murata SimSurfing',alt:'村田元件特性仿真',url:'https://ds.murata.com/simsurfing/',kind:'site',cat:'tools',sub:'元件仿真',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Murata','村田','电容','电感','阻抗曲线','仿真'],alias:'murata simsurfing cun tian yuan jian',
+   desc:'村田官方元件特性工具，可查 MLCC、电感与滤波器的阻抗/插入损耗曲线并做选型对比。',
+   proof:'Murata 官方 SimSurfing 站点；元件特性数据由村田提供。',
+   first:'先对比两颗同容值不同封装的 MLCC 阻抗曲线，理解 ESL 对去耦频段的影响。'},
+  {id:'tool-kemet-ksim',name:'KEMET K-SIM',alt:'基美元件仿真与选型',url:'https://ksim3.kemet.com/',kind:'site',cat:'tools',sub:'元件仿真',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['KEMET','基美','电容','电感','仿真','选型'],alias:'kemet ksim ji mei yuan jian',
+   desc:'KEMET 官方元件仿真平台，覆盖陶瓷/钽/薄膜电容与电感，可看频率、温度与偏压特性。',
+   proof:'KEMET 官方 K-SIM 站点；元件模型与特性曲线来自厂商。',
+   first:'用同一容值对比不同介质在直流偏压下的容值衰减，再决定电源去耦用料。'},
+
+  /* ================= 射频与通用 ================= */
+  {id:'tool-leleivre',name:'Le Leivre RF Calculators',alt:'射频与微波计算器集',url:'https://leleivre.com/rf_microstrip.html',kind:'site',cat:'tools',sub:'射频与微波',lang:'en',license:'free',access:'free',source:'individual',region:'global',verifiedAt:'2026-11',tags:['射频','微波','微带','滤波器','匹配','计算器'],alias:'leleivre rf calculator she pin',
+   desc:'射频工程师维护的在线计算器集，覆盖微带线、滤波器、匹配网络、衰减器与传输线。',
+   proof:'Le Leivre 官方计算器页面；长期公开维护，射频社区常用。',
+   first:'先用微带线计算器核对一次 50 Ω 线宽，再试做一阶低通滤波器的元件值。'},
+  {id:'tool-pasternack-calc',name:'Pasternack RF Calculators',alt:'Pasternack 射频计算器',url:'https://www.pasternack.com/t-calculators.aspx',kind:'site',cat:'tools',sub:'射频与微波',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['Pasternack','射频','VSWR','衰减','功分','计算器'],alias:'pasternack rf calculators she pin',
+   desc:'Pasternack 官方射频计算器集合，覆盖 VSWR/回波损耗、衰减器、功分器、天线与链路预算。',
+   proof:'Pasternack 官方工具页；与其射频连接器和器件目录配套。',
+   first:'先把回波损耗换算成 VSWR 记住量级，再用链路预算核对接收功率。'},
+  {id:'tool-ohmslaw',name:"Ohm's Law Calculator",alt:'欧姆定律与功率计算',url:'https://ohmslawcalculator.com/ohms-law-calculator',kind:'site',cat:'tools',sub:'通用电路',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['欧姆定律','功率','分压','RC','计算器'],alias:'ohms law calculator ou mu ding lv',
+   desc:'通用电路计算器集合，输入电压/电流/电阻任意两项即可求其余量与功率，另含分压、RC 与 LED 电阻。',
+   proof:'OhmsLawCalculator 官方站点；公式为标准欧姆定律与功率关系。',
+   first:'先用它核对分压电阻，再把结果与本站在线计算器的分压模块对照。'},
+
+  /* ================= MCU 配置 ================= */
+  {id:'tool-ti-sysconfig',name:'TI SysConfig',alt:'TI 引脚与外设配置工具',url:'https://www.ti.com/tool/download/SYSCONFIG',kind:'site',cat:'tools',sub:'MCU 配置',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['TI','SysConfig','MCU','引脚','外设','配置'],alias:'ti sysconfig mcu pei zhi',
+   desc:'TI 官方 SysConfig 配置工具，用图形界面完成引脚复用、时钟树、外设与 RTOS 参数并生成初始化代码。',
+   proof:'Texas Instruments 官方工具下载页；与 CC/C2000/MSPM0 等系列配套。',
+   first:'先用目标芯片建一个空工程，配置时钟与一个 UART，再把生成的代码与手册寄存器对照。'},
+  {id:'tool-nxp-mcuxpresso',name:'NXP MCUXpresso IDE',alt:'NXP 官方 MCU 开发环境',url:'https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE',kind:'site',cat:'tools',sub:'MCU 配置',lang:'en',license:'free',access:'free',source:'official',region:'global',verifiedAt:'2026-11',tags:['NXP','MCUXpresso','MCU','IDE','配置','调试'],alias:'nxp mcuxpresso ide kai fa huan jing',
+   desc:'NXP 官方免费 IDE，集成配置工具、SDK、编译与调试，覆盖 LPC、i.MX RT 与 Kinetis 等 MCU。',
+   proof:'NXP 官方 MCUXpresso 产品页；与其 MCU 和 SDK 生态配套。',
+   first:'先用配置工具生成一个 GPIO 翻转工程，确认下载、调试与串口打印都通了再扩展外设。'}
+];
+window.EE_EXTRA_RESOURCES = window.EE_EXTRA_RESOURCES.concat(window.EE_EXTRA_TOOLS);
 
 ;
 /* 电子元器件数据手册：PDF 为厂商公开资料，自托管以便站内预览。 */
@@ -6205,7 +6729,7 @@ var GUIDES = {
     var savedMode = localStorage.getItem('eeidx.view.mode');
     if (/^(large|small|list|details)$/.test(savedMode || '')) state.viewMode = savedMode;
     var savedSort = JSON.parse(localStorage.getItem('eeidx.view.sort') || 'null');
-    if (savedSort && /^(name|type|size|time)$/.test(savedSort.key || '')){ state.sortKey = savedSort.key; state.sortDir = savedSort.dir === 'desc' ? 'desc' : 'asc'; }
+    if (savedSort && /^(name|source|license|lang)$/.test(savedSort.key || '')){ state.sortKey = savedSort.key; state.sortDir = savedSort.dir === 'desc' ? 'desc' : 'asc'; }
   } catch (e) {}
   var favs = new Set();
   var searchTimer = null;
@@ -6310,12 +6834,43 @@ var GUIDES = {
   if (startMenu && startMenu.parentNode !== document.body) document.body.appendChild(startMenu);
 
   function updateTaskClock(){
-    if (!taskClock) return;
     var d = new Date();
     var hh = ('0' + d.getHours()).slice(-2);
     var mm = ('0' + d.getMinutes()).slice(-2);
-    taskClock.textContent = hh + ':' + mm;
-    taskClock.title = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 星期' + '日一二三四五六'.charAt(d.getDay());
+    var dateText = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 星期' + '日一二三四五六'.charAt(d.getDay());
+    if (taskClock){
+      taskClock.textContent = hh + ':' + mm;
+      taskClock.title = dateText;
+    }
+    var dwTime = $('#dwTime');
+    var dwDate = $('#dwDate');
+    if (dwTime) dwTime.textContent = hh + ':' + mm;
+    if (dwDate) dwDate.textContent = dateText;
+  }
+  function updateDeskStats(){
+    var ds = 0, soft = 0, tools = 0;
+    DATA.forEach(function(d){
+      if (d.cat === 'datasheets') ds++;
+      else if (d.cat === 'tools') tools++;
+      else if (d.cat === 'software' || d.cat === 'eda') soft++;
+    });
+    var map = {
+      dwRes: DATA.length, dwStatRes: DATA.length,
+      dwDs: ds, dwStatDs: ds,
+      dwTools: tools, dwStatTools: tools,
+      dwStatSoft: soft,
+      dwStatPaths: ROLES.length,
+      dwStatProj: PROJECTS.length,
+      dwLvStarter: PROJECTS.filter(function(p){ return p.level === 'starter'; }).length,
+      dwLvAdvanced: PROJECTS.filter(function(p){ return p.level === 'advanced'; }).length,
+      dwLvFlagship: PROJECTS.filter(function(p){ return p.level === 'flagship'; }).length,
+      startLibCount: DATA.length,
+      startToolCount: tools
+    };
+    Object.keys(map).forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.textContent = String(map[id]);
+    });
   }
   function syncStartUi(){
     var open = !!(startMenu && !startMenu.hidden);
@@ -6332,6 +6887,11 @@ var GUIDES = {
       taskAppBtn.classList.toggle('on', !on);
       taskAppBtn.setAttribute('aria-pressed', String(!on));
     }
+    var sdBtn = $('#showDesktopBtn');
+    if (sdBtn){
+      sdBtn.classList.toggle('on', on);
+      sdBtn.setAttribute('aria-pressed', String(on));
+    }
     if (on) toggleStart(false);
     else screenEl.classList.remove('focus');
   }
@@ -6347,6 +6907,12 @@ var GUIDES = {
     if (act === 'projects'){ executeCmd('nav:projects'); return; }
     if (act === 'favorites'){ executeCmd('nav:favorites'); return; }
     if (act === 'personal'){ executeCmd('nav:personal'); return; }
+    if (act === 'tools'){ executeCmd('nav:tools'); return; }
+    if (act === 'calc'){
+      if (window.EECalc) window.EECalc.open('z0');
+      else showToast('工程计算器正在加载，请稍后再试');
+      return;
+    }
     if (act === 'help'){ executeCmd('help:usage'); return; }
   }
 
@@ -6613,28 +7179,107 @@ var GUIDES = {
     if (tokens.length && state.sortKey === 'name' && state.sortDir === 'asc') out.sort(function(a, b){ return (b._score - a._score) || (a._order - b._order); });
     return sortLibraryList(out);
   }
-  function itemTime(item){ return item.verifiedAt || item.updated || ''; }
+  var SOURCE_NAMES = {
+    'github.com':'GitHub','youtube.com':'YouTube','bilibili.com':'B 站','analog.com':'ADI','ti.com':'TI',
+    'eevblog.com':'EEVblog','reddit.com':'Reddit','xuetangx.com':'学堂在线','ocw.mit.edu':'MIT OCW',
+    'kicad.org':'KiCad','altium.com':'Altium','adafruit.com':'Adafruit','hackster.io':'Hackster',
+    'instructables.com':'Instructables','learn.sparkfun.com':'SparkFun','nptel.ac.in':'NPTEL',
+    'udemy.com':'Udemy','coursera.org':'Coursera','microwaves101.com':'Microwaves101',
+    'link.springer.com':'Springer','artofelectronics.net':'AoE','ultimateelectronicsbook.com':'Ultimate Electronics',
+    'electronics.stackexchange.com':'EE Stack Exchange','stackexchange.com':'Stack Exchange',
+    'freertos.org':'FreeRTOS','platformio.org':'PlatformIO','docs.micropython.org':'MicroPython',
+    'embeddedartistry.com':'Embedded Artistry','interrupt.memfault.com':'Interrupt','beningo.com':'Beningo',
+    'resources.altium.com':'Altium 资源库','e2e.ti.com':'TI E2E','community.st.com':'ST Community',
+    'prodocs.lceda.cn':'嘉立创EDA','armbbs.cn':'硬汉嵌入式','oshwa.org':'OSHWA','openhwgroup.org':'OpenHW',
+    'fedevel.com':'Fedevel','polarinstruments.com':'Polar SI9000','saturnpcb.com':'Saturn PCB',
+    '4pcb.com':'4PCB','tracewidthcalculator.com':'TraceWidth',
+    'simsmith.com':'SimSmith','pasternack.com':'Pasternack','dfm.elecfans.com':'华秋 DFM',
+    'ti.com.cn':'TI 中国','analog.com.cn':'ADI 中国','st.com':'ST','nxp.com':'NXP','microchip.com':'Microchip',
+    'espressif.com':'Espressif','espressif.com.cn':'Espressif 中国','raspberrypi.com':'Raspberry Pi',
+    'arduino.cc':'Arduino','digikey.com':'Digi-Key','digikey.cn':'Digi-Key 中国','mouser.com':'Mouser',
+    'lcsc.com':'立创商城','szlcsc.com':'立创商城','jlcpcb.com':'嘉立创','oshpark.com':'OSH Park',
+    'pcbway.com':'PCBWay','seeedstudio.com':'Seeed Studio','sparkfun.com':'SparkFun','wokwi.com':'Wokwi',
+    'eepw.com.cn':'电子产品世界','eeworld.com.cn':'电子工程世界','download.eeworld.com.cn':'EEWorld 下载',
+    'elecfans.com':'电子发烧友','21ic.com':'21ic','dl.21ic.com':'21ic 下载','eet-china.com':'电子工程专辑',
+    'mbb.eet-china.com':'面包板社区','chinaaet.com':'电子技术应用','semiinsights.com':'半导体行业观察',
+    'dianyuan.com':'电源网','amobbs.com':'阿莫论坛','51hei.com':'51hei','eefocus.com':'与非网',
+    'aijishu.com':'极术社区','mydigit.cn':'数码之家','52solution.com':'我爱方案网','icourse163.org':'中国大学 MOOC',
+    'eetree.cn':'电子森林','embedfire.com':'野火电子','doc.embedfire.com':'野火电子','alientek.com':'正点原子',
+    'lceda.cn':'立创EDA','docs.lceda.cn':'嘉立创EDA','jlc.com':'嘉立创','hqchip.com':'华秋商城',
+    'xcc.com':'芯查查','jiepei.com':'捷配','hqpcb.com':'华秋电路','eda365.com':'EDA365','oshwhub.com':'立创开源',
+    'rogerscorp.com':'Rogers','protoexpress.com':'Sierra Circuits','advanced-monolithic.com':'AMS',
+    'diodes.com':'Diodes','winbond.com':'Winbond','ww1.microchip.com':'Microchip',
+    'documentation.espressif.com':'Espressif','cdn.sparkfun.com':'SparkFun','ksim3.kemet.com':'KEMET',
+    'ds.murata.com':'Murata','ohmslawcalculator.com':'Ohm\'s Law','leleivre.com':'Le Leivre',
+    '3dcontentcentral.com':'3D ContentCentral','www2.mvcc.edu':'MVCC','aems.edu.sd':'AEMS',
+    'cbseacademic.nic.in':'CBSE','tabula.ondata.it':'Tabula','gbmhunter.github.io':'NinjaCalc',
+    'steveicarus.github.io':'Icarus Verilog','gerbv.github.io':'Gerbv','gerbv.geda-project.org':'Gerbv',
+    'ngspice.sourceforge.net':'ngspice','qucs.sourceforge.net':'Qucs','gtkwave.sourceforge.net':'GTKWave',
+    'jlcsearch.tscircuit.com':'JLCSearch','parts.io':'Parts.io','smd.yooneed.one':'Yoo Need One',
+    'rs-online.com':'RS Components','dirtypcbs.com':'Dirty PCBs','componentsearchengine.com':'Component Search',
+    'allaboutcircuits.com':'All About Circuits','mightyohm.com':'MightyOhm','staycaffeinated.com':'Stay Caffeinated',
+    'biricha.com':'Biricha','microsoft.com':'Microsoft','mathworks.com':'MathWorks','amd.com':'AMD',
+    'intel.com':'Intel','cadence.com':'Cadence','siemens.com':'Siemens EDA','ansys.com':'Ansys',
+    'synopsys.com':'Synopsys','zuken.com':'Zuken','keysight.com':'Keysight','comsol.com':'COMSOL',
+    'autodesk.com':'Autodesk','ni.com':'NI','3ds.com':'Dassault','onsemi.com':'onsemi','vishay.com':'Vishay',
+    'bourns.com':'Bourns','aosmd.com':'AOS','bosch-sensortec.com':'Bosch','jst-mfg.com':'JST',
+    'berkeley.edu':'UC Berkeley','cornell.edu':'Cornell','iastate.edu':'Iowa State','utexas.edu':'UT Austin',
+    'colorado.edu':'CU Boulder','ustc.edu.cn':'中国科大','wikimedia.org':'Wikimedia','7-zip.org':'7-Zip',
+    'falstad.com':'Falstad','everycircuit.com':'EveryCircuit','easyeda.com':'EasyEDA','circuitmaker.com':'CircuitMaker',
+    'aisler.net':'Aisler','hackaday.com':'Hackaday','hackaday.io':'Hackaday.io','git-scm.com':'Git',
+    'wireshark.org':'Wireshark','zotero.org':'Zotero','openscad.org':'OpenSCAD','freecad.org':'FreeCAD',
+    'kicad.org.cn':'KiCad 中国','tscircuit.com':'tscircuit','sigrok.org':'sigrok','nand2tetris.org':'Nand2Tetris',
+    'openstax.org':'OpenStax','khanacademy.org':'Khan Academy','riscv.org':'RISC-V','arm.com':'Arm',
+    'rt-thread.org':'RT-Thread','librepcb.org':'LibrePCB','octopart.com':'Octopart','findchips.com':'Findchips',
+    'snapeda.com':'SnapEDA','grabcad.com':'GrabCAD','tindie.com':'Tindie','pcbshopper.com':'PCBShopper',
+    'tracespace.io':'Tracespace','gerblook.org':'Gerblook','macrofab.com':'MacroFab','wikifactory.com':'Wikifactory',
+    'inventree.org':'InvenTree','partsbox.io':'PartsBox','kitspace.org':'KitSpace','kicanvas.org':'KiCanvas',
+    'klayout.de':'KLayout','verilator.org':'Verilator','wavedrom.com':'WaveDrom','hdlbits.01xz.net':'HDLBits',
+    'nanovna.com':'NanoVNA','element14.com':'element14','embedded.fm':'Embedded.fm','theamphour.com':'The Amp Hour'
+  };
+  function itemHost(item){
+    try { return String(item.url || '').toLowerCase().replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, ''); }
+    catch (e){ return ''; }
+  }
+  function sourceLabel(item){
+    if (item.manufacturer) return item.manufacturer;
+    var host = itemHost(item);
+    if (SOURCE_NAMES[host]) return SOURCE_NAMES[host];
+    for (var key in SOURCE_NAMES){
+      if (host.length > key.length && host.slice(-(key.length + 1)) === '.' + key) return SOURCE_NAMES[key];
+    }
+    var clean = host.replace(/^www\d*\./, '');
+    if (!clean) return item._catName || '—';
+    return clean;
+  }
+  function sourceTitle(item){
+    var host = itemHost(item);
+    return (item.manufacturer ? item.manufacturer + ' · ' : '') + (host || item._catName || '');
+  }
+  function licenseRank(item){
+    var l = item.license;
+    if (l === 'open') return 0;
+    if (l === 'free') return 1;
+    if (l === 'reg') return 2;
+    if (l === 'paid') return 3;
+    if (item.kind === 'datasheet') return 1;
+    var host = itemHost(item);
+    if (/(^|\.)github\.com$/.test(host)) return 0;
+    if (/(^|\.)(udemy\.com|link\.springer\.com|artofelectronics\.net)$/.test(host)) return 3;
+    return 1;
+  }
   function sortLibraryList(list){
     var key = state.sortKey;
     if (!key) return list;
     var dir = state.sortDir === 'desc' ? -1 : 1;
     return list.slice().sort(function(a, b){
       var cmp = 0;
-      if (key === 'size') cmp = (a.sizeBytes || 0) - (b.sizeBytes || 0);
-      else if (key === 'time') cmp = String(itemTime(a)).localeCompare(String(itemTime(b)));
-      else if (key === 'type') cmp = String(a._catName + ' ' + a.sub).localeCompare(String(b._catName + ' ' + b.sub), 'zh-CN');
+      if (key === 'source') cmp = sourceLabel(a).localeCompare(sourceLabel(b), 'zh-CN');
+      else if (key === 'license') cmp = licenseRank(a) - licenseRank(b);
+      else if (key === 'lang') cmp = String(a.lang).localeCompare(String(b.lang));
       else cmp = String(a.name).localeCompare(String(b.name), 'zh-CN');
       return cmp * dir || a._order - b._order;
     });
-  }
-  function sizeLabel(item){
-    if (item.size) return item.size;
-    if (item.sizeBytes) return item.sizeBytes >= 1048576 ? (item.sizeBytes / 1048576).toFixed(2) + ' MB' : Math.round(item.sizeBytes / 1024) + ' KB';
-    return item.kind === 'datasheet' ? 'PDF' : '—';
-  }
-  function typeLabel(item){
-    if (item.kind === 'datasheet') return item.sub || '数据手册';
-    return item.sub || item._catName || '';
   }
   function kindCount(kind){
     var tokens = searchTokens(state.q);
@@ -6686,12 +7331,22 @@ var GUIDES = {
   }
   var ROLE_SHORT = { highspeed:'高速', power:'电源', layout:'Layout', analog:'模拟', embedded:'嵌入式', rf:'射频', fpga:'FPGA', test:'测试' };
   function langLabel(item){ return item.lang === 'zh' ? '中文' : 'EN'; }
+  var LICENSE_TITLE = {
+    open:'开源许可，可自由使用与修改',
+    free:'官方免费提供',
+    paid:'需购买或订阅',
+    reg:'需注册账号后使用'
+  };
   function licenseLabel(item){
-    if (item.license === 'open') return '开源授权';
-    if (item.license === 'free') return '官方免费';
-    if (item.license === 'paid') return '需购买';
+    if (item.license === 'open') return '开源';
+    if (item.license === 'free') return '免费';
+    if (item.license === 'paid') return '付费';
     if (item.license === 'reg') return '需注册';
-    return '';
+    if (item.kind === 'datasheet') return '厂商资料';
+    var host = itemHost(item);
+    if (/(^|\.)github\.com$/.test(host)) return '开源';
+    if (/(^|\.)(udemy\.com|link\.springer\.com|artofelectronics\.net)$/.test(host)) return '付费';
+    return '免费浏览';
   }
   function preferredFile(item){
     if (!item) return '';
@@ -6885,7 +7540,7 @@ var GUIDES = {
     if (state.viewMode === 'details'){
       listHead.className = 'list-head';
       listHead.hidden = false;
-      listHead.innerHTML = sortHeadHtml('name', '名称') + sortHeadHtml('size', '大小') + sortHeadHtml('type', '类型') + sortHeadHtml('time', '修改时间');
+      listHead.innerHTML = sortHeadHtml('name', '名称') + sortHeadHtml('source', '来源') + sortHeadHtml('license', '许可') + sortHeadHtml('lang', '语言');
     } else {
       listHead.hidden = true;
     }
@@ -6933,9 +7588,9 @@ var GUIDES = {
             '<div class="nm-wrap"><span class="nm"><span class="kind-tag k-' + item.kind + '">' + (KIND_SHORT[item.kind] || 'WEB') + '</span>' + highlight(item.name, tokens) + '</span>' +
             '<span class="sub">' + highlight(item.alt || item.desc, tokens) +
               '<span class="inline-meta"> · ' + esc(item._catName) + ' · ' + langLabel(item) + '</span></span></div></div>' +
-          '<span class="meta col-size">' + esc(sizeLabel(item)) + '</span>' +
-          '<span class="meta col-type" title="' + esc(item._catName + ' / ' + item.sub) + '">' + esc(typeLabel(item)) + '</span>' +
-          '<span class="meta col-time">' + esc(itemTime(item) || langLabel(item)) + '</span>' +
+          '<span class="meta col-source" title="' + esc(sourceTitle(item)) + '">' + esc(sourceLabel(item)) + '</span>' +
+          '<span class="meta col-license"' + (item.license ? ' title="' + esc(LICENSE_TITLE[item.license] || '') + '"' : '') + '>' + esc(licenseLabel(item)) + '</span>' +
+          '<span class="meta col-lang">' + esc(langLabel(item)) + '</span>' +
           '<button type="button" class="star-btn' + (saved ? ' on' : '') + '" data-fav="' + item.id + '" aria-label="收藏' + esc(item.name) + '">' + (saved ? '★' : '☆') + '</button>' +
         '</div>';
       }).join('');
@@ -7603,7 +8258,7 @@ var GUIDES = {
     showToast('视图：' + ({ large:'大图标', small:'小图标', list:'列表', details:'详细资料' }[mode]));
   }
   function setSort(key){
-    if (!/^(name|type|size|time)$/.test(key || '')) return;
+    if (!/^(name|source|license|lang)$/.test(key || '')) return;
     if (state.sortKey === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
     else { state.sortKey = key; state.sortDir = 'asc'; }
     state.page = 1;
@@ -7717,11 +8372,11 @@ var GUIDES = {
     },
     shortcuts: {
       t: '快捷键',
-      h: '<h3>键盘操作</h3><ul><li><span class="help-kbd">/</span> 或 <span class="help-kbd">Ctrl K</span>：聚焦搜索</li><li><span class="help-kbd">Enter</span>：AI 查找；列表中打开选中项</li><li><span class="help-kbd">Ctrl Enter</span>：在新标签打开选中项</li><li><span class="help-kbd">↑</span> <span class="help-kbd">↓</span>：移动选择</li><li><span class="help-kbd">Alt ←</span> / <span class="help-kbd">Alt →</span>：后退 / 前进</li><li><span class="help-kbd">Backspace</span>：向上一级</li><li><span class="help-kbd">Ctrl A</span>：全选当前列表</li><li><span class="help-kbd">F5</span>：刷新列表</li><li><span class="help-kbd">1–6</span>：资源库 / 岗位路径 / 项目 / 收藏 / 我的文件 / 数据手册</li><li><span class="help-kbd">I</span>：AI 助理 / 详情面板</li><li><span class="help-kbd">A</span>：字号 +6%</li><li><span class="help-kbd">F1</span>：帮助</li><li><span class="help-kbd">Esc</span>：关闭弹窗 / 右键菜单</li></ul>'
+      h: '<h3>键盘操作</h3><ul><li><span class="help-kbd">/</span> 或 <span class="help-kbd">Ctrl K</span>：聚焦搜索</li><li><span class="help-kbd">Enter</span>：AI 查找；列表中打开选中项</li><li><span class="help-kbd">Ctrl Enter</span>：在新标签打开选中项</li><li><span class="help-kbd">↑</span> <span class="help-kbd">↓</span>：移动选择</li><li><span class="help-kbd">Alt ←</span> / <span class="help-kbd">Alt →</span>：后退 / 前进</li><li><span class="help-kbd">Backspace</span>：向上一级</li><li><span class="help-kbd">Ctrl A</span>：全选当前列表</li><li><span class="help-kbd">F5</span>：刷新列表</li><li><span class="help-kbd">1–8</span>：资源库 / 岗位路径 / 项目 / 收藏 / 我的文件 / 数据手册 / 工程计算器 / 在线工具</li><li><span class="help-kbd">I</span>：AI 助理 / 详情面板</li><li><span class="help-kbd">A</span>：字号 +6%</li><li><span class="help-kbd">F1</span>：帮助</li><li><span class="help-kbd">Esc</span>：关闭弹窗 / 右键菜单</li></ul>'
     },
     about: {
       t: '关于 EE-INDEX',
-      h: '<h3>EE-INDEX 98</h3><p>一台复古 CRT 里的硬件工程资源管理器。' + DATA.length + ' 条资源、' + ROLES.length + ' 个岗位路径、' + PROJECTS.length + ' 个项目，其中包含 36 份自托管的元器件数据手册。</p><p>数据人工校对，项目复核于 2026-11，每季度更新。资源图标首次访问时并行读取网站 favicon 并缓存在本机，1.2 秒未返回就回退本地图标，不阻塞列表。</p><div class="tip">本地优先：收藏、字号、视图、排序、AI Key 都只保存在这台电脑的浏览器里。</div>'
+      h: '<h3>EE-INDEX 98</h3><p>一台复古 CRT 里的硬件工程资源管理器。' + DATA.length + ' 条资源、' + ROLES.length + ' 个岗位路径、' + PROJECTS.length + ' 个项目，其中包含 36 份自托管的元器件数据手册、6 个站内工程计算器和一批官方在线工具入口。</p><p>数据人工校对，项目复核于 2026-11，每季度更新。资源图标首次访问时并行读取网站 favicon 并缓存在本机，1.2 秒未返回就回退本地图标，不阻塞列表。</p><div class="tip">本地优先：收藏、字号、视图、排序、AI Key 都只保存在这台电脑的浏览器里。</div>'
     },
     privacy: {
       t: '隐私与免责声明',
@@ -8893,6 +9548,13 @@ var GUIDES = {
       else if (v === 'projects') goProjects('all');
       else if (v === 'favorites') goFavorites();
       else if (v === 'personal'){ if (window.EEPLUI) window.EEPLUI.go('root'); else goPersonal(); }
+      else if (v === 'tools'){ state.lang = 'all'; goLibrary('tools'); }
+      return;
+    }
+    if (cmd.indexOf('tools:') === 0){
+      var tool = cmd.slice(6);
+      if (window.EECalc) window.EECalc.open(tool === 'calc' ? 'z0' : tool);
+      else showToast('工程计算器正在加载，请稍后再试');
       return;
     }
     if (cmd.indexOf('view:') === 0){ setViewMode(cmd.slice(5)); return; }
@@ -9328,6 +9990,8 @@ var GUIDES = {
       else if (e.key === '4'){ goFavorites(); }
       else if (e.key === '5'){ if (window.EEPLUI) window.EEPLUI.go('root'); else goPersonal(); }
       else if (e.key === '6'){ goDatasheets('all'); }
+      else if (e.key === '7'){ if (window.EECalc) window.EECalc.open('z0'); else showToast('工程计算器正在加载，请稍后再试'); }
+      else if (e.key === '8'){ state.lang = 'all'; goLibrary('tools'); }
       else if (e.key.toLowerCase() === 'a'){ cycleFont(); }
       else if (e.key.toLowerCase() === 'r'){ resetCurrent(); }
       else if (e.key.toLowerCase() === 't'){ executeCmd('tree'); }
@@ -9354,8 +10018,52 @@ var GUIDES = {
         if (soundBtn) soundBtn.click();
       });
     }
-    Array.prototype.forEach.call(document.querySelectorAll('.task-quick'), function(btn){
+    var sdBtn = $('#showDesktopBtn');
+    if (sdBtn){
+      sdBtn.addEventListener('click', function(){
+        if (document.body.classList.contains('app-minimized')) setAppMinimized(false);
+        else setAppMinimized(true);
+      });
+    }
+    var dsForm = $('#deskSearchForm');
+    if (dsForm){
+      dsForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        var inp = $('#deskSearchInput');
+        var v = inp ? inp.value.trim() : '';
+        if (!v){ if (inp) inp.focus(); return; }
+        restoreApp();
+        qInput.value = v;
+        askAI(v);
+      });
+    }
+    updateDeskStats();
+    Array.prototype.forEach.call(document.querySelectorAll('.task-quick[data-desk]'), function(btn){
       btn.addEventListener('click', function(){ openDesktopAction(btn.dataset.desk); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.desk-btn[data-desk]'), function(btn){
+      btn.addEventListener('click', function(){ openDesktopAction(btn.dataset.desk); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-desk-role]'), function(btn){
+      btn.addEventListener('click', function(){
+        restoreApp();
+        goPaths(btn.dataset.deskRole);
+        blinkHdd();
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-desk-level]'), function(btn){
+      btn.addEventListener('click', function(){
+        restoreApp();
+        goProjects(btn.dataset.deskLevel);
+        blinkHdd();
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-desk-ds]'), function(btn){
+      btn.addEventListener('click', function(){
+        restoreApp();
+        goDatasheets(btn.dataset.deskDs);
+        blinkHdd();
+      });
     });
     deskIcons.forEach(function(btn){
       btn.addEventListener('click', function(){
@@ -9375,7 +10083,7 @@ var GUIDES = {
       e.preventDefault();
       deskMenu.hidden = false;
       deskMenu.style.left = Math.max(2, Math.min(e.clientX, window.innerWidth - 200)) + 'px';
-      deskMenu.style.top = Math.max(2, Math.min(e.clientY, window.innerHeight - 174)) + 'px';
+      deskMenu.style.top = Math.max(2, Math.min(e.clientY, window.innerHeight - 232)) + 'px';
     });
     if (deskMenu){
       deskMenu.addEventListener('click', function(e){
@@ -9535,6 +10243,875 @@ var GUIDES = {
 })();
 </script>
 <script>
+/* EE-INDEX 98 — 工程计算器
+   独立实现：阻抗/线宽、载流/线宽、过孔/走线、无源/电源、BOM 核对、单位换算。
+   公式来自公开的 IPC-2141 / IPC-2221 近似与基础电路定律，不复制任何商业软件代码。 */
+(function(){
+  "use strict";
+  if (window.EECalc) return;
+
+  var dialog = null;
+  var built = false;
+  var activeTab = 'z0';
+  var lastBom = null;
+  var TABS = [
+    ['z0', '阻抗 / 线宽'],
+    ['current', '载流 / 线宽'],
+    ['via', '过孔 / 走线'],
+    ['passive', '无源 / 电源'],
+    ['bom', 'BOM 核对'],
+    ['units', '单位换算']
+  ];
+
+  function $(id){ return dialog ? dialog.querySelector('#' + id) : null; }
+  function all(sel){ return dialog ? Array.prototype.slice.call(dialog.querySelectorAll(sel)) : []; }
+  function val(id, def){
+    var el = $(id);
+    if (!el) return def;
+    var n = parseFloat(String(el.value).replace(',', '.'));
+    return isFinite(n) ? n : def;
+  }
+  function fmt(n, d){
+    if (!isFinite(n)) return '—';
+    var p = Math.pow(10, d == null ? 3 : d);
+    return String(Math.round(n * p) / p);
+  }
+  function mm(n){
+    if (!isFinite(n)) return '—';
+    if (Math.abs(n) >= 10) return fmt(n, 2);
+    if (Math.abs(n) >= 1) return fmt(n, 3);
+    return fmt(n, 4);
+  }
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function kv(rows){
+    return '<table class="calc-kv">' + rows.map(function(r){
+      return '<tr><th>' + r[0] + '</th><td>' + r[1] + '</td></tr>';
+    }).join('') + '</table>';
+  }
+  function out(big, bigUnit, sub, rows, note, tone){
+    return '<div class="calc-out-head"><span>结果 / RESULT</span><span class="calc-badge' + (tone ? ' ' + tone : '') + '">' + (tone === 'warn' ? '注意' : '计算完成') + '</span></div>' +
+      '<div class="calc-big">' + big + (bigUnit ? '<small>' + bigUnit + '</small>' : '') + '</div>' +
+      '<div class="calc-sub">' + sub + '</div>' +
+      (rows && rows.length ? kv(rows) : '') +
+      (note ? '<div class="calc-note">' + note + '</div>' : '');
+  }
+  function emptyOut(msg){
+    return '<div class="calc-out-head"><span>结果 / RESULT</span><span class="calc-badge">待输入</span></div>' +
+      '<div class="calc-big">—</div><div class="calc-sub">' + msg + '</div>';
+  }
+  function setOut(id, html){
+    var el = $(id);
+    if (el) el.innerHTML = html;
+  }
+  function status(msg){
+    var el = $('calcStatusText');
+    if (el) el.textContent = msg;
+  }
+
+  /* ================= 面板 HTML ================= */
+  function panelZ0(){
+    return '<section class="calc-panel" data-panel="z0" role="tabpanel" aria-label="阻抗与线宽">' +
+      '<div class="calc-cols">' +
+        '<fieldset class="calc-group">' +
+          '<legend>叠层与几何</legend>' +
+          '<label class="calc-field"><span>走线结构</span><select id="czType">' +
+            '<option value="micro">表层微带线 / Microstrip</option>' +
+            '<option value="strip">内层带状线 / Stripline</option>' +
+            '<option value="dmicro">差分微带线 / Edge-coupled</option>' +
+            '<option value="dstrip">差分带状线 / Edge-coupled</option>' +
+          '</select></label>' +
+          '<label class="calc-field"><span>介电常数 εr</span><input id="czEr" type="number" value="4.3" min="1" max="20" step="0.1"></label>' +
+          '<label class="calc-field"><span>介质厚度 h (mm)</span><input id="czH" type="number" value="0.2" min="0.02" max="5" step="0.01"></label>' +
+          '<label class="calc-field"><span>铜厚 t</span><select id="czOz">' +
+            '<option value="0.5">0.5 oz / 17.5 µm</option>' +
+            '<option value="1" selected>1 oz / 35 µm</option>' +
+            '<option value="2">2 oz / 70 µm</option>' +
+            '<option value="3">3 oz / 105 µm</option>' +
+            '<option value="4">4 oz / 140 µm</option>' +
+          '</select></label>' +
+          '<label class="calc-field"><span>线宽 w (mm)</span><input id="czW" type="number" value="0.36" min="0.01" max="20" step="0.01"></label>' +
+          '<label class="calc-field" data-diff-only><span>差分间距 s (mm)</span><input id="czS" type="number" value="0.2" min="0.05" max="5" step="0.01"></label>' +
+          '<label class="calc-field"><span>目标阻抗 (Ω)</span><input id="czTarget" type="number" value="50" min="10" max="200" step="1"></label>' +
+          '<div class="calc-radios">' +
+            '<label><input type="radio" name="czMode" value="forward" checked> 已知线宽算阻抗</label>' +
+            '<label><input type="radio" name="czMode" value="solve"> 已知阻抗算线宽</label>' +
+          '</div>' +
+          '<button type="button" class="calc-btn primary" data-calc-run="z0">计算 (F9)</button>' +
+          '<p class="calc-hint">微带线用 IPC-2141 近似；差分阻抗用边耦合指数近似。正式打样请用板厂阻抗报告校准。</p>' +
+        '</fieldset>' +
+        '<div class="calc-result" id="czOut">' + emptyOut('选择模式后点“计算”。') + '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function panelCurrent(){
+    return '<section class="calc-panel" data-panel="current" role="tabpanel" aria-label="载流与线宽" hidden>' +
+      '<div class="calc-cols">' +
+        '<fieldset class="calc-group">' +
+          '<legend>IPC-2221 载流</legend>' +
+          '<label class="calc-field"><span>电流 I (A)</span><input id="ccI" type="number" value="3" min="0.01" max="200" step="0.1"></label>' +
+          '<label class="calc-field"><span>允许温升 ΔT (°C)</span><input id="ccDT" type="number" value="10" min="1" max="100" step="1"></label>' +
+          '<label class="calc-field"><span>铜厚</span><select id="ccOz">' +
+            '<option value="0.5">0.5 oz / 17.5 µm</option>' +
+            '<option value="1" selected>1 oz / 35 µm</option>' +
+            '<option value="2">2 oz / 70 µm</option>' +
+            '<option value="3">3 oz / 105 µm</option>' +
+            '<option value="4">4 oz / 140 µm</option>' +
+          '</select></label>' +
+          '<label class="calc-field"><span>层位置</span><select id="ccLayer">' +
+            '<option value="ext" selected>外层 / External</option>' +
+            '<option value="int">内层 / Internal</option>' +
+          '</select></label>' +
+          '<label class="calc-field"><span>走线长度 (mm)</span><input id="ccLen" type="number" value="30" min="0" max="2000" step="1"></label>' +
+          '<label class="calc-field"><span>已知线宽 (mm)</span><input id="ccW" type="number" value="1" min="0.01" max="20" step="0.01"></label>' +
+          '<div class="calc-radios">' +
+            '<label><input type="radio" name="ccMode" value="width" checked> 算最小线宽</label>' +
+            '<label><input type="radio" name="ccMode" value="amp"> 算载流能力</label>' +
+          '</div>' +
+          '<button type="button" class="calc-btn primary" data-calc-run="current">计算 (F9)</button>' +
+          '<p class="calc-hint">k 取外层 0.048 / 内层 0.024；结果为裸铜允许温升，未含安全余量，工程上建议再加 20%。</p>' +
+        '</fieldset>' +
+        '<div class="calc-result" id="ccOut">' + emptyOut('输入电流与温升后计算。') + '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function panelVia(){
+    return '<section class="calc-panel" data-panel="via" role="tabpanel" aria-label="过孔与走线" hidden>' +
+      '<div class="calc-cols">' +
+        '<fieldset class="calc-group">' +
+          '<legend>过孔 / Via</legend>' +
+          '<label class="calc-field"><span>钻孔直径 (mm)</span><input id="cvDrill" type="number" value="0.3" min="0.05" max="6" step="0.01"></label>' +
+          '<label class="calc-field"><span>镀铜厚度 (µm)</span><input id="cvPlate" type="number" value="25" min="5" max="100" step="1"></label>' +
+          '<label class="calc-field"><span>板厚 / 孔长 (mm)</span><input id="cvLen" type="number" value="1.6" min="0.2" max="10" step="0.1"></label>' +
+          '<label class="calc-field"><span>并联过孔数</span><input id="cvCount" type="number" value="1" min="1" max="200" step="1"></label>' +
+          '<legend class="calc-legend-2">走线 / Trace</legend>' +
+          '<label class="calc-field"><span>走线宽度 (mm)</span><input id="cvW" type="number" value="0.2" min="0.01" max="20" step="0.01"></label>' +
+          '<label class="calc-field"><span>走线铜厚 (oz)</span><select id="cvOz"><option value="0.5">0.5 oz</option><option value="1" selected>1 oz</option><option value="2">2 oz</option><option value="3">3 oz</option></select></label>' +
+          '<label class="calc-field"><span>走线长度 (mm)</span><input id="cvTLen" type="number" value="20" min="0" max="2000" step="1"></label>' +
+          '<label class="calc-field"><span>工作电流 (A)</span><input id="cvI" type="number" value="1" min="0" max="100" step="0.1"></label>' +
+          '<button type="button" class="calc-btn primary" data-calc-run="via">计算 (F9)</button>' +
+          '<p class="calc-hint">过孔电感用 5.08·h·[ln(4h/d)+1] 近似；载流按镀铜环截面积套 IPC-2221。</p>' +
+        '</fieldset>' +
+        '<div class="calc-result" id="cvOut">' + emptyOut('输入孔径与板厚后计算。') + '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function panelPassive(){
+    return '<section class="calc-panel" data-panel="passive" role="tabpanel" aria-label="无源与电源" hidden>' +
+      '<div class="calc-cols">' +
+        '<fieldset class="calc-group">' +
+          '<legend>常用电路</legend>' +
+          '<label class="calc-field"><span>计算项</span><select id="cpType">' +
+            '<option value="divider">电阻分压 / Divider</option>' +
+            '<option value="rc">RC 低通截止 / RC</option>' +
+            '<option value="led">LED 限流电阻 / LED</option>' +
+            '<option value="ldo">LDO 功耗与结温 / LDO</option>' +
+          '</select></label>' +
+          '<div class="calc-subgrid" data-pas="divider">' +
+            '<label class="calc-field"><span>输入电压 Vin (V)</span><input id="cpVin" type="number" value="5" step="0.1"></label>' +
+            '<label class="calc-field"><span>上臂 R1 (kΩ)</span><input id="cpR1" type="number" value="10" step="0.1"></label>' +
+            '<label class="calc-field"><span>下臂 R2 (kΩ)</span><input id="cpR2" type="number" value="10" step="0.1"></label>' +
+          '</div>' +
+          '<div class="calc-subgrid" data-pas="rc" hidden>' +
+            '<label class="calc-field"><span>电阻 R (kΩ)</span><input id="cpRcR" type="number" value="10" step="0.1"></label>' +
+            '<label class="calc-field"><span>电容 C (nF)</span><input id="cpRcC" type="number" value="100" step="1"></label>' +
+          '</div>' +
+          '<div class="calc-subgrid" data-pas="led" hidden>' +
+            '<label class="calc-field"><span>电源电压 Vs (V)</span><input id="cpLedVs" type="number" value="5" step="0.1"></label>' +
+            '<label class="calc-field"><span>LED 正向压降 Vf (V)</span><input id="cpLedVf" type="number" value="2" step="0.1"></label>' +
+            '<label class="calc-field"><span>目标电流 If (mA)</span><input id="cpLedIf" type="number" value="10" step="0.5"></label>' +
+          '</div>' +
+          '<div class="calc-subgrid" data-pas="ldo" hidden>' +
+            '<label class="calc-field"><span>输入 Vin (V)</span><input id="cpLdoVin" type="number" value="12" step="0.1"></label>' +
+            '<label class="calc-field"><span>输出 Vout (V)</span><input id="cpLdoVout" type="number" value="3.3" step="0.1"></label>' +
+            '<label class="calc-field"><span>负载电流 (mA)</span><input id="cpLdoI" type="number" value="300" step="10"></label>' +
+            '<label class="calc-field"><span>静态电流 Iq (mA)</span><input id="cpLdoIq" type="number" value="5" step="1"></label>' +
+            '<label class="calc-field"><span>θJA (°C/W)</span><input id="cpLdoTheta" type="number" value="60" step="1"></label>' +
+            '<label class="calc-field"><span>环境温度 (°C)</span><input id="cpLdoTa" type="number" value="25" step="1"></label>' +
+          '</div>' +
+          '<button type="button" class="calc-btn primary" data-calc-run="passive">计算 (F9)</button>' +
+          '<p class="calc-hint">LED 电阻会给出最接近的 E24 标准值；LDO 结温按 θJA 估算，实际以热阻与铜箔面积为准。</p>' +
+        '</fieldset>' +
+        '<div class="calc-result" id="cpOut">' + emptyOut('选择计算项并输入参数。') + '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function panelBom(){
+    return '<section class="calc-panel" data-panel="bom" role="tabpanel" aria-label="BOM 核对" hidden>' +
+      '<div class="calc-bom-bar">' +
+        '<button type="button" class="calc-btn" data-bom-sample>载入示例</button>' +
+        '<button type="button" class="calc-btn" data-bom-clear>清空</button>' +
+        '<button type="button" class="calc-btn primary" data-bom-run>核对 BOM</button>' +
+        '<button type="button" class="calc-btn" data-bom-copy>复制结果</button>' +
+        '<button type="button" class="calc-btn" data-bom-csv>下载 CSV</button>' +
+        '<span class="calc-bom-hint">支持逗号 / 制表符 / 分号分隔，自动识别位号、值、封装、数量、料号列。</span>' +
+      '</div>' +
+      '<div class="calc-bom-grid">' +
+        '<div class="calc-bom-input">' +
+          '<div class="calc-section-title">粘贴 BOM / CSV</div>' +
+          '<textarea id="cbText" spellcheck="false" placeholder="Designator,Value,Footprint,Qty,MPN&#10;R1 R2,10k,0603,2,RC0603FR-0710KL&#10;C1,100nF,0603,1,CC0603KRX7R9BB104"></textarea>' +
+        '</div>' +
+        '<div class="calc-bom-output" id="cbOut">' + emptyOut('粘贴 BOM 后点“核对 BOM”。') + '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function panelUnits(){
+    return '<section class="calc-panel" data-panel="units" role="tabpanel" aria-label="单位换算" hidden>' +
+      '<div class="calc-cols">' +
+        '<fieldset class="calc-group">' +
+          '<legend>换算器</legend>' +
+          '<label class="calc-field"><span>类别</span><select id="cuCat">' +
+            '<option value="len">长度 / Length</option>' +
+            '<option value="cu">铜厚 / Copper</option>' +
+            '<option value="pwr">功率 / Power</option>' +
+            '<option value="temp">温度 / Temperature</option>' +
+            '<option value="awg">线径 / AWG</option>' +
+          '</select></label>' +
+          '<label class="calc-field"><span>输入单位</span><select id="cuUnit"></select></label>' +
+          '<label class="calc-field"><span>数值</span><input id="cuVal" type="number" value="1" step="0.001"></label>' +
+          '<button type="button" class="calc-btn primary" data-calc-run="units">换算</button>' +
+          '<p class="calc-hint">铜厚按 1 oz = 35 µm 近似；AWG 直径按标准公式 d(mm)=0.127×92^((36−AWG)/39)。</p>' +
+        '</fieldset>' +
+        '<div class="calc-result" id="cuOut">' + emptyOut('选择类别和单位后换算。') + '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  /* ================= 阻抗 ================= */
+  function z0Single(type, w, h, t, er){
+    if (type === 'micro' || type === 'dmicro'){
+      var z = 87 / Math.sqrt(er + 1.41) * Math.log(5.98 * h / (0.8 * w + t));
+      var u = w / h;
+      var ee = (er + 1) / 2 + (er - 1) / 2 / Math.sqrt(1 + 12 / u);
+      return { z: z, ee: ee };
+    }
+    var z2 = 60 / Math.sqrt(er) * Math.log(1.9 * (2 * h + t) / (0.8 * w + t));
+    return { z: z2, ee: er };
+  }
+  function z0Diff(type, z0, s, h){
+    if (type === 'dmicro') return 2 * z0 * (1 - 0.48 * Math.exp(-0.96 * s / h));
+    return 2 * z0 * (1 - 0.347 * Math.exp(-2.9 * s / (2 * h)));
+  }
+  function runZ0(){
+    var type = $('czType').value;
+    var er = val('czEr', 4.3);
+    var h = val('czH', 0.2);
+    var t = val('czOz', 1) * 0.035;
+    var w = val('czW', 0.36);
+    var s = val('czS', 0.2);
+    var target = val('czTarget', 50);
+    var isDiff = type === 'dmicro' || type === 'dstrip';
+    var modeEl = dialog.querySelector('input[name="czMode"]:checked');
+    var mode = modeEl ? modeEl.value : 'forward';
+    if (!(er > 1) || !(h > 0) || !(w > 0) || !(t > 0)){
+      setOut('czOut', out('参数无效', '', 'εr、h、w 必须大于 0。', [], '请检查输入。', 'warn'));
+      return;
+    }
+    if (isDiff && !(s > 0)) s = h * 0.5;
+    if (mode === 'solve'){
+      if (!(target > 5)){ setOut('czOut', out('目标无效', '', '目标阻抗必须大于 5 Ω。', [], '', 'warn')); return; }
+      var lo = 0.005, hi = 20;
+      for (var i = 0; i < 90; i++){
+        var mid = (lo + hi) / 2;
+        var zz = z0Single(type, mid, h, t, er).z;
+        var cmp = isDiff ? z0Diff(type, zz, s, h) : zz;
+        if (cmp > target) lo = mid; else hi = mid;
+      }
+      w = (lo + hi) / 2;
+      var el = $('czW');
+      if (el) el.value = fmt(w, 3);
+    }
+    var single = z0Single(type, w, h, t, er);
+    var zd = isDiff ? z0Diff(type, single.z, s, h) : null;
+    var ratio = w / h;
+    var delay = 3.3356 * Math.sqrt(single.ee);
+    var cap = 3.3356 * Math.sqrt(single.ee) / single.z;
+    var ind = single.z * Math.sqrt(single.ee) / 300;
+    var valid = ratio >= 0.1 && ratio <= 3;
+    var rows = [];
+    rows.push(['单端阻抗 Z0', '<b>' + fmt(single.z, 1) + ' Ω</b>']);
+    if (isDiff) rows.push(['差分阻抗 Zdiff', '<b>' + fmt(zd, 1) + ' Ω</b>']);
+    rows.push(['有效介电常数 εeff', fmt(single.ee, 3)]);
+    rows.push(['传播延迟', fmt(delay, 2) + ' ps/mm']);
+    rows.push(['单位长度电容', fmt(cap, 4) + ' pF/mm']);
+    rows.push(['单位长度电感', fmt(ind, 3) + ' nH/mm']);
+    rows.push(['线宽 / 介质比', fmt(ratio, 3) + ' : 1']);
+    rows.push(['实际线宽', mm(w) + ' mm · ' + fmt(w / 0.0254, 1) + ' mil']);
+    if (mode === 'solve') rows.push(['目标误差', fmt(isDiff ? zd - target : single.z - target, 2) + ' Ω']);
+    var big = mode === 'solve' ? mm(w) : fmt(isDiff ? zd : single.z, 1);
+    var unit = mode === 'solve' ? 'mm 线宽' : 'Ω';
+    var isStrip = type === 'strip' || type === 'dstrip';
+    var sub = mode === 'solve'
+      ? '目标 ' + fmt(target, 0) + ' Ω · ' + (isDiff ? '差分' : '单端') + ' · ' + (isStrip ? '带状线' : '微带线')
+      : (isDiff ? '差分阻抗 Zdiff' : '单端阻抗 Z0') + ' · ' + (isStrip ? '带状线' : '微带线');
+    var note = '按 IPC-2141 微带/带状线近似与边耦合差分近似计算。';
+    if (!valid) note += ' 当前 w/h=' + fmt(ratio, 2) + ' 超出常用拟合范围（0.1–3），结果仅供趋势参考。';
+    if (mode === 'solve' && (w < 0.03 || w > 8)) note += ' 求解线宽超出常规加工范围，请调整叠层或目标阻抗。';
+    if (isDiff && s < t * 2) note += ' 差分间距接近铜厚，边耦合公式误差会变大。';
+    setOut('czOut', out(big, unit, sub, rows, note, valid ? '' : 'warn'));
+    status('阻抗计算完成：' + sub);
+  }
+
+  /* ================= 载流 ================= */
+  function currentArea(I, dT, k){
+    return Math.pow(I / (k * Math.pow(dT, 0.44)), 1 / 0.725);
+  }
+  function currentFor(area, dT, k){
+    return k * Math.pow(dT, 0.44) * Math.pow(area, 0.725);
+  }
+  function runCurrent(){
+    var I = val('ccI', 3);
+    var dT = val('ccDT', 10);
+    var oz = val('ccOz', 1);
+    var layer = $('ccLayer').value;
+    var len = val('ccLen', 30);
+    var wMm = val('ccW', 1);
+    var modeEl = dialog.querySelector('input[name="ccMode"]:checked');
+    var mode = modeEl ? modeEl.value : 'width';
+    var k = layer === 'ext' ? 0.048 : 0.024;
+    var thickMil = oz * 1.378;
+    if (!(I > 0) || !(dT > 0) || !(oz > 0)){
+      setOut('ccOut', out('参数无效', '', '电流、温升与铜厚必须大于 0。', [], '', 'warn'));
+      return;
+    }
+    var area, wMil, wOut;
+    if (mode === 'amp'){
+      wMil = wMm / 0.0254;
+      area = wMil * thickMil;
+      wOut = wMm;
+    } else {
+      area = currentArea(I, dT, k);
+      wMil = area / thickMil;
+      wOut = wMil * 0.0254;
+      var el = $('ccW');
+      if (el) el.value = fmt(wOut, 3);
+    }
+    var amp = currentFor(area, dT, k);
+    var tM = oz * 35e-6;
+    var wM = wOut / 1000;
+    var rho = 1.72e-8 * (1 + 0.00393 * (25 + dT - 20));
+    var R = len > 0 && wM > 0 && tM > 0 ? rho * (len / 1000) / (wM * tM) : 0;
+    var useI = mode === 'amp' ? I : amp;
+    var drop = useI * R;
+    var pow = useI * useI * R;
+    var rows = [
+      ['所需铜截面积', fmt(area, 1) + ' mil²'],
+      ['线宽 (mil)', fmt(wMil, 1) + ' mil'],
+      ['线宽 (mm)', '<b>' + fmt(wOut, 3) + ' mm</b>'],
+      ['该线宽载流 @ΔT', fmt(amp, 2) + ' A'],
+      ['走线电阻 @' + fmt(25 + dT, 0) + '°C', fmt(R * 1000, 2) + ' mΩ'],
+      ['压降', fmt(drop * 1000, 1) + ' mV'],
+      ['功耗', fmt(pow, 3) + ' W']
+    ];
+    var tblDT = [10, 20, 30, 40];
+    var tbl = '<table class="calc-table"><thead><tr><th>ΔT</th>' + tblDT.map(function(x){ return '<th>' + x + '°C</th>'; }).join('') + '</tr></thead><tbody><tr><th>线宽 mm</th>' +
+      tblDT.map(function(x){ return '<td>' + fmt(currentArea(I, x, k) / thickMil * 0.0254, 3) + '</td>'; }).join('') + '</tr></tbody></table>';
+    var big = mode === 'amp' ? fmt(amp, 2) : fmt(wOut, 3);
+    var unit = mode === 'amp' ? 'A 载流能力' : 'mm 最小线宽';
+    var sub = (layer === 'ext' ? '外层' : '内层') + ' · ' + oz + ' oz · ΔT ' + fmt(dT, 0) + '°C · I ' + fmt(I, 2) + ' A';
+    var note = 'IPC-2221 经验公式：A=(I/(k·ΔT^0.44))^(1/0.725)，A 单位 mil²。';
+    if (wOut < 0.1) note += ' 线宽小于 0.1 mm，蚀刻与对位误差占比很大。';
+    note += ' 工程建议至少加 20% 余量：' + fmt(wOut * 1.2, 3) + ' mm。';
+    setOut('ccOut', out(big, unit, sub, rows, note + tbl, wOut < 0.1 ? 'warn' : ''));
+    status('载流计算完成：' + unit);
+  }
+
+  /* ================= 过孔 / 走线 ================= */
+  function runVia(){
+    var d = val('cvDrill', 0.3);
+    var plate = val('cvPlate', 25) / 1000;
+    var len = val('cvLen', 1.6);
+    var n = Math.max(1, Math.round(val('cvCount', 1)));
+    var w = val('cvW', 0.2);
+    var oz = val('cvOz', 1);
+    var tl = val('cvTLen', 20);
+    var I = val('cvI', 1);
+    if (!(d > 0) || !(len > 0) || !(plate > 0) || plate * 2 >= d){
+      setOut('cvOut', out('参数无效', '', '镀铜厚度必须小于钻孔半径。', [], '', 'warn'));
+      return;
+    }
+    var ro = d / 2, ri = ro - plate;
+    var A = Math.PI * (ro * ro - ri * ri);
+    var rho = 1.72e-8 * (1 + 0.00393 * (25 + 20 - 20));
+    var Rone = rho * (len / 1000) / (A / 1e6);
+    var Rpar = Rone / n;
+    var hIn = len / 25.4, dIn = d / 25.4;
+    var Lind = 5.08 * hIn * (Math.log(4 * hIn / dIn) + 1);
+    var areaMil = A * 1550;
+    var amps = [10, 20, 30].map(function(dT){ return currentFor(areaMil, dT, 0.048) * n; });
+    var tM = oz * 35e-6, wM = w / 1000;
+    var Rtr = rho * (tl / 1000) / (wM * tM);
+    var drop = I * Rtr;
+    var pow = I * I * Rtr;
+    var rows = [
+      ['过孔截面积', fmt(A, 4) + ' mm²'],
+      ['单孔直流电阻', fmt(Rone * 1000, 2) + ' mΩ'],
+      [n + ' 孔并联电阻', '<b>' + fmt(Rpar * 1000, 2) + ' mΩ</b>'],
+      ['单孔电感', fmt(Lind, 2) + ' nH'],
+      ['载流 @ΔT 10°C', fmt(amps[0], 2) + ' A'],
+      ['载流 @ΔT 20°C', fmt(amps[1], 2) + ' A'],
+      ['载流 @ΔT 30°C', fmt(amps[2], 2) + ' A'],
+      ['走线电阻 (' + fmt(tl, 0) + ' mm)', fmt(Rtr * 1000, 2) + ' mΩ'],
+      ['走线压降 @' + fmt(I, 2) + ' A', fmt(drop * 1000, 1) + ' mV'],
+      ['走线功耗', fmt(pow * 1000, 2) + ' mW']
+    ];
+    var note = '过孔电阻按镀铜环截面与 20°C 铜电阻率计算；电感为经典 5.08·h·[ln(4h/d)+1] 近似。';
+    if (plate < 0.02) note += ' 镀铜 20 µm 以下时，孔壁厚度公差对电阻与载流影响很大。';
+    setOut('cvOut', out(fmt(Rpar * 1000, 2), 'mΩ / ' + n + ' 孔并联', d + ' mm 钻孔 · ' + fmt(val('cvPlate', 25), 0) + ' µm 镀铜 · ' + len + ' mm 板厚', rows, note));
+    status('过孔计算完成');
+  }
+
+  /* ================= 无源 / 电源 ================= */
+  var E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1];
+  function nearestE24(r){
+    if (!(r > 0)) return 0;
+    var dec = Math.pow(10, Math.floor(Math.log10(r)));
+    var base = r / dec;
+    var best = E24[0];
+    E24.forEach(function(v){ if (Math.abs(v - base) < Math.abs(best - base)) best = v; });
+    var outv = best * dec;
+    if (Math.abs(10 * dec - r) < Math.abs(outv - r)) outv = 10 * dec;
+    return outv;
+  }
+  function runPassive(){
+    var type = $('cpType').value;
+    if (type === 'divider'){
+      var vin = val('cpVin', 5), r1 = val('cpR1', 10), r2 = val('cpR2', 10);
+      if (!(r1 > 0) || !(r2 > 0)){ setOut('cpOut', out('参数无效', '', 'R1 / R2 必须大于 0。', [], '', 'warn')); return; }
+      var vout = vin * r2 / (r1 + r2);
+      var i = vin / ((r1 + r2) * 1000);
+      var p1 = i * i * r1 * 1000, p2 = i * i * r2 * 1000;
+      setOut('cpOut', out(fmt(vout, 3), 'V 输出', '分压比 ' + fmt(r2 / (r1 + r2), 4), [
+        ['总电流', fmt(i * 1e6, 1) + ' µA'],
+        ['R1 功耗', fmt(p1 * 1000, 3) + ' mW'],
+        ['R2 功耗', fmt(p2 * 1000, 3) + ' mW'],
+        ['建议额定功率', fmt(Math.max(p1, p2) * 4 * 1000, 2) + ' mW 以上']
+      ], '分压输出带负载后会下降；ADC 采样前建议加 RC 与钳位保护。'));
+    } else if (type === 'rc'){
+      var R = val('cpRcR', 10), C = val('cpRcC', 100);
+      if (!(R > 0) || !(C > 0)){ setOut('cpOut', out('参数无效', '', 'R / C 必须大于 0。', [], '', 'warn')); return; }
+      var tau = R * C; // kΩ * nF = µs
+      var fc = 1 / (2 * Math.PI * tau * 1e-6);
+      var rise = 2.2 * tau;
+      setOut('cpOut', out(fc >= 1000 ? fmt(fc / 1000, 2) : fmt(fc, 1), fc >= 1000 ? 'kHz 截止频率' : 'Hz 截止频率', 'τ = ' + fmt(tau, 2) + ' µs', [
+        ['−3 dB 截止频率', fmt(fc, 1) + ' Hz'],
+        ['时间常数 τ', fmt(tau, 2) + ' µs'],
+        ['10–90% 上升时间', fmt(rise, 2) + ' µs'],
+        ['1 / (2πRC)', 'R=' + R + ' kΩ · C=' + C + ' nF']
+      ], '低通截止后每十倍频衰减约 20 dB；驱动 ADC 时注意源阻抗与采样保持时间。'));
+    } else if (type === 'led'){
+      var vs = val('cpLedVs', 5), vf = val('cpLedVf', 2), iff = val('cpLedIf', 10) / 1000;
+      if (!(iff > 0) || !(vs > vf)){ setOut('cpOut', out('参数无效', '', '需满足 Vs > Vf，且 If > 0。', [], '', 'warn')); return; }
+      var r = (vs - vf) / iff;
+      var rn = nearestE24(r);
+      var iact = (vs - vf) / rn;
+      var pr = iact * iact * rn;
+      setOut('cpOut', out(fmt(rn, rn >= 100 ? 0 : 1), 'Ω 限流电阻', '计算值 ' + fmt(r, 1) + ' Ω，取 E24 标准值', [
+        ['实际电流', fmt(iact * 1000, 2) + ' mA'],
+        ['电阻压降', fmt(iact * rn, 3) + ' V'],
+        ['电阻功耗', fmt(pr * 1000, 2) + ' mW'],
+        ['建议额定功率', fmt(pr * 2 * 1000, 0) + ' mW 以上']
+      ], '多颗 LED 并联时每颗单独串电阻；串联时按总 Vf 计算。'));
+    } else {
+      var lvin = val('cpLdoVin', 12), lvout = val('cpLdoVout', 3.3), li = val('cpLdoI', 300) / 1000, liq = val('cpLdoIq', 5) / 1000;
+      var theta = val('cpLdoTheta', 60), ta = val('cpLdoTa', 25);
+      if (!(lvin > lvout) || !(li >= 0)){ setOut('cpOut', out('参数无效', '', '需满足 Vin > Vout。', [], '', 'warn')); return; }
+      var p = (lvin - lvout) * li + lvin * liq;
+      var tj = ta + p * theta;
+      var eff = lvout * li / (lvin * (li + liq)) * 100;
+      setOut('cpOut', out(fmt(p, 2), 'W 功耗', '结温估算 ' + fmt(tj, 1) + '°C', [
+        ['负载功耗', fmt((lvin - lvout) * li, 3) + ' W'],
+        ['静态功耗', fmt(lvin * liq, 3) + ' W'],
+        ['温升', fmt(p * theta, 1) + ' °C'],
+        ['结温 Tj', '<b>' + fmt(tj, 1) + ' °C</b>'],
+        ['效率', fmt(eff, 1) + ' %'],
+        ['压差', fmt(lvin - lvout, 2) + ' V']
+      ], tj > 125 ? '结温超过 125°C，必须降额、加铜箔/散热或改用开关电源。' : '结温低于 125°C 仍建议留 20°C 以上余量；θJA 与铜箔面积强相关。', tj > 125 ? 'warn' : ''));
+    }
+    status('无源/电源计算完成');
+  }
+
+  /* ================= BOM ================= */
+  function bomSample(){
+    return [
+      'Designator,Value,Footprint,Qty,MPN',
+      'R1 R2,10k,0603,2,RC0603FR-0710KL',
+      'R3,1k,0603,1,RC0603FR-071KL',
+      'C1 C2,100nF,0603,2,CC0603KRX7R9BB104',
+      'C3,10uF,0805,1,CL21A106KAYNNNE',
+      'U1,STM32F103C8T6,LQFP-48,1,STM32F103C8T6',
+      'U2,AMS1117-3.3,SOT-223,1,AMS1117-3.3',
+      'D1,LED-Red,0805,1,KT-0805R',
+      'Y1,8MHz,HC-49S,1,8.000MHz',
+      'J1,USB-C-16P,SMD-16,1,TYPE-C-16P'
+    ].join('\n');
+  }
+  function bomDetect(lines){
+    var cands = ['\t', ',', ';'];
+    var best = '\t', bestScore = -1;
+    cands.forEach(function(d){
+      var counts = lines.slice(0, 10).map(function(l){ return l.split(d).length - 1; });
+      var min = Math.min.apply(null, counts);
+      if (min > bestScore){ bestScore = min; best = d; }
+    });
+    return best;
+  }
+  function bomParse(text){
+    var lines = String(text || '').split(/\r?\n/).filter(function(l){ return l.trim(); });
+    if (!lines.length) return { error: '没有可解析的内容。' };
+    var delim = bomDetect(lines);
+    var rows = lines.map(function(l){ return l.split(delim).map(function(c){ return c.trim(); }); });
+    var map = null, headerIdx = -1;
+    rows.slice(0, 4).forEach(function(cells, idx){
+      var m = {};
+      cells.forEach(function(c, j){
+        var k = c.toLowerCase().replace(/\s+/g, ' ').trim();
+        if (/^(designator|designators|ref|refs|reference|references|位号|器件位号|器件编号|元件编号|元件位号)$/.test(k)) m.designator = j;
+        else if (/^(value|comment|val|值|型号|参数|规格|标称值)$/.test(k)) m.value = j;
+        else if (/^(footprint|package|封装|封装名|footprint name)$/.test(k)) m.footprint = j;
+        else if (/^(qty|quantity|数量|数目|用量)$/.test(k)) m.qty = j;
+        else if (/^(mpn|manufacturer part number|part number|partnumber|料号|物料编码|物料号|器件型号)$/.test(k)) m.mpn = j;
+      });
+      if (m.designator != null && (m.value != null || m.footprint != null) && !map){ map = m; headerIdx = idx; }
+    });
+    if (!map){
+      var cols = rows[0].length;
+      map = cols >= 5 ? { designator:0, value:1, footprint:2, qty:3, mpn:4 }
+        : cols === 4 ? { designator:0, value:1, footprint:2, qty:3 }
+        : cols === 3 ? { designator:0, value:1, footprint:2 }
+        : { designator:0, value:1 };
+    }
+    var body = rows.slice(headerIdx >= 0 ? headerIdx + 1 : 0);
+    var items = [], refRows = {}, allRefs = [], dupRefs = {}, qtyMismatch = [], missing = [];
+    var groupMap = {};
+    body.forEach(function(cells, ri){
+      if (!cells.length || !cells.join('').trim()) return;
+      var lineNo = headerIdx >= 0 ? ri + headerIdx + 2 : ri + 1;
+      var desigRaw = cells[map.designator] || '';
+      var refs = desigRaw.split(/[,;，；\s]+/).map(function(r){ return r.trim(); }).filter(Boolean);
+      var value = map.value != null ? (cells[map.value] || '') : '';
+      var fp = map.footprint != null ? (cells[map.footprint] || '') : '';
+      var mpn = map.mpn != null ? (cells[map.mpn] || '') : '';
+      var qty = map.qty != null ? parseFloat(cells[map.qty]) : NaN;
+      if (!refs.length && !value && !fp) return;
+      if (!value || !fp) missing.push(lineNo);
+      var seen = {};
+      refs.forEach(function(r){
+        var key = r.toUpperCase();
+        if (seen[key]) return;
+        seen[key] = 1;
+        refRows[key] = refRows[key] || [];
+        refRows[key].push(lineNo);
+        allRefs.push(key);
+      });
+      if (isFinite(qty) && refs.length && Math.abs(qty - refs.length) > 0.001) qtyMismatch.push(lineNo + '（声明 ' + qty + '，位号 ' + refs.length + '）');
+      var gkey = [value.trim().toLowerCase(), fp.trim().toLowerCase(), mpn.trim().toLowerCase()].join('\u0000');
+      if (!groupMap[gkey]) groupMap[gkey] = { value: value, footprint: fp, mpn: mpn, refs: [] };
+      refs.forEach(function(r){ groupMap[gkey].refs.push(r.toUpperCase()); });
+      items.push({ lineNo: lineNo, refs: refs, value: value, fp: fp, mpn: mpn, qty: qty });
+    });
+    Object.keys(refRows).forEach(function(k){ if (refRows[k].length > 1) dupRefs[k] = refRows[k]; });
+    var groups = Object.keys(groupMap).map(function(k){ return groupMap[k]; }).sort(function(a, b){
+      return (a.value + a.footprint).localeCompare(b.value + b.footprint, 'zh-CN');
+    });
+    var uniqRefs = Object.keys(refRows).length;
+    return {
+      rows: body.length, refs: uniqRefs, groups: groups, dupRefs: dupRefs,
+      qtyMismatch: qtyMismatch, missing: missing, items: items, delim: delim
+    };
+  }
+  function runBom(){
+    var res = bomParse($('cbText').value);
+    if (res.error){ setOut('cbOut', out('无法解析', '', res.error, [], '', 'warn')); return; }
+    lastBom = res;
+    var issues = Object.keys(res.dupRefs).length + res.qtyMismatch.length + res.missing.length;
+    var summary = '<div class="calc-bom-sum">' +
+      '<div><b>' + res.rows + '</b><span>BOM 行</span></div>' +
+      '<div><b>' + res.refs + '</b><span>唯一位号</span></div>' +
+      '<div><b>' + res.groups.length + '</b><span>料号组</span></div>' +
+      '<div class="' + (Object.keys(res.dupRefs).length ? 'bad' : '') + '"><b>' + Object.keys(res.dupRefs).length + '</b><span>重复位号</span></div>' +
+      '<div class="' + (res.qtyMismatch.length ? 'bad' : '') + '"><b>' + res.qtyMismatch.length + '</b><span>数量不符</span></div>' +
+      '<div class="' + (res.missing.length ? 'bad' : '') + '"><b>' + res.missing.length + '</b><span>缺值/封装</span></div>' +
+    '</div>';
+    var issuesHtml = '';
+    if (issues){
+      issuesHtml += '<div class="calc-issues">';
+      if (Object.keys(res.dupRefs).length){
+        issuesHtml += '<div><b>重复位号：</b>' + Object.keys(res.dupRefs).map(function(k){ return esc(k) + '（行 ' + res.dupRefs[k].join(' / ') + '）'; }).join('；') + '</div>';
+      }
+      if (res.qtyMismatch.length) issuesHtml += '<div><b>数量不符：</b>' + res.qtyMismatch.map(esc).join('；') + '</div>';
+      if (res.missing.length) issuesHtml += '<div><b>缺值/封装：</b>行 ' + res.missing.map(esc).join('、') + '</div>';
+      issuesHtml += '</div>';
+    } else {
+      issuesHtml = '<div class="calc-issues ok"><b>未发现重复位号、数量不符或缺失字段。</b></div>';
+    }
+    var tableRows = res.groups.slice(0, 200).map(function(g, i){
+      return '<tr><td>' + (i + 1) + '</td><td>' + esc(g.value || '—') + '</td><td>' + esc(g.footprint || '—') + '</td><td>' + esc(g.mpn || '—') + '</td><td class="num">' + g.refs.length + '</td><td class="refs">' + esc(g.refs.join(', ')) + '</td></tr>';
+    }).join('');
+    var table = '<div class="calc-bom-tablewrap"><table class="calc-table bom-table"><thead><tr><th>#</th><th>值</th><th>封装</th><th>料号</th><th>数量</th><th>位号</th></tr></thead><tbody>' + tableRows + '</tbody></table></div>';
+    if (res.groups.length > 200) table += '<p class="calc-hint">仅显示前 200 组，共 ' + res.groups.length + ' 组。</p>';
+    setOut('cbOut', summary + issuesHtml + table);
+    status('BOM 核对完成：' + res.rows + ' 行 / ' + res.groups.length + ' 组');
+  }
+  function bomCopy(){
+    if (!lastBom){ status('请先核对 BOM'); return; }
+    var lines = ['值\t封装\t料号\t数量\t位号'];
+    lastBom.groups.forEach(function(g){ lines.push([g.value, g.footprint, g.mpn, g.refs.length, g.refs.join(' ')].join('\t')); });
+    var text = lines.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ status('核对结果已复制'); }, function(){ status('复制失败，请下载 CSV'); });
+    } else {
+      status('当前浏览器不支持剪贴板');
+    }
+  }
+  function bomCsv(){
+    if (!lastBom){ status('请先核对 BOM'); return; }
+    var lines = ['Value,Footprint,MPN,Qty,Designators'];
+    lastBom.groups.forEach(function(g){
+      var cells = [g.value, g.footprint, g.mpn, String(g.refs.length), g.refs.join(' ')];
+      lines.push(cells.map(function(c){ return '"' + String(c).replace(/"/g, '""') + '"'; }).join(','));
+    });
+    var blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ee-bom-check.csv';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 600);
+    status('已导出 ee-bom-check.csv');
+  }
+
+  /* ================= 单位换算 ================= */
+  var UNITS = {
+    len: { label: '长度', opts: [['mm','毫米 mm'],['mil','密耳 mil'],['in','英寸 in'],['um','微米 µm']],
+      toBase: { mm:1, mil:0.0254, in:25.4, um:0.001 }, base: 'mm' },
+    cu: { label: '铜厚', opts: [['oz','盎司 oz'],['um','微米 µm'],['mil','密耳 mil']],
+      toBase: { oz:35, um:1, mil:25.4 }, base: 'um' },
+    pwr: { label: '功率', opts: [['w','瓦 W'],['mw','毫瓦 mW'],['dbm','dBm'],['dbw','dBW']],
+      toBase: null, base: 'w' },
+    temp: { label: '温度', opts: [['c','摄氏 °C'],['f','华氏 °F'],['k','开尔文 K']],
+      toBase: null, base: 'c' },
+    awg: { label: '线径', opts: [['awg','AWG'],['mm','直径 mm'],['mm2','截面积 mm²']],
+      toBase: null, base: 'mm' }
+  };
+  function fillUnits(){
+    var cat = $('cuCat').value;
+    var sel = $('cuUnit');
+    if (!sel) return;
+    var u = UNITS[cat];
+    sel.innerHTML = u.opts.map(function(o){ return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('');
+    if (cat === 'awg') sel.value = 'awg';
+    else if (cat === 'cu') sel.value = 'oz';
+    else if (cat === 'pwr') sel.value = 'dbm';
+    else if (cat === 'temp') sel.value = 'c';
+    else sel.value = 'mm';
+  }
+  function runUnits(){
+    var cat = $('cuCat').value;
+    var unit = $('cuUnit').value;
+    var x = val('cuVal', 0);
+    var rows = [];
+    var big = '', unitLabel = '';
+    if (cat === 'len' || cat === 'cu'){
+      var def = UNITS[cat];
+      var base = x * def.toBase[unit];
+      big = fmt(base, 4); unitLabel = def.base === 'mm' ? 'mm' : 'µm';
+      if (cat === 'len'){
+        rows.push(['毫米 mm', fmt(base, 4)]);
+        rows.push(['密耳 mil', fmt(base / 0.0254, 2)]);
+        rows.push(['英寸 in', fmt(base / 25.4, 5)]);
+        rows.push(['微米 µm', fmt(base * 1000, 1)]);
+      } else {
+        rows.push(['盎司 oz', fmt(base / 35, 4)]);
+        rows.push(['微米 µm', fmt(base, 2)]);
+        rows.push(['密耳 mil', fmt(base / 25.4, 3)]);
+      }
+    } else if (cat === 'pwr'){
+      var w;
+      if (unit === 'dbm') w = Math.pow(10, x / 10) / 1000;
+      else if (unit === 'dbw') w = Math.pow(10, x / 10);
+      else if (unit === 'mw') w = x / 1000;
+      else w = x;
+      if (w > 0){
+        big = fmt(10 * Math.log10(w / 0.001), 2); unitLabel = 'dBm';
+        rows.push(['瓦 W', fmt(w, 6)]);
+        rows.push(['毫瓦 mW', fmt(w * 1000, 4)]);
+        rows.push(['dBm', fmt(10 * Math.log10(w / 0.001), 2)]);
+        rows.push(['dBW', fmt(10 * Math.log10(w), 2)]);
+      } else {
+        big = '—'; unitLabel = ''; rows.push(['提示', '功率必须大于 0 才能换算 dB']);
+      }
+    } else if (cat === 'temp'){
+      var c;
+      if (unit === 'f') c = (x - 32) * 5 / 9;
+      else if (unit === 'k') c = x - 273.15;
+      else c = x;
+      big = fmt(c, 2); unitLabel = '°C';
+      rows.push(['摄氏 °C', fmt(c, 2)]);
+      rows.push(['华氏 °F', fmt(c * 9 / 5 + 32, 2)]);
+      rows.push(['开尔文 K', fmt(c + 273.15, 2)]);
+    } else if (cat === 'awg'){
+      var d;
+      if (unit === 'awg') d = 0.127 * Math.pow(92, (36 - x) / 39);
+      else if (unit === 'mm2') d = Math.sqrt(4 * x / Math.PI);
+      else d = x;
+      var area = Math.PI * d * d / 4;
+      big = fmt(d, 4); unitLabel = 'mm 直径';
+      rows.push(['直径 mm', fmt(d, 4)]);
+      rows.push(['直径 mil', fmt(d / 0.0254, 1)]);
+      rows.push(['截面积 mm²', fmt(area, 4)]);
+      rows.push(['截面积 mil²', fmt(area / 0.0254 / 0.0254, 0)]);
+      rows.push(['对应 AWG', fmt(36 - 39 * Math.log(d / 0.127) / Math.log(92), 1)]);
+    }
+    setOut('cuOut', out(big, unitLabel, UNITS[cat].label + ' · 输入 ' + fmt(x, 4) + ' ' + unit, rows, '铜厚按 1 oz = 35 µm 的常用近似；AWG 为裸铜导体直径。'));
+    status('单位换算完成');
+  }
+
+  /* ================= 运行分发 ================= */
+  function run(tab){
+    if (tab === 'z0') runZ0();
+    else if (tab === 'current') runCurrent();
+    else if (tab === 'via') runVia();
+    else if (tab === 'passive') runPassive();
+    else if (tab === 'bom') runBom();
+    else if (tab === 'units') runUnits();
+  }
+
+  /* ================= 构建与交互 ================= */
+  function build(){
+    if (built) return;
+    built = true;
+    dialog = document.createElement('dialog');
+    dialog.id = 'calcModal';
+    dialog.className = 'calc-modal';
+    dialog.setAttribute('aria-label', '工程计算器');
+    dialog.innerHTML =
+      '<div class="calc-shell">' +
+        '<div class="calc-titlebar">' +
+          '<span class="calc-app-ico" aria-hidden="true">▦</span>' +
+          '<span class="calc-title">工程计算器 — EE-TOOLS 1.0</span>' +
+          '<span class="calc-title-spacer"></span>' +
+          '<button type="button" class="calc-x" data-calc-close aria-label="关闭">×</button>' +
+        '</div>' +
+        '<div class="calc-menubar" aria-hidden="true">' +
+          '<span>文件(F)</span><span>计算(C)</span><span>帮助(H)</span>' +
+          '<span class="calc-menubar-spacer"></span>' +
+          '<span>IPC-2141 · IPC-2221 · 独立实现</span>' +
+        '</div>' +
+        '<div class="calc-tabs" role="tablist">' + TABS.map(function(t){
+          return '<button type="button" role="tab" data-calc-tab="' + t[0] + '" id="calcTab-' + t[0] + '" aria-controls="calcPanel-' + t[0] + '"' + (t[0] === activeTab ? ' class="on" aria-selected="true"' : ' aria-selected="false"') + '>' + t[1] + '</button>';
+        }).join('') + '</div>' +
+        '<div class="calc-body">' + panelZ0() + panelCurrent() + panelVia() + panelPassive() + panelBom() + panelUnits() + '</div>' +
+        '<div class="calc-status"><span id="calcStatusText">就绪</span><span class="calc-status-right">F9 计算 · Esc 关闭 · 结果仅供参考</span></div>' +
+      '</div>';
+    document.body.appendChild(dialog);
+
+    dialog.querySelectorAll('[data-panel]').forEach(function(p){
+      var id = p.getAttribute('data-panel');
+      p.id = 'calcPanel-' + id;
+    });
+
+    dialog.addEventListener('click', function(e){
+      var close = e.target.closest('[data-calc-close]');
+      if (close){ closeCalc(); return; }
+      var tab = e.target.closest('[data-calc-tab]');
+      if (tab){ switchTab(tab.getAttribute('data-calc-tab')); return; }
+      var runBtn = e.target.closest('[data-calc-run]');
+      if (runBtn){ run(runBtn.getAttribute('data-calc-run')); return; }
+      if (e.target.closest('[data-bom-sample]')){ $('cbText').value = bomSample(); status('已载入示例 BOM'); return; }
+      if (e.target.closest('[data-bom-clear]')){ $('cbText').value = ''; lastBom = null; setOut('cbOut', emptyOut('粘贴 BOM 后点“核对 BOM”。')); return; }
+      if (e.target.closest('[data-bom-run]')){ runBom(); return; }
+      if (e.target.closest('[data-bom-copy]')){ bomCopy(); return; }
+      if (e.target.closest('[data-bom-csv]')){ bomCsv(); return; }
+      if (e.target === dialog) closeCalc();
+    });
+    dialog.addEventListener('close', function(){ status('就绪'); });
+    dialog.addEventListener('keydown', function(e){
+      if (e.key === 'F9'){ e.preventDefault(); run(activeTab); }
+    });
+    dialog.addEventListener('change', function(e){
+      if (e.target.id === 'czType'){
+        var t = e.target.value;
+        var isDiff = t === 'dmicro' || t === 'dstrip';
+        all('[data-diff-only]').forEach(function(n){ n.hidden = !isDiff; });
+        var target = $('czTarget');
+        if (target) target.value = isDiff ? '100' : '50';
+        updateZ0Mode();
+      }
+      if (e.target.id === 'cuCat'){ fillUnits(); runUnits(); }
+      if (e.target.id === 'cuUnit'){ runUnits(); }
+      if (e.target.id === 'cpType'){
+        all('[data-pas]').forEach(function(n){ n.hidden = n.getAttribute('data-pas') !== e.target.value; });
+      }
+      if (e.target.name === 'czMode') updateZ0Mode();
+      if (e.target.name === 'ccMode'){
+        var w = $('ccW');
+        if (w) w.disabled = e.target.value === 'width';
+      }
+    });
+    dialog.addEventListener('input', function(e){
+      if (e.target.id === 'cuVal') runUnits();
+    });
+
+    fillUnits();
+    all('[data-diff-only]').forEach(function(n){ n.hidden = true; });
+    updateZ0Mode();
+  }
+
+  function updateZ0Mode(){
+    var modeEl = dialog.querySelector('input[name="czMode"]:checked');
+    var solve = modeEl && modeEl.value === 'solve';
+    var w = $('czW');
+    if (w) w.disabled = solve;
+    var t = $('czType');
+    var isDiff = t && (t.value === 'dmicro' || t.value === 'dstrip');
+    var target = $('czTarget');
+    if (target) target.disabled = !solve;
+    var hint = $('czOut');
+    if (hint && !hint.querySelector('.calc-kv')){
+      hint.innerHTML = emptyOut(solve ? '输入目标阻抗，结果会给出建议线宽。' : '输入线宽与叠层，结果会给出阻抗。');
+    }
+  }
+
+  function switchTab(tab){
+    if (!TABS.some(function(t){ return t[0] === tab; })) tab = 'z0';
+    activeTab = tab;
+    all('[data-calc-tab]').forEach(function(b){
+      var on = b.getAttribute('data-calc-tab') === tab;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    all('[data-panel]').forEach(function(p){ p.hidden = p.getAttribute('data-panel') !== tab; });
+    if (tab === 'units'){ runUnits(); }
+    status('当前：' + (TABS.filter(function(t){ return t[0] === tab; })[0] || ['', ''])[1]);
+  }
+
+  function openCalc(tab){
+    build();
+    if (!dialog.open) dialog.showModal();
+    if (tab) switchTab(tab);
+  }
+  function closeCalc(){
+    if (dialog && dialog.open) dialog.close();
+  }
+
+  window.EECalc = { open: openCalc, close: closeCalc, version: '1.0' };
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-calc-open]');
+    if (b){ e.preventDefault(); openCalc(b.getAttribute('data-calc-open') || 'z0'); }
+  });
+})();
+
+;
 /* 个人文件库 UI：分类树 / 文件管理 / 批量操作 / ZIP / 复古上传 / AI 分类
    依赖：window.EEPL（pl-core.js）、window.EESound / window.EEFX（sound.js）、window.EE（主程序） */
 (function(){
